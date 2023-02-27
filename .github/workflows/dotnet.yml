@@ -31,6 +31,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    if: always() && contains(join(needs.*.result, ','), 'success') && github.ref != 'refs/heads/Setup_CD-CI'
     needs: [build]
     uses: ./.github/workflows/docker.yml
