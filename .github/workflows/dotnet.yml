@@ -28,6 +28,9 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
   call-docker:
+    permissions:
+      contents: read
+      packages: write
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     needs: [build]
     uses: ./.github/workflows/docker.yml
