@@ -9,15 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      dotnet-version: '7.0.x'
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup dotnet ${{ dotnet-version }}
+    - name: Setup dotnet 7.0.x
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ dotnet-version }}
+        dotnet-version: 7.0.x
     - uses: actions/cache@v3
       with:
         path: ~/.nuget/packages
