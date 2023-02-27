@@ -1,0 +1,34 @@
+{
+	"profiles": {
+		"http": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"launchUrl": "swagger",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"APP_CFG__DB__ADDR": "localhost",
+				"APP_CFG__DB__DB": "example",
+				"APP_CFG__DB__UID": "user",
+				"APP_CFG__DB__PWD": "password",
+				"APP_CFG__DB__PORT": "3306"
+			},
+			"dotnetRunMessages": true,
+			"applicationUrl": "http://localhost:8080"
+		},
+		"Docker": {
+			"commandName": "Docker",
+			"launchBrowser": true,
+			"launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+			"environmentVariables": {
+				"APP_CFG__DB__ADDR": "localhost",
+				"APP_CFG__DB__DB": "example",
+				"APP_CFG__DB__UID": "user",
+				"APP_CFG__DB__PWD": "password",
+				"APP_CFG__DB__PORT": "3306"
+			},
+			"publishAllPorts": true,
+			"useSSL": true
+		}
+	},
+	"$schema": "https://json.schemastore.org/launchsettings.json"
+}
