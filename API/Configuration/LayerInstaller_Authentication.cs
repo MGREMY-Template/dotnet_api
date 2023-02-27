@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using API.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -31,9 +32,9 @@ namespace API.Configuration
 					ValidateAudience = false,
 					ValidateLifetime = true,
 					ValidateIssuerSigningKey = true,
-					ValidIssuer = configuration["Jwt:Issuer"],
-					ValidAudience = configuration["Jwt:Audience"],
-					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+					ValidIssuer = configuration.GetFromEnvironmentVariable("JWT", "ISSUER"),
+					ValidAudience = configuration.GetFromEnvironmentVariable("JWT", "AUDIENCE"),
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetFromEnvironmentVariable("JWT", "KEY")))
 				};
 			});
 		}
