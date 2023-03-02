@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Linq;
 
-namespace API.Extensions
+namespace Shared.Core.Extensions
 {
     public static class IConfigurationExtensions
     {
