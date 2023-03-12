@@ -16,9 +16,9 @@ namespace API.Controllers.Identity
     {
         private readonly IGenericService<User, Guid> _genericService;
 
-        public UserController(IGenericService<User, Guid> genericRepository)
+        public UserController(IGenericService<User, Guid> genericService)
         {
-            _genericService = genericRepository;
+            _genericService = genericService;
         }
 
         [HttpGet(nameof(GetAll))]
