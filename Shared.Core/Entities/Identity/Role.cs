@@ -5,6 +5,6 @@ namespace Shared.Core.Entities.Identity
 {
 	public partial class Role : IdentityRole<Guid>, IBaseEntity<Guid>
 	{
-		new public Guid Id { get; set; }
+		override public Guid Id { get; set; }
 	}
 }

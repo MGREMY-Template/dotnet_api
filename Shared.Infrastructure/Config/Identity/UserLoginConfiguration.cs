@@ -11,8 +11,6 @@ namespace Shared.Infrastructure.Config.Identity
             builder.ToTable($"__Identity_{nameof(UserLogin)}");
 
             builder.HasIndex(x => new { x.UserId, x.LoginProvider }).IsUnique();
-
-            builder.HasKey(x => x.Id);
         }
     }
 }

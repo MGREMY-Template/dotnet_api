@@ -3,8 +3,7 @@ using System;
 
 namespace Shared.Core.Entities.Identity
 {
-    public partial class UserLogin : IdentityUserLogin<Guid>, IBaseEntity<Guid>
+    public partial class UserLogin : IdentityUserLogin<Guid>
     {
-        public Guid Id { get; set; }
     }
 }

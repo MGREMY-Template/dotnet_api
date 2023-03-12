@@ -3,8 +3,7 @@ using System;
 
 namespace Shared.Core.Entities.Identity
 {
-    public partial class UserClaim : IdentityUserClaim<Guid>, IBaseEntity<Guid>
+    public partial class UserClaim : IdentityUserClaim<Guid>
     {
-        new public Guid Id { get; set; }
     }
 }

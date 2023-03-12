@@ -11,8 +11,6 @@ namespace Shared.Infrastructure.Config.Identity
             builder.ToTable($"__Identity_{nameof(UserRole)}");
 
             builder.HasIndex(x => new { x.UserId, x.RoleId }).IsUnique();
-
-            builder.HasKey(x => x.Id);
         }
     }
 }

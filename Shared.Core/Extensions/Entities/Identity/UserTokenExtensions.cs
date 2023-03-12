@@ -12,7 +12,7 @@ namespace Shared.Core.Extensions.Entities.Identity
 		{
 			if (value is not null)
 			{
-				return new(value.Id, value.UserId, value.LoginProvider, value.Name, value.Value);
+				return new(value.UserId, value.LoginProvider, value.Name, value.Value);
 			}
 
 			return default;

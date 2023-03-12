@@ -12,8 +12,6 @@ namespace Shared.Infrastructure.Config.Identity
 
             builder.HasIndex(x => new { x.UserId, x.LoginProvider }).IsUnique();
 
-            builder.HasKey(x => x.Id);
-
             builder.Property(ut => ut.Value)
                 .IsRequired();
         }
