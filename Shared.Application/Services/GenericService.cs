@@ -6,7 +6,6 @@ using Shared.Core.Entities;
 using Shared.Core.Extensions;
 using Shared.Core.Interface.Repository;
 using Shared.Core.Interface.Service;
-using Shared.Core.Resources.Services.Identity;
 using Shared.Domain.Specification;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Application.Services
 {
-    public class GenericService<T, TKey> : IGenericService<T, TKey>
+    public abstract class GenericService<T, TKey> : IGenericService<T, TKey>
         where T : class, IBaseEntity<TKey>
         where TKey : IEquatable<TKey>
     {
@@ -24,10 +23,10 @@ namespace Shared.Application.Services
         protected readonly ILogger _logger;
         protected readonly IStringLocalizer _globalStringLocalizer;
 
-        public GenericService(
+        protected GenericService(
             IUnitOfWork<T, TKey> unitOfWork,
             IMapper mapper,
-            ILogger<UserService> logger,
+            ILogger<GenericService<T, TKey>> logger,
             IStringLocalizer<Core.Resources.Global> globalStringLocalizer)
         {
             _unitOfWork = unitOfWork;

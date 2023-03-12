@@ -20,7 +20,7 @@ namespace Shared.Application.Configuration
                 {
                     Interface = i,
                     Implementation = typeof(Shared.Application.Marker).Assembly.DefinedTypes
-                        .FirstOrDefault(ri => IsAssignableToType(i, ri) || IsAssignableToGenericType(i, ri)),
+                        .FirstOrDefault(ri => IsAssignableToType(i, ri)),
                 }).Where(x => x.Implementation is not null);
 
             foreach (var type in types)
@@ -33,28 +33,9 @@ namespace Shared.Application.Configuration
                 && !implementation.IsInterface
                 && !implementation.IsAbstract;
 
-            static bool IsAssignableToGenericType(Type typeInfo, Type implementation)
-            {
-                var interfaceTypes = implementation.GetInterfaces();
-
-                foreach (var it in interfaceTypes)
-                {
-                    if (it.IsGenericType && it.GetGenericTypeDefinition() == typeInfo)
-                        return true;
-                }
-
-                if (implementation.IsGenericType && implementation.GetGenericTypeDefinition() == typeInfo)
-                    return true;
-
-                Type baseType = implementation.BaseType;
-                if (baseType == null) return false;
-
-                return IsAssignableToGenericType(baseType, typeInfo);
-            }
-
             static bool IsInterfaceService(TypeInfo typeinfo) =>
                 typeinfo.Name.StartsWith("I")
-                && typeinfo.Name.Contains("Service")
+                && typeinfo.Name.EndsWith("Service")
                 && typeinfo.IsInterface;
         }
     }
