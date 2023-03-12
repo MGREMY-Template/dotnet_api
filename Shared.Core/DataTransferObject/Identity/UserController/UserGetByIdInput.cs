@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shared.Core.DataTransferObject.Identity.UserController
 {
 	public record UserGetByIdInput
 	{
-		[Required] public int Id { get; set; }
+		[Required] public Guid Id { get; set; }
 	}
 }

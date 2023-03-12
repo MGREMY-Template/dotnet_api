@@ -12,8 +12,8 @@
         "APP_CFG__DB__PWD": "password",
         "APP_CFG__DB__PORT": "3306",
         "APP_CFG__JWT__KEY": "umVwSOVM59spQxRormKrfpgczu3U2poJTuuKPIKu",
-        "APP_CFG__JWT__ISSUER": "http://localhost:5204",
-        "APP_CFG__JWT__AUDIENCE": "http://localhost:5204"
+        "APP_CFG__JWT__ISSUER": "http://localhost:8080",
+        "APP_CFG__JWT__AUDIENCE": "http://localhost:8080"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:8080"

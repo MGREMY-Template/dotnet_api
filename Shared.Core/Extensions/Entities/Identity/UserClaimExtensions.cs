@@ -12,7 +12,7 @@ namespace Shared.Core.Extensions.Entities.Identity
 		{
 			if (value is not null)
 			{
-				return new(value.Id, value.UserId, value.ClaimType, value.ClaimValue);
+				return new(value.UserId, value.ClaimType, value.ClaimValue);
 			}
 
 			return default;

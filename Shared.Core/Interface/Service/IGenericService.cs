@@ -1,22 +1,24 @@
-﻿using Shared.Core.Entities;
+﻿using Shared.Core.DataTransferObject;
+using Shared.Core.Entities;
 using Shared.Domain.Specification;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Shared.Core.Interface.Service
 {
-	public interface IGenericService<T> where T : BaseEntity
+	public interface IGenericService<T, TKey>
+		where T : IBaseEntity<TKey>
+		where TKey : IEquatable<TKey>
 	{
-		public Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
-		public Task<IEnumerable<T>> ListAsync(IPaging paging, CancellationToken cancellationToken);
-		public Task<int> CountAsync(CancellationToken cancellationToken);
-		public Task<T> AddAsync(T entity, CancellationToken cancellationToken);
-		public T Update(T entity);
-		public T Delete(T entity);
-		public Task<T> FindAsync(object[] ids, CancellationToken cancellationToken);
-		public Task<T> GetByIdAsync(int id, CancellationToken cancellationToken);
-		public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
-		public Task<bool> ExistsAsync(object[] ids, CancellationToken cancellationToken);
+		public Task<Result<IEnumerable<T>>> GetAllAsync(CancellationToken cancellationToken);
+		public Task<Result<IEnumerable<T>>> ListAsync(IPaging paging, CancellationToken cancellationToken);
+		public Task<Result<int>> CountAsync(CancellationToken cancellationToken);
+		public Task<Result> AddAsync(T entity, CancellationToken cancellationToken);
+		public Result Update(T entity);
+		public Result Delete(T entity);
+		public Task<Result<T>> GetByKeyAsync(TKey id, CancellationToken cancellationToken);
+		public Task<Result<bool>> ExistsAsync(TKey id, CancellationToken cancellationToken);
 	}
 }

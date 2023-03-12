@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Shared.Core.Entities.Identity
 {
-	public partial class UserLogin : IdentityUserLogin<int>
-	{
-	}
+    public partial class UserLogin : IdentityUserLogin<Guid>
+    {
+    }
 }
