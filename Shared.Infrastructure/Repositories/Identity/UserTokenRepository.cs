@@ -4,6 +4,7 @@ using Shared.Core.Interface.Repository.Identity;
 using Shared.Domain.Specification;
 using Shared.Infrastructure.Data;
 using Shared.Infrastructure.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -49,12 +50,12 @@ namespace Shared.Infrastructure.Repositories.Identity
 			return await _storeContext.UserTokens.FindAsync(ids, cancellationToken);
 		}
 
-		public UserToken GetById(int userId, string loginProvider, string name)
+		public UserToken GetById(Guid userId, string loginProvider, string name)
 		{
 			return Find(new object[] { userId, loginProvider, name });
 		}
 
-		public async Task<UserToken> GetByIdAsync(int userId, string loginProvider, string name, CancellationToken cancellationToken)
+		public async Task<UserToken> GetByIdAsync(Guid userId, string loginProvider, string name, CancellationToken cancellationToken)
 		{
 			return await FindAsync(new object[] { userId, loginProvider, name }, cancellationToken);
 		}
