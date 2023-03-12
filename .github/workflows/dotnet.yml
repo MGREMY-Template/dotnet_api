@@ -2,9 +2,9 @@ name: dotnet
 
 on:
   push:
-    branches: [ "master", "Setup_CD-CI" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "master", "Setup_CD-CI" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -31,6 +31,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    if: always() && contains(join(needs.*.result, ','), 'success') && github.ref != 'refs/heads/Setup_CD-CI'
+    if: always() && contains(join(needs.*.result, ','), 'success') && github.event_name != 'pull_request'
     needs: [build]
     uses: ./.github/workflows/docker.yml
