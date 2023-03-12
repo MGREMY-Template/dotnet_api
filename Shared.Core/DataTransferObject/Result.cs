@@ -2,44 +2,54 @@
 
 namespace Shared.Core.DataTransferObject
 {
-	public abstract class Result
-	{
-		public bool IsSuccess { get; }
-		public bool IsFailure => !IsSuccess;
-		public IEnumerable<string> Message { get; protected set; }
+    public class Result
+    {
+        public bool IsSuccess { get; }
+        public bool IsFailure => !IsSuccess;
+        public IEnumerable<string> Message { get; protected set; }
 
-		protected Result(bool isSuccess)
-		{
-			IsSuccess = isSuccess;
-		}
+        protected Result(bool isSuccess)
+        {
+            IsSuccess = isSuccess;
+        }
+
+        public static Result Success()
+        {
+            return new Result(true);
+        }
+
+        public static Result Failure()
+        {
+            return new Result(false);
+        }
 
 #nullable enable
-		public static Result<TResult> Create<TResult>(TResult value, string? errorMessage = null) =>
-			Result<TResult>.Success(value);
+        public static Result<TResult> Create<TResult>(TResult value, string? errorMessage = null) =>
+            Result<TResult>.Success(value);
 #nullable restore
-	}
+    }
 
-	public class Result<TResult> : Result
-	{
-		public TResult Value { get; protected set; }
+    public class Result<TResult> : Result
+    {
+        public TResult Value { get; protected set; }
 
-		protected Result(bool isSuccess, TResult result) : base(isSuccess)
-		{
-			Value = result;
-		}
-		protected Result(bool isSuccess, IEnumerable<string> message) : base(isSuccess)
-		{
-			Message = message;
-		}
+        protected Result(bool isSuccess, TResult result) : base(isSuccess)
+        {
+            Value = result;
+        }
+        protected Result(bool isSuccess, IEnumerable<string> message) : base(isSuccess)
+        {
+            Message = message;
+        }
 
 
-		public static Result<TResult> Success(TResult result)
-		{
-			return new Result<TResult>(true, result);
-		}
-		public static Result<TResult> Failure(IEnumerable<string> message)
-		{
-			return new Result<TResult>(false, message);
-		}
-	}
+        public static Result<TResult> Success(TResult result)
+        {
+            return new Result<TResult>(true, result);
+        }
+        public static Result<TResult> Failure(IEnumerable<string> message)
+        {
+            return new Result<TResult>(false, message);
+        }
+    }
 }
