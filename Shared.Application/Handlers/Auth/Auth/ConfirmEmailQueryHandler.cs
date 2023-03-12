@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using Shared.Application.Extensions;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
 using Shared.Core.Entities.Identity;
@@ -38,7 +39,7 @@ namespace Shared.Application.Handlers.Auth.Auth
                 {
                     var result = await _userManager.ConfirmEmailAsync(x, request.Input.Token);
 
-                    return (result.Succeeded, result.Errors.Select(x => x.Description).ToArray());
+                    return (result.Succeeded, result.ErrorsToStringArray());
                 }, 400)
                 .MapAsync(async x =>
                 {
