@@ -9,8 +9,6 @@ namespace Shared.Infrastructure.Config.Identity
         public void Configure(EntityTypeBuilder<UserLogin> builder)
         {
             builder.ToTable($"__Identity_{nameof(UserLogin)}");
-
-            builder.HasIndex(x => new { x.UserId, x.LoginProvider }).IsUnique();
         }
     }
 }

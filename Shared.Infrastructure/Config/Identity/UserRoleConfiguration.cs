@@ -9,8 +9,6 @@ namespace Shared.Infrastructure.Config.Identity
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
             builder.ToTable($"__Identity_{nameof(UserRole)}");
-
-            builder.HasIndex(x => new { x.UserId, x.RoleId }).IsUnique();
         }
     }
 }

@@ -10,8 +10,6 @@ namespace Shared.Infrastructure.Config.Identity
         {
             builder.ToTable($"__Identity_{nameof(UserToken)}");
 
-            builder.HasIndex(x => new { x.UserId, x.LoginProvider }).IsUnique();
-
             builder.Property(ut => ut.Value)
                 .IsRequired();
         }

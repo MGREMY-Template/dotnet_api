@@ -10,7 +10,8 @@ namespace Shared.Infrastructure.Config.Identity
         {
             builder.ToTable($"__Identity_{nameof(User)}");
 
-            builder.HasIndex(x => new { x.Email, x.UserName }).IsUnique();
+            builder.HasIndex(x => new { x.NormalizedEmail }).IsUnique();
+            builder.HasIndex(x => new { x.NormalizedUserName }).IsUnique();
 
             builder.HasKey(x => x.Id);
 
