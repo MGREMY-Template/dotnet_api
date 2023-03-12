@@ -38,7 +38,7 @@ namespace Shared.Application.Handlers.Auth.Auth
                 {
                     var result = await _userManager.CreateAsync(x, request.Input.Password);
 
-                    return (result.Succeeded, result.Errors.Select(x => x.Description).ToArray());
+                    return (result.Succeeded, result.ErrorsToStringArray());
                 }, 400)
                 .MapAsync(async x =>
                 {
