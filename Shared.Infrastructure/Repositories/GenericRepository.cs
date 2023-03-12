@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Infrastructure.Repositories
 {
-    public class GenericRepository<T, TKey> : IGenericRepository<T, TKey>
+    public abstract class GenericRepository<T, TKey> : IGenericRepository<T, TKey>
         where T : class, IBaseEntity<TKey>
         where TKey : IEquatable<TKey>
     {

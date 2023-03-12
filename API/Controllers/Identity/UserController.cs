@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Core.Entities.Identity;
-using Shared.Core.Interface.Service;
+using Shared.Core.Interface.Service.Identity;
 using Shared.Domain.Specification;
 using System;
 using System.Threading;
@@ -14,11 +13,11 @@ namespace API.Controllers.Identity
     [Route("api/Identity/[controller]")]
     public class UserController : GenericController
     {
-        private readonly IGenericService<User, Guid> _genericService;
+        private readonly IUserService _userService;
 
-        public UserController(IGenericService<User, Guid> genericService)
+        public UserController(IUserService userService)
         {
-            _genericService = genericService;
+            _userService = userService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -27,7 +26,7 @@ namespace API.Controllers.Identity
         public async Task<IActionResult> GetAll(
             CancellationToken cancellationToken = default)
         {
-            var result = await _genericService.GetAllAsync<UserDto>(cancellationToken);
+            var result = await _userService.GetAllAsync<UserDto>(cancellationToken);
 
             return result.IsSuccess ?
                 Ok(result) :
@@ -41,7 +40,7 @@ namespace API.Controllers.Identity
             [FromQuery] BasePaging paging,
             CancellationToken cancellationToken = default)
         {
-            var result = await _genericService.ListAsync<UserDto>(paging, cancellationToken);
+            var result = await _userService.ListAsync<UserDto>(paging, cancellationToken);
 
             return result.IsSuccess ?
                 Ok(result) :
@@ -56,7 +55,7 @@ namespace API.Controllers.Identity
             [FromQuery] Guid id,
             CancellationToken cancellationToken = default)
         {
-            var result = await _genericService.GetByKeyAsync<UserDto>(id, cancellationToken);
+            var result = await _userService.GetByKeyAsync<UserDto>(id, cancellationToken);
 
             return result.IsSuccess ?
                 Ok(result) :
