@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Localization;
+﻿using AutoMapper;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Shared.Core.DataTransferObject;
 using Shared.Core.Entities;
@@ -19,32 +20,37 @@ namespace Shared.Application.Services
         where TKey : IEquatable<TKey>
     {
         protected readonly IUnitOfWork<T, TKey> _unitOfWork;
+        protected readonly IMapper _mapper;
         protected readonly ILogger _logger;
         protected readonly IStringLocalizer _globalStringLocalizer;
 
         public GenericService(
             IUnitOfWork<T, TKey> unitOfWork,
+            IMapper mapper,
             ILogger<UserService> logger,
             IStringLocalizer<Core.Resources.Global> globalStringLocalizer)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
             _logger = logger;
             _globalStringLocalizer = globalStringLocalizer;
         }
 
-        public async Task<Result<IEnumerable<T>>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<TOut>>> GetAllAsync<TOut>(CancellationToken cancellationToken)
         {
             return Result.Create(await _unitOfWork.GenericRepository.GetAllAsync(cancellationToken))
                 .Ensure(x => x is not null,
-                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray());
+                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray())
+                .Map(_mapper.Map<IEnumerable<TOut>>);
         }
-        public async Task<Result<IEnumerable<T>>> ListAsync(IPaging paging, CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<TOut>>> ListAsync<TOut>(IPaging paging, CancellationToken cancellationToken)
         {
             paging.OrderBy ??= "Id";
 
             return Result.Create(await _unitOfWork.GenericRepository.ListAsync(paging, cancellationToken))
                 .Ensure(x => x is not null,
-                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray());
+                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray())
+                .Map(_mapper.Map<IEnumerable<TOut>>);
         }
         public async Task<Result<int>> CountAsync(CancellationToken cancellationToken)
         {
@@ -68,11 +74,12 @@ namespace Shared.Application.Services
 
             return Result.Success();
         }
-        public async Task<Result<T>> GetByKeyAsync(TKey id, CancellationToken cancellationToken)
+        public async Task<Result<TOut>> GetByKeyAsync<TOut>(TKey id, CancellationToken cancellationToken)
         {
             return Result.Create(await _unitOfWork.GenericRepository.GetByKeyAsync(id, cancellationToken))
                 .Ensure(x => x is not null,
-                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray());
+                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray())
+                .Map(_mapper.Map<TOut>);
         }
         public async Task<Result<bool>> ExistsAsync(TKey id, CancellationToken cancellationToken)
         {

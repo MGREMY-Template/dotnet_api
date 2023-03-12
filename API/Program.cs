@@ -20,7 +20,8 @@ namespace API.Configuration
                     builder.Configuration,
                     typeof(Program).Assembly,
                     typeof(Shared.Application.Marker).Assembly,
-                    typeof(Shared.Infrastructure.Marker).Assembly);
+                    typeof(Shared.Infrastructure.Marker).Assembly,
+                    typeof(Shared.Core.Marker).Assembly);
 
             // Add services to the container
             builder.Services.AddControllers();

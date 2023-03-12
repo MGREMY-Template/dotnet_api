@@ -27,7 +27,7 @@ namespace API.Controllers.Identity
         public async Task<IActionResult> GetAll(
             CancellationToken cancellationToken = default)
         {
-            var result = await _genericService.GetAllAsync(cancellationToken);
+            var result = await _genericService.GetAllAsync<UserDto>(cancellationToken);
 
             return result.IsSuccess ?
                 Ok(result) :
@@ -41,7 +41,7 @@ namespace API.Controllers.Identity
             [FromQuery] BasePaging paging,
             CancellationToken cancellationToken = default)
         {
-            var result = await _genericService.ListAsync(paging, cancellationToken);
+            var result = await _genericService.ListAsync<UserDto>(paging, cancellationToken);
 
             return result.IsSuccess ?
                 Ok(result) :
@@ -56,7 +56,7 @@ namespace API.Controllers.Identity
             [FromQuery] Guid id,
             CancellationToken cancellationToken = default)
         {
-            var result = await _genericService.GetByKeyAsync(id, cancellationToken);
+            var result = await _genericService.GetByKeyAsync<UserDto>(id, cancellationToken);
 
             return result.IsSuccess ?
                 Ok(result) :
