@@ -7,47 +7,49 @@ using System.Linq;
 
 namespace API.Configuration
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var builder = WebApplication.CreateBuilder(args);
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-			builder.Configuration.AddEnvironmentVariables(prefix: "APP_CFG");
+            builder.Configuration.AddEnvironmentVariables(prefix: "APP_CFG");
 
-			builder.Services
-				.Configure(
-					builder.Configuration,
-					typeof(Program).Assembly);
+            builder.Services
+                .Configure(
+                    builder.Configuration,
+                    typeof(Program).Assembly,
+                    typeof(Shared.Application.Marker).Assembly,
+                    typeof(Shared.Infrastructure.Marker).Assembly);
 
-			// Add services to the container
-			builder.Services.AddControllers();
-			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-			builder.Services.AddEndpointsApiExplorer();
+            // Add services to the container
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
 
-			var app = builder.Build();
+            var app = builder.Build();
 
-			var localizationOptions = new RequestLocalizationOptions()
-				.SetDefaultCulture(ServiceInstaller_Swagger.AcceptedLanguages.Keys.FirstOrDefault())
-				.AddSupportedCultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray())
-				.AddSupportedUICultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray());
-			localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
+            var localizationOptions = new RequestLocalizationOptions()
+                .SetDefaultCulture(ServiceInstaller_Swagger.AcceptedLanguages.Keys.FirstOrDefault())
+                .AddSupportedCultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray())
+                .AddSupportedUICultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray());
+            localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
 
-			app.UseRequestLocalization(localizationOptions);
+            app.UseRequestLocalization(localizationOptions);
 
-			// Configure the HTTP request pipeline.
-			if (app.Environment.IsDevelopment())
-			{
-				app.UseSwagger();
-				app.UseSwaggerUI();
-			}
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
-			app.UseAuthentication();
-			app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-			app.MapControllers();
+            app.MapControllers();
 
-			app.Run();
-		}
-	}
+            app.Run();
+        }
+    }
 }
