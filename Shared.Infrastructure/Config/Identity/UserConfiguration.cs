@@ -4,18 +4,22 @@ using Shared.Core.Entities.Identity;
 
 namespace Shared.Infrastructure.Config.Identity
 {
-	public class UserConfiguration : IEntityTypeConfiguration<User>
-	{
-		public void Configure(EntityTypeBuilder<User> builder)
-		{
-			builder.ToTable($"__Identity_{nameof(User)}");
+    public class UserConfiguration : IEntityTypeConfiguration<User>
+    {
+        public void Configure(EntityTypeBuilder<User> builder)
+        {
+            builder.ToTable($"__Identity_{nameof(User)}");
 
-			builder.Property(u => u.Email)
-				.IsRequired();
-			builder.Property(u => u.NormalizedEmail)
-				.IsRequired();
-			builder.Property(u => u.PasswordHash)
-				.IsRequired();
-		}
-	}
+            builder.HasIndex(x => new { x.Email, x.UserName }).IsUnique();
+
+            builder.HasKey(x => x.Id);
+
+            builder.Property(u => u.Email)
+                .IsRequired();
+            builder.Property(u => u.NormalizedEmail)
+                .IsRequired();
+            builder.Property(u => u.PasswordHash)
+                .IsRequired();
+        }
+    }
 }

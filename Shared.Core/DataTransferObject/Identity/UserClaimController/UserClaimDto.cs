@@ -1,13 +1,15 @@
-﻿namespace Shared.Core.DataTransferObject.Identity.UserClaimController
+﻿using System;
+
+namespace Shared.Core.DataTransferObject.Identity.UserClaimController
 {
 	public record UserClaimDto
 	{
-		public int Id { get; set; }
-		public int UserId { get; set; }
+		public Guid Id { get; set; }
+		public Guid UserId { get; set; }
 		public string ClaimType { get; set; }
 		public string ClaimValue { get; set; }
 
-		public UserClaimDto(int id, int userId, string claimType, string claimValue)
+		public UserClaimDto(Guid id, Guid userId, string claimType, string claimValue)
 		{
 			Id = id;
 			UserId = userId;
