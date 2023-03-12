@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.25" />
   </ItemGroup>
@@ -18,40 +19,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AuthService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Services\Identity\RoleClaimService.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>RoleClaimService.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Services\Identity\RoleService.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>RoleService.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Services\Identity\UserClaimService.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UserClaimService.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Services\Identity\UserLoginService.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UserLoginService.resx</DependentUpon>
-    </Compile>
     <Compile Update="Resources\Services\Identity\UserService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UserService.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Services\Identity\UserRoleService.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UserRoleService.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Services\Identity\UserTokenService.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UserTokenService.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Global.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -65,36 +36,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\RoleClaimService.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>RoleClaimService.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\RoleService.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>RoleService.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\UserClaimService.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UserClaimService.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\UserLoginService.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UserLoginService.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Services\Identity\UserService.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Services\Identity\UserService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserService.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\UserRoleService.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UserRoleService.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\UserTokenService.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UserTokenService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Global.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

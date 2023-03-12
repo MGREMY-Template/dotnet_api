@@ -1,31 +1,33 @@
-﻿using System.Collections.Generic;
-
-namespace Shared.Core.DataTransferObject
+﻿namespace Shared.Core.DataTransferObject
 {
     public class Result
     {
         public bool IsSuccess { get; }
         public bool IsFailure => !IsSuccess;
-        public IEnumerable<string> Message { get; protected set; }
+        public int StatusCode { get; }
+        public string[] Messages { get; protected set; }
 
-        protected Result(bool isSuccess)
+        protected Result(bool isSuccess, int statusCode)
         {
             IsSuccess = isSuccess;
+            StatusCode = statusCode;
         }
 
-        public static Result Success()
+        public static Result Success(int statusCode)
         {
-            return new Result(true);
+            return new Result(true, statusCode);
         }
 
-        public static Result Failure()
+        public static Result Failure(int statusCode)
         {
-            return new Result(false);
+            return new Result(false, statusCode);
         }
 
 #nullable enable
-        public static Result<TResult> Create<TResult>(TResult value, string? errorMessage = null) =>
-            Result<TResult>.Success(value);
+        public static Result<TResult> Create<TResult>(TResult value, int successStatusCode, int failureStatusCode, params string[]? errorMessages) =>
+            value is not null ?
+            Result<TResult>.Success(value, successStatusCode) :
+            Result<TResult>.Failure(failureStatusCode, errorMessages);
 #nullable restore
     }
 
@@ -33,23 +35,26 @@ namespace Shared.Core.DataTransferObject
     {
         public TResult Value { get; protected set; }
 
-        protected Result(bool isSuccess, TResult result) : base(isSuccess)
+        protected Result(bool isSuccess, TResult result, int statusCode) : base(isSuccess, statusCode)
         {
             Value = result;
         }
-        protected Result(bool isSuccess, IEnumerable<string> message) : base(isSuccess)
+#nullable enable
+        protected Result(bool isSuccess, int statusCode, params string[]? message) : base(isSuccess, statusCode)
         {
-            Message = message;
+            Messages = message;
         }
+#nullable restore
 
-
-        public static Result<TResult> Success(TResult result)
+        public static Result<TResult> Success(TResult result, int statusCode)
         {
-            return new Result<TResult>(true, result);
+            return new Result<TResult>(true, result, statusCode);
         }
-        public static Result<TResult> Failure(IEnumerable<string> message)
+#nullable enable
+        public static Result<TResult> Failure(int statusCode, params string[]? messages)
         {
-            return new Result<TResult>(false, message);
+            return new Result<TResult>(false, statusCode, messages);
         }
+#nullable restore
     }
 }
