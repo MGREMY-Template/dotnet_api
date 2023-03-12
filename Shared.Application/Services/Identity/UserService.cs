@@ -11,16 +11,10 @@ namespace Shared.Application.Services.Identity
 {
     public class UserService : GenericService<User, Guid>, IUserService
     {
-        private readonly IUserRepository _userRepository;
-
         public UserService(
-            IUnitOfWork<User, Guid> unitOfWork,
+            IUserRepository repository,
             IMapper mapper,
             ILogger<UserService> logger,
-            IStringLocalizer<Core.Resources.Global> globalStringLocalizer,
-            IUserRepository userRepository) : base(unitOfWork, mapper, logger, globalStringLocalizer)
-        {
-            _userRepository = userRepository;
-        }
+            IStringLocalizer<Core.Resources.Global> globalStringLocalizer) : base(repository, mapper, logger, globalStringLocalizer) {}
     }
 }
