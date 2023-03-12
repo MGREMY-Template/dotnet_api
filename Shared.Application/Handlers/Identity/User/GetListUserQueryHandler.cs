@@ -36,9 +36,7 @@ namespace Shared.Application.Handlers.Identity.User
         {
             request.Paging.OrderBy ??= "Id";
 
-            return Result.Create(await _repository.ListAsync(request.Paging, cancellationToken))
-                .Ensure(x => x is not null,
-                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray())
+            return Result.Create(await _repository.ListAsync(request.Paging, cancellationToken), 200, 500, _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError))
                 .Map(_mapper.Map<IEnumerable<UserDto>>);
         }
     }

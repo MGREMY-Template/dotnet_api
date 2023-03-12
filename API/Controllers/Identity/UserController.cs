@@ -24,33 +24,38 @@ namespace API.Controllers.Identity
         }
 
         [HttpGet(nameof(GetAll))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Result<IEnumerable<UserDto>>>> GetAll(
+        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAll(
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.Send(new GetUserAllQuery(), cancellationToken);
+            var query = new GetUserAllQuery();
+            var result = await _mediator.Send(query, cancellationToken);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpGet(nameof(GetList))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Result<IEnumerable<UserDto>>>> GetList(
+        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetList(
             [FromQuery] BasePaging paging,
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.Send(new GetUserListQuery(paging), cancellationToken);
+            var query = new GetUserListQuery(paging);
+            var result = await _mediator.Send(query, cancellationToken);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpGet(nameof(GetById))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Result<UserDto>>> GetById(
+        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetById(
             [FromQuery] Guid id,
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.Send(new GetUserByIdQuery(id), cancellationToken);
+            var query = new GetUserByIdQuery(id);
+            var result = await _mediator.Send(query, cancellationToken);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }

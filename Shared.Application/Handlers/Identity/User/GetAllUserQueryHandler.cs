@@ -34,9 +34,7 @@ namespace Shared.Application.Handlers.Identity.User
 
         public async Task<Result<IEnumerable<UserDto>>> Handle(GetUserAllQuery request, CancellationToken cancellationToken)
         {
-            return Result.Create(await _repository.GetAllAsync(cancellationToken))
-                .Ensure(x => x is not null,
-                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray())
+            return Result.Create(await _repository.GetAllAsync(cancellationToken), 200, 500, _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError))
                 .Map(_mapper.Map<IEnumerable<UserDto>>);
         }
     }

@@ -23,7 +23,7 @@ namespace Shared.Application.Handlers.Identity.User
             IUserRepository repository,
             IMapper mapper,
             ILogger<GetUserByIdQueryHandler> logger,
-            IStringLocalizer<Core.Resources.Global> stringLocalizer)
+            IStringLocalizer<Core.Resources.Services.Identity.UserService> stringLocalizer)
         {
             _repository = repository;
             _mapper = mapper;
@@ -33,9 +33,7 @@ namespace Shared.Application.Handlers.Identity.User
 
         public async Task<Result<UserDto>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            return Result.Create(await _repository.GetByKeyAsync(request.Id, cancellationToken))
-                .Ensure(x => x is not null,
-                    _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError).ToStringArray())
+            return Result.Create(await _repository.GetByKeyAsync(request.Id, cancellationToken), 200, 404, _globalStringLocalizer.GetString(Core.Resources.Services.Identity.UserServiceConstants.UserFindNotFound))
                 .Map(_mapper.Map<UserDto>);
         }
     }

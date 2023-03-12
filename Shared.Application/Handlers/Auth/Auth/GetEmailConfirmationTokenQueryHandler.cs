@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Auth.AuthController;
+using Shared.Core.DataTransferObject.Auth.AuthController.Output;
 using Shared.Core.Entities.Identity;
 using Shared.Core.Extensions;
 using Shared.Core.Queries.Auth.Auth;
@@ -30,12 +30,10 @@ namespace Shared.Application.Handlers.Auth.Auth
         {
             var user = await _userManager.FindByEmailAsync(request.Input.Email);
 
-            return Result.Create(user)
-                .Ensure(x => x is not null,
-                    _stringLocalizer.GetString(AuthServiceConstants.UserFindNotFound).ToStringArray())
-                .Ensure(x => !x.EmailConfirmed,
-                    _stringLocalizer.GetString(AuthServiceConstants.EmailConfirmAlreadyConfirmed).ToStringArray())
-                .Map(async x =>
+            return Result.Create(user, 200, 404, _stringLocalizer.GetString(AuthServiceConstants.UserFindNotFound))
+                .Ensure(x => !x.EmailConfirmed, 400,
+                    _stringLocalizer.GetString(AuthServiceConstants.EmailConfirmAlreadyConfirmed))
+                .MapAsync(async x =>
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(x);
 

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Auth.AuthController;
+using Shared.Core.DataTransferObject.Auth.AuthController.Output;
 using Shared.Core.Entities.Identity;
 using Shared.Core.Extensions;
 using Shared.Core.Queries.Auth.Auth;
@@ -40,14 +40,12 @@ namespace Shared.Application.Handlers.Auth.Auth
         {
             var user = await _userManager.FindByEmailAsync(request.Input.Email);
 
-            return Result.Create(user)
-                .Ensure(x => x is not null,
-                    _stringLocalizer.GetString(AuthServiceConstants.UserFindNotFound).ToStringArray())
-                .EnsureAsync(_signInManager.CanSignInAsync,
-                    _stringLocalizer.GetString(AuthServiceConstants.UserSignInError).ToStringArray())
-                .EnsureAsync(async x => await _userManager.CheckPasswordAsync(x, request.Input.Password),
-                    _stringLocalizer.GetString(AuthServiceConstants.PasswordSignInPasswordIncorrect).ToStringArray())
-                .Map(async x =>
+            return Result.Create(user, 200, 404, _stringLocalizer.GetString(AuthServiceConstants.UserFindNotFound))
+                .EnsureAsync(_signInManager.CanSignInAsync, 400,
+                    _stringLocalizer.GetString(AuthServiceConstants.UserSignInError))
+                .EnsureAsync(async x => await _userManager.CheckPasswordAsync(x, request.Input.Password), 400,
+                    _stringLocalizer.GetString(AuthServiceConstants.PasswordSignInPasswordIncorrect))
+                .MapAsync(async x =>
                 {
                     _configuration.AsEnumerable();
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetFromEnvironmentVariable("JWT", "KEY")));
