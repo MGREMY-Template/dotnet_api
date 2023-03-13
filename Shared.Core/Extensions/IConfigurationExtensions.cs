@@ -1,15 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿namespace Shared.Core.Extensions;
+
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 
-namespace Shared.Core.Extensions
+public static class IConfigurationExtensions
 {
-    public static class IConfigurationExtensions
-    {
-        public static string GetFromEnvironmentVariable(
-            this IConfiguration configuration,
-            params string[] keys)
-        {
-            return configuration[string.Join(":", keys.Prepend("APP_CFG"))];
-        }
-    }
+    public static string GetFromEnvironmentVariable(
+        this IConfiguration configuration,
+        params string[] keys) => configuration[string.Join(":", keys.Prepend("APP_CFG"))];
 }

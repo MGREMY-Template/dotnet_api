@@ -1,10 +1,9 @@
-﻿namespace Shared.Domain.Specification
+﻿namespace Shared.Core.Paging;
+
+public interface IPaging
 {
-    public interface IPaging
-    {
-        int Take { get; }
-        int Skip { get; }
-        string OrderBy { get; set; }
-        bool IsOrderByDescending { get; }
-    }
+    int Take { get; }
+    int Skip { get; }
+    string OrderBy { get; set; }
+    bool IsOrderByDescending { get; }
 }

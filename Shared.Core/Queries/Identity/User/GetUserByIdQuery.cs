@@ -1,17 +1,16 @@
-﻿using MediatR;
+﻿namespace Shared.Core.Queries.Identity.User;
+
+using MediatR;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Identity.UserController;
 using System;
 
-namespace Shared.Core.Queries.Identity.User
+public class GetUserByIdQuery : IRequest<Result<UserDto>>
 {
-    public class GetUserByIdQuery : IRequest<Result<UserDto>>
-    {
-        public Guid Id { get; set; }
+    public Guid Id { get; set; }
 
-        public GetUserByIdQuery(Guid id)
-        {
-            Id = id;
-        }
+    public GetUserByIdQuery(Guid id)
+    {
+        this.Id = id;
     }
 }

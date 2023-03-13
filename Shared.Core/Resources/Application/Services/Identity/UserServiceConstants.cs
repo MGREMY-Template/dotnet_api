@@ -1,7 +1,6 @@
-﻿namespace Shared.Core.Resources.Application.Services.Identity
+﻿namespace Shared.Core.Resources.Application.Services.Identity;
+
+public class UserServiceConstants
 {
-    public class UserServiceConstants
-    {
-        public const string UserNotFound = "UserNotFound";
-    }
+    public const string UserNotFound = "UserNotFound";
 }

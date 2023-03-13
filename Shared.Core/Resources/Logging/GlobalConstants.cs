@@ -1,6 +1,5 @@
-﻿namespace Shared.Core.Resources.Logging
+﻿namespace Shared.Core.Resources.Logging;
+
+public class GlobalConstants
 {
-    public class GlobalConstants
-    {
-    }
 }

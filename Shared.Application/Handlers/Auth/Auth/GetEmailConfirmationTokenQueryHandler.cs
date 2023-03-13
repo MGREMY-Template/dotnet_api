@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿namespace Shared.Application.Handlers.Auth.Auth;
+
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Shared.Core.DataTransferObject;
@@ -10,36 +12,33 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Shared.Application.Handlers.Auth.Auth
+public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailConfirmationTokenQuery, Result<GetEmailConfirmationTokenOutput>>
 {
-    public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailConfirmationTokenQuery, Result<GetEmailConfirmationTokenOutput>>
+    private readonly UserManager<User> _userManager;
+    private readonly IStringLocalizer _stringLocalizer;
+
+    public GetEmailConfirmationTokenQueryHandler(
+        UserManager<User> userManager,
+        IStringLocalizer<Core.Resources.Application.Services.Auth.AuthService> stringLocalizer)
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IStringLocalizer _stringLocalizer;
+        this._userManager = userManager;
+        this._stringLocalizer = stringLocalizer;
+    }
 
-        public GetEmailConfirmationTokenQueryHandler(
-            UserManager<User> userManager,
-            IStringLocalizer<Core.Resources.Application.Services.Auth.AuthService> stringLocalizer)
-        {
-            _userManager = userManager;
-            _stringLocalizer = stringLocalizer;
-        }
+    public async Task<Result<GetEmailConfirmationTokenOutput>> Handle(GetEmailConfirmationTokenQuery request, CancellationToken cancellationToken)
+    {
+        User user = await this._userManager.FindByEmailAsync(request.Input.Email);
 
-        public async Task<Result<GetEmailConfirmationTokenOutput>> Handle(GetEmailConfirmationTokenQuery request, CancellationToken cancellationToken)
-        {
-            var user = await _userManager.FindByEmailAsync(request.Input.Email);
+        return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
+            .Ensure(x => !x.EmailConfirmed, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
+            .MapAsync(async x =>
+            {
+                var token = await this._userManager.GenerateEmailConfirmationTokenAsync(x);
 
-            return Result.Create(user, 200, 404, _stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
-                .Ensure(x => !x.EmailConfirmed, 400, _stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
-                .MapAsync(async x =>
+                return new GetEmailConfirmationTokenOutput
                 {
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(x);
-
-                    return new GetEmailConfirmationTokenOutput
-                    {
-                        Token = token,
-                    };
-                });
-        }
+                    Token = token,
+                };
+            });
     }
 }

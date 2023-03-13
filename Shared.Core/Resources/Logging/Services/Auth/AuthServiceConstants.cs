@@ -1,6 +1,5 @@
-﻿namespace Shared.Core.Resources.Logging.Services.Auth
+﻿namespace Shared.Core.Resources.Logging.Services.Auth;
+
+public class AuthServiceConstants
 {
-    public class AuthServiceConstants
-    {
-    }
 }

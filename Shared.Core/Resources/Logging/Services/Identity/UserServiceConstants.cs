@@ -1,6 +1,5 @@
-﻿namespace Shared.Core.Resources.Logging.Services.Identity
+﻿namespace Shared.Core.Resources.Logging.Services.Identity;
+
+public class UserServiceConstants
 {
-    public class UserServiceConstants
-    {
-    }
 }
