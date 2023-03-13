@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿namespace Shared.Core.Entities.Identity;
+
+using Microsoft.AspNetCore.Identity;
 using System;
 
-namespace Shared.Core.Entities.Identity
+public partial class RoleClaim : IdentityRoleClaim<Guid>
 {
-	public partial class RoleClaim : IdentityRoleClaim<Guid>
-	{
-	}
 }

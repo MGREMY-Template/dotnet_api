@@ -1,7 +1,6 @@
-﻿namespace Shared.Core.DataTransferObject.Auth.AuthController.Output
+﻿namespace Shared.Core.DataTransferObject.Auth.AuthController.Output;
+
+public record SignInOutput
 {
-    public record SignInOutput
-    {
-        public string Token { get; set; }
-    }
+    public string Token { get; set; }
 }

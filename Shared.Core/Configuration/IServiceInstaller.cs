@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿namespace Shared.Core.Configuration;
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Shared.Core.Configuration
+public interface IServiceInstaller
 {
-	public interface IServiceInstaller
-	{
-		void Configure(IServiceCollection services, IConfiguration configuration);
-	}
+    void Configure(IServiceCollection services, IConfiguration configuration);
 }

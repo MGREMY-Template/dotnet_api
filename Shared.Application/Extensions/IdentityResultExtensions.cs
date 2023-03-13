@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿namespace Shared.Application.Extensions;
+
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
 
-namespace Shared.Application.Extensions
+internal static class IdentityResultExtensions
 {
-	internal static class IdentityResultExtensions
-	{
-		public static string[] ErrorsToStringArray(
-			this IdentityResult result)
-		{
-			return result.Errors.Select(x => x.Description).Distinct().ToArray();
-		}
-	}
+    public static string[] ErrorsToStringArray(
+        this IdentityResult result) => result.Errors.Select(x => x.Description).Distinct().ToArray();
 }

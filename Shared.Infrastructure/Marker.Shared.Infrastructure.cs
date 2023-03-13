@@ -1,6 +1,5 @@
-﻿namespace Shared.Infrastructure
+﻿namespace Shared.Infrastructure;
+
+public class Marker
 {
-	public class Marker
-	{
-	}
 }

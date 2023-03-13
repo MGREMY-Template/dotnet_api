@@ -1,15 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿namespace Shared.Core.Configuration;
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
 
-namespace Shared.Core.Configuration
+[ConfigOrder(0)]
+public class AutoMapperInstaller : IServiceInstaller
 {
-    [ConfigOrder(0)]
-    public class AutoMapperInstaller : IServiceInstaller
-    {
-        public void Configure(IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddAutoMapper(typeof(Shared.Core.Marker).Assembly);
-        }
-    }
+    public void Configure(IServiceCollection services, IConfiguration configuration) => services.AddAutoMapper(typeof(Shared.Core.Marker).Assembly);
 }

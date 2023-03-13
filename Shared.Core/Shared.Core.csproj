@@ -14,12 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\Services\Auth\AuthService.Designer.cs">
+    <Compile Update="Resources\Application\Global.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Application\Services\Auth\AuthService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AuthService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Services\Identity\UserService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\UserService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UserService.resx</DependentUpon>
@@ -29,23 +34,54 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Global.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Logging\Global.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Logging\Services\Auth\AuthService.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AuthService.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Logging\Services\Identity\UserService.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UserService.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Services\Auth\AuthService.resx">
+    <EmbeddedResource Update="Resources\Application\Global.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Application\Services\Auth\AuthService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\UserService.fr-FR.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\UserService.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services\Identity\UserService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\UserService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Global.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Logging\Global.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Logging\Services\Auth\AuthService.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthService.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Logging\Services\Identity\UserService.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

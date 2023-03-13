@@ -1,21 +1,14 @@
-﻿using System;
+﻿namespace Shared.Core.Attributes;
 
-namespace Shared.Core.Attributes
+using System;
+
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+public class ConfigOrderAttribute : Attribute
 {
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public class ConfigOrderAttribute : Attribute
-	{
-		private ushort _order;
+    public ConfigOrderAttribute(ushort order)
+    {
+        this.Order = order;
+    }
 
-		public ConfigOrderAttribute(ushort order)
-		{
-			_order = order;
-		}
-
-		public ushort Order
-		{
-			get => _order;
-			set => _order = value;
-		}
-	}
+    public ushort Order { get; set; }
 }

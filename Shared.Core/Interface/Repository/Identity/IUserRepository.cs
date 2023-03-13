@@ -1,9 +1,8 @@
-﻿using Shared.Core.Entities.Identity;
+﻿namespace Shared.Core.Interface.Repository.Identity;
+
+using Shared.Core.Entities.Identity;
 using System;
 
-namespace Shared.Core.Interface.Repository.Identity
+public interface IUserRepository : IGenericRepository<User, Guid>
 {
-    public interface IUserRepository : IGenericRepository<User, Guid>
-    {
-    }
 }

@@ -1,18 +1,17 @@
-﻿using MediatR;
+﻿namespace Shared.Core.Queries.Identity.User;
+
+using MediatR;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Domain.Specification;
+using Shared.Core.Paging;
 using System.Collections.Generic;
 
-namespace Shared.Core.Queries.Identity.User
+public class GetUserListQuery : IRequest<Result<IEnumerable<UserDto>>>
 {
-    public class GetUserListQuery : IRequest<Result<IEnumerable<UserDto>>>
-    {
-        public IPaging Paging { get; set; }
+    public IPaging Paging { get; set; }
 
-        public GetUserListQuery(IPaging paging)
-        {
-            Paging = paging;
-        }
+    public GetUserListQuery(IPaging paging)
+    {
+        this.Paging = paging;
     }
 }

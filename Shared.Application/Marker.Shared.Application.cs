@@ -1,6 +1,5 @@
-﻿namespace Shared.Application
+﻿namespace Shared.Application;
+
+public class Marker
 {
-	public class Marker
-	{
-	}
 }

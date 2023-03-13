@@ -1,23 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace Shared.Infrastructure.Config.Identity;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shared.Core.Entities.Identity;
 
-namespace Shared.Infrastructure.Config.Identity
+public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
 {
-    public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
+    public void Configure(EntityTypeBuilder<RoleClaim> builder)
     {
-        public void Configure(EntityTypeBuilder<RoleClaim> builder)
-        {
-            builder.ToTable($"__Identity_{nameof(RoleClaim)}");
+        _ = builder.ToTable($"__Identity_{nameof(RoleClaim)}");
 
-            builder.HasKey(x => x.Id);
+        _ = builder.HasKey(x => x.Id);
 
-            builder.HasIndex(x => new { x.RoleId, x.ClaimType }).IsUnique();
+        _ = builder.HasIndex(x => new { x.RoleId, x.ClaimType }).IsUnique();
 
-            builder.Property(rc => rc.ClaimType)
-                .IsRequired();
-            builder.Property(rc => rc.ClaimValue)
-                .IsRequired();
-        }
+        _ = builder.Property(rc => rc.ClaimType)
+            .IsRequired();
+        _ = builder.Property(rc => rc.ClaimValue)
+            .IsRequired();
     }
 }

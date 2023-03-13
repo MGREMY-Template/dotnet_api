@@ -1,17 +1,16 @@
-﻿using MediatR;
+﻿namespace Shared.Core.Queries.Auth.Auth;
+
+using MediatR;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Auth.AuthController.Input;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
 
-namespace Shared.Core.Queries.Auth.Auth
+public class SignUpQuery : IRequest<Result<SignUpOutput>>
 {
-    public class SignUpQuery : IRequest<Result<SignUpOutput>>
-    {
-        public SignUpInput Input { get; set; }
+    public SignUpInput Input { get; set; }
 
-        public SignUpQuery(SignUpInput input)
-        {
-            Input = input;
-        }
+    public SignUpQuery(SignUpInput input)
+    {
+        this.Input = input;
     }
 }
