@@ -1,6 +1,6 @@
 ﻿namespace Shared.Core
 {
-	public class Marker
-	{
-	}
+    public class Marker
+    {
+    }
 }

@@ -25,7 +25,6 @@ namespace API.Controllers.Identity
 
         [HttpGet(nameof(GetAll))]
         [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(
             CancellationToken cancellationToken = default)
         {
@@ -36,7 +35,6 @@ namespace API.Controllers.Identity
 
         [HttpGet(nameof(GetList))]
         [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetList(
             [FromQuery] BasePaging paging,
             CancellationToken cancellationToken = default)

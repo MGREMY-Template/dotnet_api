@@ -6,7 +6,6 @@ using Shared.Core.DataTransferObject.Auth.AuthController.Output;
 using Shared.Core.Entities.Identity;
 using Shared.Core.Extensions;
 using Shared.Core.Queries.Auth.Auth;
-using Shared.Core.Resources.Services.Auth;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,7 +19,7 @@ namespace Shared.Application.Handlers.Auth.Auth
 
         public GetEmailConfirmationTokenQueryHandler(
             UserManager<User> userManager,
-            IStringLocalizer<Core.Resources.Services.Auth.AuthService> stringLocalizer)
+            IStringLocalizer<Core.Resources.Application.Services.Auth.AuthService> stringLocalizer)
         {
             _userManager = userManager;
             _stringLocalizer = stringLocalizer;
@@ -30,9 +29,8 @@ namespace Shared.Application.Handlers.Auth.Auth
         {
             var user = await _userManager.FindByEmailAsync(request.Input.Email);
 
-            return Result.Create(user, 200, 404, _stringLocalizer.GetString(AuthServiceConstants.UserFindNotFound))
-                .Ensure(x => !x.EmailConfirmed, 400,
-                    _stringLocalizer.GetString(AuthServiceConstants.EmailConfirmAlreadyConfirmed))
+            return Result.Create(user, 200, 404, _stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
+                .Ensure(x => !x.EmailConfirmed, 400, _stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
                 .MapAsync(async x =>
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(x);

@@ -1,3 +1,4 @@
+using API.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Shared.Core.Configuration;
 using System.Linq;
 
-namespace API.Configuration
+namespace API
 {
     public class Program
     {

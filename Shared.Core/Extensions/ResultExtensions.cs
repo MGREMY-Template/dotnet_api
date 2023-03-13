@@ -9,7 +9,7 @@ namespace Shared.Core.Extensions
         public static Result<T> Ensure<T>(
             this Result<T> result,
             Func<T, bool> predicate,
-            int statusCode,
+            int failureStatusCode,
             params string[] errors)
         {
             if (result.IsFailure)
@@ -19,13 +19,13 @@ namespace Shared.Core.Extensions
 
             return predicate(result.Value) ?
                 result :
-                Result<T>.Failure(statusCode, errors);
+                Result<T>.Failure(failureStatusCode, errors);
         }
 
         public static Result<T> Ensure<T>(
             this Result<T> result,
             Func<T, (bool, string[])> predicate,
-            int statusCode)
+            int failureStatusCode)
         {
             if (result.IsFailure)
             {
@@ -36,7 +36,7 @@ namespace Shared.Core.Extensions
 
             return isSuccess ?
                 result :
-                Result<T>.Failure(statusCode, errors);
+                Result<T>.Failure(failureStatusCode, errors);
         }
 
         public static Result<TOut> Map<TIn, TOut>(
@@ -54,7 +54,7 @@ namespace Shared.Core.Extensions
         public static Result<T> EnsureAsync<T>(
             this Result<T> result,
             Func<T, Task<bool>> predicate,
-            int statusCode,
+            int failureStatusCode,
             params string[] errors)
         {
             if (result.IsFailure)
@@ -64,13 +64,13 @@ namespace Shared.Core.Extensions
 
             return new TaskFactory().StartNew(() => predicate(result.Value)).Unwrap().GetAwaiter().GetResult() ?
                 result :
-                Result<T>.Failure(statusCode, errors);
+                Result<T>.Failure(failureStatusCode, errors);
         }
 
         public static Result<T> EnsureAsync<T>(
             this Result<T> result,
             Func<T, Task<(bool, string[])>> predicate,
-            int statusCode)
+            int failureStatusCode)
         {
             if (result.IsFailure)
             {
@@ -81,7 +81,7 @@ namespace Shared.Core.Extensions
 
             return isSuccess ?
                 result :
-                Result<T>.Failure(statusCode, errors);
+                Result<T>.Failure(failureStatusCode, errors);
         }
 
         public static Result<TOut> MapAsync<TIn, TOut>(

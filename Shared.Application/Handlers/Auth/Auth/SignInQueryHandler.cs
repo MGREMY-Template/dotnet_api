@@ -8,7 +8,6 @@ using Shared.Core.DataTransferObject.Auth.AuthController.Output;
 using Shared.Core.Entities.Identity;
 using Shared.Core.Extensions;
 using Shared.Core.Queries.Auth.Auth;
-using Shared.Core.Resources.Services.Auth;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -28,7 +27,7 @@ namespace Shared.Application.Handlers.Auth.Auth
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IConfiguration configuration,
-            IStringLocalizer<Core.Resources.Services.Auth.AuthService> stringLocalizer)
+            IStringLocalizer<Core.Resources.Application.Services.Auth.AuthService> stringLocalizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,11 +39,9 @@ namespace Shared.Application.Handlers.Auth.Auth
         {
             var user = await _userManager.FindByEmailAsync(request.Input.Email);
 
-            return Result.Create(user, 200, 404, _stringLocalizer.GetString(AuthServiceConstants.UserFindNotFound))
-                .EnsureAsync(_signInManager.CanSignInAsync, 400,
-                    _stringLocalizer.GetString(AuthServiceConstants.UserSignInError))
-                .EnsureAsync(async x => await _userManager.CheckPasswordAsync(x, request.Input.Password), 400,
-                    _stringLocalizer.GetString(AuthServiceConstants.PasswordSignInPasswordIncorrect))
+            return Result.Create(user, 200, 404, _stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
+                .EnsureAsync(_signInManager.CanSignInAsync, 400, _stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserSignInError))
+                .EnsureAsync(async x => await _userManager.CheckPasswordAsync(x, request.Input.Password), 400, _stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.PasswordIncorrect))
                 .MapAsync(async x =>
                 {
                     _configuration.AsEnumerable();

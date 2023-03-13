@@ -18,11 +18,14 @@ namespace Shared.Application.Handlers.Auth.Auth
     public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<SignUpOutput>>
     {
         private readonly UserManager<User> _userManager;
+        private readonly IStringLocalizer _globalStringLocalizer;
 
         public SignUpQueryHandler(
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            IStringLocalizer<Core.Resources.Application.Global> globalStringLocalizer)
         {
             _userManager = userManager;
+            _globalStringLocalizer = globalStringLocalizer;
         }
 
         public async Task<Result<SignUpOutput>> Handle(SignUpQuery request, CancellationToken cancellationToken)
@@ -33,7 +36,7 @@ namespace Shared.Application.Handlers.Auth.Auth
                 Email = request.Input.Email,
             };
 
-            return Result.Create(user, 201, 500)
+            return Result.Create(user, 201, 500, _globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
                 .EnsureAsync(async x =>
                 {
                     var result = await _userManager.CreateAsync(x, request.Input.Password);

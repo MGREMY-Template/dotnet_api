@@ -106,8 +106,9 @@ namespace Shared.Infrastructure.Repositories
             return _storeContext.Set<T>().AsQueryable().ApplyPaging(paging);
         }
 
-        public void Dispose()
+        public async void Dispose()
         {
+            await _storeContext.SaveChangesAsync();
             GC.SuppressFinalize(this);
         }
     }

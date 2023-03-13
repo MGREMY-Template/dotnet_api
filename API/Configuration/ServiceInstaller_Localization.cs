@@ -5,15 +5,15 @@ using Shared.Core.Configuration;
 
 namespace API.Configuration
 {
-	[ConfigOrder(0)]
-	public class ServiceInstaller_Localization : IServiceInstaller
-	{
-		public void Configure(IServiceCollection services, IConfiguration configuration)
-		{
-			services.AddLocalization(opt =>
-			{
+    [ConfigOrder(0)]
+    public class ServiceInstaller_Localization : IServiceInstaller
+    {
+        public void Configure(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddLocalization(opt =>
+            {
 
-			});
-		}
-	}
+            });
+        }
+    }
 }

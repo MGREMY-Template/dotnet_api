@@ -27,7 +27,7 @@ namespace API.Configuration
             {
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
-            
+
             using (var scope = services.BuildServiceProvider())
             {
                 var identityContext = scope.GetRequiredService<IdentityContext>();

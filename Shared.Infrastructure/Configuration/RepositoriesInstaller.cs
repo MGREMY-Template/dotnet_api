@@ -35,7 +35,7 @@ namespace Shared.Infrastructure.Configuration
 
             static bool IsInterfaceRepository(TypeInfo typeInfo) =>
                 typeInfo.Name.StartsWith("I")
-                && typeInfo.Name.Contains("Repository")
+                && typeInfo.Name.EndsWith("Repository")
                 && typeInfo.IsInterface;
         }
     }

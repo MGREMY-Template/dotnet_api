@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Email_Confirm_Already-Confirmed" xml:space="preserve">
-    <value>The email address is already confirmed</value>
-  </data>
-  <data name="Email_Confirm_Error" xml:space="preserve">
-    <value>Error while confirming the email address</value>
-  </data>
-  <data name="Email_Format_Invalid" xml:space="preserve">
-    <value>The email address's format is invalid</value>
-  </data>
-  <data name="Password_SignIn_Password-Incorrect" xml:space="preserve">
-    <value>Password incorrect</value>
-  </data>
-  <data name="User_Create_Error" xml:space="preserve">
-    <value>Error while creating the user. Please verify the password</value>
-  </data>
-  <data name="User_Create_Exists" xml:space="preserve">
-    <value>The user already exists</value>
-  </data>
-  <data name="User_Find_Not-Found" xml:space="preserve">
+  <data name="UserNotFound" xml:space="preserve">
     <value>User not found</value>
-  </data>
-  <data name="User_SignIn_Error" xml:space="preserve">
-    <value>Error while signing in</value>
   </data>
 </root>

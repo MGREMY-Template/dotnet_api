@@ -3,7 +3,7 @@ using System;
 
 namespace Shared.Core.Entities.Identity
 {
-	public partial class RoleClaim : IdentityRoleClaim<Guid>
-	{
-	}
+    public partial class RoleClaim : IdentityRoleClaim<Guid>
+    {
+    }
 }

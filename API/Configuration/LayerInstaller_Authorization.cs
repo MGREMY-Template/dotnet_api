@@ -5,12 +5,12 @@ using Shared.Core.Configuration;
 
 namespace API.Configuration
 {
-	[ConfigOrder(2)]
-	public class LayerInstaller_Authorization : IServiceInstaller
-	{
-		public void Configure(IServiceCollection services, IConfiguration configuration)
-		{
-			services.AddAuthorization();
-		}
-	}
+    [ConfigOrder(2)]
+    public class LayerInstaller_Authorization : IServiceInstaller
+    {
+        public void Configure(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthorization();
+        }
+    }
 }

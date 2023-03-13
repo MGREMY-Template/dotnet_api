@@ -24,17 +24,17 @@ namespace Shared.Application.Handlers.Identity.User
             IUserRepository repository,
             IMapper mapper,
             ILogger<GetAllUserQueryHandler> logger,
-            IStringLocalizer<Core.Resources.Global> stringLocalizer)
+            IStringLocalizer<Core.Resources.Application.Global> globalStringLocalizer)
         {
             _repository = repository;
             _mapper = mapper;
             _logger = logger;
-            _globalStringLocalizer = stringLocalizer;
+            _globalStringLocalizer = globalStringLocalizer;
         }
 
         public async Task<Result<IEnumerable<UserDto>>> Handle(GetUserAllQuery request, CancellationToken cancellationToken)
         {
-            return Result.Create(await _repository.GetAllAsync(cancellationToken), 200, 500, _globalStringLocalizer.GetString(Core.Resources.GlobalConstants.InternalServerError))
+            return Result.Create(await _repository.GetAllAsync(cancellationToken), 200, 500, _globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
                 .Map(_mapper.Map<IEnumerable<UserDto>>);
         }
     }
