@@ -11,13 +11,22 @@ public class UserMapper : Profile
         _ = this.CreateMap<User, UserDto>()
             .ForMember(x =>
                 x.Id,
-                opt => opt.MapFrom(src => src.Id))
+                opt =>
+                {
+                    opt.MapFrom(src => src.Id);
+                })
             .ForMember(x =>
                 x.Email,
-                opt => opt.MapFrom(src => src.Email))
+                opt =>
+                {
+                    opt.MapFrom(src => src.Email);
+                })
             .ForMember(x =>
                 x.UserName,
-                opt => opt.MapFrom(src => src.UserName))
+                opt =>
+                {
+                    opt.MapFrom(src => src.UserName);
+                })
             .ReverseMap();
     }
 }

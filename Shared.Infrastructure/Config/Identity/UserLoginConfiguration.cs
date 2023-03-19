@@ -6,5 +6,8 @@ using Shared.Core.Entities.Identity;
 
 public class UserLoginConfiguration : IEntityTypeConfiguration<UserLogin>
 {
-    public void Configure(EntityTypeBuilder<UserLogin> builder) => builder.ToTable($"__Identity_{nameof(UserLogin)}");
+    public void Configure(EntityTypeBuilder<UserLogin> builder)
+    {
+        _ = builder.ToTable($"__Identity_{nameof(UserLogin)}");
+    }
 }

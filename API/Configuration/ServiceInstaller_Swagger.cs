@@ -13,38 +13,48 @@ using System.Linq;
 [ConfigOrder(0)]
 public class ServiceInstaller_Swagger : IServiceInstaller
 {
-    public static Dictionary<string, OpenApiExample> AcceptedLanguages =>
-        new()
+    public static Dictionary<string, OpenApiExample> AcceptedLanguages
+    {
+        get
+        {
+            return new()
         {
             { "fr-FR", new OpenApiExample{ Value = new OpenApiString("fr-FR") } },
             { "en-US", new OpenApiExample{ Value = new OpenApiString("en-US") } },
         };
+        }
+    }
 
-    public void Configure(IServiceCollection services, IConfiguration configuration) => services.AddSwaggerGen(c =>
-                                                                                                 {
-                                                                                                     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+    public void Configure(IServiceCollection services, IConfiguration configuration)
+    {
+        _ = services.AddSwaggerGen(c =>
+            {
+                c.ResolveConflictingActions(apiDescriptions =>
+                {
+                    return apiDescriptions.First();
+                });
 
-                                                                                                     c.SwaggerDoc("v1", new OpenApiInfo
-                                                                                                     {
-                                                                                                         Title = "GREMY.OVH API",
-                                                                                                         Version = "v1",
-                                                                                                         Description = "GREMY.OVH API Service",
-                                                                                                         Contact = new OpenApiContact
-                                                                                                         {
-                                                                                                             Name = "GREMY Miguel",
-                                                                                                         }
-                                                                                                     });
-                                                                                                     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                                                                                                     {
-                                                                                                         Name = "Authorization",
-                                                                                                         Type = SecuritySchemeType.ApiKey,
-                                                                                                         Scheme = "Bearer",
-                                                                                                         BearerFormat = "JWT",
-                                                                                                         In = ParameterLocation.Header,
-                                                                                                         Description = "JWT Authorization header using the Bearer scheme",
-                                                                                                     });
-                                                                                                     c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                                                                                                     {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "GREMY.OVH API",
+                    Version = "v1",
+                    Description = "GREMY.OVH API Service",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "GREMY Miguel",
+                    }
+                });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
                 {
                     new OpenApiSecurityScheme
                     {
@@ -56,10 +66,11 @@ public class ServiceInstaller_Swagger : IServiceInstaller
                     },
                     new string[] {}
                 }
-                                                                                                     });
+            });
 
-                                                                                                     c.OperationFilter<AcceptLanguageHeaderFilter>();
-                                                                                                 });
+                c.OperationFilter<AcceptLanguageHeaderFilter>();
+            });
+    }
 
     private class AcceptLanguageHeaderFilter : IOperationFilter
     {

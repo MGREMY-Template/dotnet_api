@@ -8,8 +8,11 @@ using Shared.Core.Configuration;
 [ConfigOrder(0)]
 public class ServiceInstaller_Localization : IServiceInstaller
 {
-    public void Configure(IServiceCollection services, IConfiguration configuration) => services.AddLocalization(opt =>
-                                                                                                 {
+    public void Configure(IServiceCollection services, IConfiguration configuration)
+    {
+        _ = services.AddLocalization(opt =>
+            {
 
-                                                                                                 });
+            });
+    }
 }

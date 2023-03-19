@@ -41,7 +41,10 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
 
         return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
             .EnsureAsync(this._signInManager.CanSignInAsync, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserSignInError))
-            .EnsureAsync(async x => await this._userManager.CheckPasswordAsync(x, request.Input.Password), 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.PasswordIncorrect))
+            .EnsureAsync(async x =>
+            {
+                return await this._userManager.CheckPasswordAsync(x, request.Input.Password);
+            }, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.PasswordIncorrect))
             .MapAsync(async x =>
             {
                 _ = this._configuration.AsEnumerable();

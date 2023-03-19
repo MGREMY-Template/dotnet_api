@@ -31,6 +31,9 @@ public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, Result<
         this._stringLocalizer = stringLocalizer;
     }
 
-    public async Task<Result<UserDto>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken) => Result.Create(await this._repository.GetByKeyAsync(request.Id, cancellationToken), 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Identity.UserServiceConstants.UserNotFound))
+    public async Task<Result<UserDto>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+    {
+        return Result.Create(await this._repository.GetByKeyAsync(request.Id, cancellationToken), 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Identity.UserServiceConstants.UserNotFound))
             .Map(this._mapper.Map<UserDto>);
+    }
 }

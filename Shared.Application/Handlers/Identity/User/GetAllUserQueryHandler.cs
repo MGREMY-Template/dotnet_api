@@ -32,6 +32,9 @@ public sealed class GetAllUserQueryHandler : IRequestHandler<GetUserAllQuery, Re
         this._globalStringLocalizer = globalStringLocalizer;
     }
 
-    public async Task<Result<IEnumerable<UserDto>>> Handle(GetUserAllQuery request, CancellationToken cancellationToken) => Result.Create(await this._repository.GetAllAsync(cancellationToken), 200, 500, this._globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
+    public async Task<Result<IEnumerable<UserDto>>> Handle(GetUserAllQuery request, CancellationToken cancellationToken)
+    {
+        return Result.Create(await this._repository.GetAllAsync(cancellationToken), 200, 500, this._globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
             .Map(this._mapper.Map<IEnumerable<UserDto>>);
+    }
 }

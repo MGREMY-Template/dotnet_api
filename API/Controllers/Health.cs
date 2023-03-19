@@ -12,5 +12,8 @@ public class Health : GenericController
 {
     [HttpGet("Ping")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult Ping(CancellationToken cancellationToken = default) => this.Ok();
+    public IActionResult Ping(CancellationToken cancellationToken = default)
+    {
+        return this.Ok();
+    }
 }

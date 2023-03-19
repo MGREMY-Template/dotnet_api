@@ -3,7 +3,14 @@
 public class Result
 {
     public bool IsSuccess { get; }
-    public bool IsFailure => !this.IsSuccess;
+    public bool IsFailure
+    {
+        get
+        {
+            return !this.IsSuccess;
+        }
+    }
+
     public int StatusCode { get; }
     public string[] Messages { get; protected set; }
 
@@ -13,15 +20,23 @@ public class Result
         this.StatusCode = statusCode;
     }
 
-    public static Result Success(int statusCode) => new(true, statusCode);
+    public static Result Success(int statusCode)
+    {
+        return new(true, statusCode);
+    }
 
-    public static Result Failure(int statusCode) => new(false, statusCode);
+    public static Result Failure(int statusCode)
+    {
+        return new(false, statusCode);
+    }
 
 #nullable enable
-    public static Result<TResult> Create<TResult>(TResult value, int successStatusCode, int failureStatusCode, params string[]? errorMessages) =>
-        value is not null ?
+    public static Result<TResult> Create<TResult>(TResult value, int successStatusCode, int failureStatusCode, params string[]? errorMessages)
+    {
+        return value is not null ?
         Result<TResult>.Success(value, successStatusCode) :
         Result<TResult>.Failure(failureStatusCode, errorMessages);
+    }
 #nullable restore
 }
 
@@ -40,7 +55,13 @@ public class Result<TResult> : Result
     }
 #nullable restore
 
-    public static Result<TResult> Success(TResult result, int statusCode) => new(true, result, statusCode);
+    public static Result<TResult> Success(TResult result, int statusCode)
+    {
+        return new(true, result, statusCode);
+    }
 #nullable enable
-    public static Result<TResult> Failure(int statusCode, params string[]? messages) => new(false, statusCode, messages);
+    public static Result<TResult> Failure(int statusCode, params string[]? messages)
+    {
+        return new(false, statusCode, messages);
+    }
 }
