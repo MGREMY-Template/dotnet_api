@@ -8,5 +8,11 @@ using Shared.Core.Configuration;
 [ConfigOrder(1)]
 public class ServicesInstaller : IServiceInstaller
 {
-    public void Configure(IServiceCollection services, IConfiguration configuration) => services.AddMediatR(conf => conf.RegisterServicesFromAssembly(typeof(Shared.Application.Marker).Assembly));
+    public void Configure(IServiceCollection services, IConfiguration configuration)
+    {
+        _ = services.AddMediatR(conf =>
+            {
+                _ = conf.RegisterServicesFromAssembly(typeof(Shared.Application.Marker).Assembly);
+            });
+    }
 }

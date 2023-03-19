@@ -23,7 +23,10 @@ public class LayerInstaller_Infrastructure : IServiceInstaller
             Port = uint.TryParse(configuration.GetFromEnvironmentVariable("DB", "PORT"), out var p) ? p : 3306,
         }.ConnectionString;
 
-        _ = services.AddDbContext<IdentityContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+        _ = services.AddDbContext<IdentityContext>(options =>
+        {
+            _ = options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        });
 
         using ServiceProvider scope = services.BuildServiceProvider();
         IdentityContext identityContext = scope.GetRequiredService<IdentityContext>();

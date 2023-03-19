@@ -6,5 +6,11 @@ using System.Linq;
 internal static class IdentityResultExtensions
 {
     public static string[] ErrorsToStringArray(
-        this IdentityResult result) => result.Errors.Select(x => x.Description).Distinct().ToArray();
+        this IdentityResult result)
+    {
+        return result.Errors.Select(x =>
+        {
+            return x.Description;
+        }).Distinct().ToArray();
+    }
 }

@@ -16,7 +16,10 @@ public static class DependencyInjection
         params Assembly[] assemblies)
     {
         IEnumerable<IServiceInstaller> serviceInstallers = assemblies
-            .SelectMany(a => a.DefinedTypes)
+            .SelectMany(a =>
+            {
+                return a.DefinedTypes;
+            })
             .Where(IsAssignableToType<IServiceInstaller>)
             .OrderBy<TypeInfo, int>(a =>
             {
@@ -43,9 +46,11 @@ public static class DependencyInjection
 
         return services;
 
-        static bool IsAssignableToType<T>(TypeInfo typeInfo) =>
-            typeof(T).IsAssignableFrom(typeInfo)
+        static bool IsAssignableToType<T>(TypeInfo typeInfo)
+        {
+            return typeof(T).IsAssignableFrom(typeInfo)
             && !typeInfo.IsInterface
             && !typeInfo.IsAbstract;
+        }
     }
 }

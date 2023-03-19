@@ -30,7 +30,10 @@ public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Resul
         User user = await this._userManager.FindByEmailAsync(request.Input.Email);
 
         return Result.Create(user, 201, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
-            .Ensure(x => !x.EmailConfirmed, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
+            .Ensure(x =>
+            {
+                return !x.EmailConfirmed;
+            }, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
             .EnsureAsync(async x =>
             {
                 IdentityResult result = await this._userManager.ConfirmEmailAsync(x, request.Input.Token);

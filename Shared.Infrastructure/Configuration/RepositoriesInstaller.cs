@@ -15,26 +15,39 @@ public class RepositoriesInstaller : IServiceInstaller
         var types = typeof(Shared.Core.Marker)
             .Assembly.DefinedTypes.AsEnumerable()
             .Where(IsInterfaceRepository)
-            .Select(i => new
+            .Select(i =>
             {
-                Interface = i,
-                Implementation = typeof(Shared.Infrastructure.Marker).Assembly.DefinedTypes
-                    .FirstOrDefault(ri => IsAssignableToType(i, ri)),
-            }).Where(x => x.Implementation is not null);
+                return new
+                {
+                    Interface = i,
+                    Implementation = typeof(Shared.Infrastructure.Marker).Assembly.DefinedTypes
+                        .FirstOrDefault(ri =>
+                        {
+                            return IsAssignableToType(i, ri);
+                        }),
+                };
+            }).Where(x =>
+            {
+                return x.Implementation is not null;
+            });
 
         foreach (var type in types)
         {
             _ = services.AddScoped(type.Interface, type.Implementation);
         }
 
-        static bool IsAssignableToType(TypeInfo typeInfo, TypeInfo implementation) =>
-            typeInfo.IsAssignableFrom(implementation)
+        static bool IsAssignableToType(TypeInfo typeInfo, TypeInfo implementation)
+        {
+            return typeInfo.IsAssignableFrom(implementation)
             && !implementation.IsInterface
             && !implementation.IsAbstract;
+        }
 
-        static bool IsInterfaceRepository(TypeInfo typeInfo) =>
-            typeInfo.Name.StartsWith("I")
+        static bool IsInterfaceRepository(TypeInfo typeInfo)
+        {
+            return typeInfo.Name.StartsWith("I")
             && typeInfo.Name.EndsWith("Repository")
             && typeInfo.IsInterface;
+        }
     }
 }

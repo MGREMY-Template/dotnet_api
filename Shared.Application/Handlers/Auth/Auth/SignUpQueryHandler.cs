@@ -3,6 +3,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using Microsoft.IdentityModel.Tokens;
 using Shared.Application.Extensions;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
@@ -25,7 +26,7 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<SignUpOutp
         this._globalStringLocalizer = globalStringLocalizer;
     }
 
-    public Result<SignUpOutput> Handle(SignUpQuery request, CancellationToken cancellationToken)
+    public async Task<Result<SignUpOutput>> Handle(SignUpQuery request, CancellationToken cancellationToken)
     {
         var user = new User
         {
@@ -52,6 +53,4 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<SignUpOutp
                 };
             });
     }
-
-    Task<Result<SignUpOutput>> IRequestHandler<SignUpQuery, Result<SignUpOutput>>.Handle(SignUpQuery request, CancellationToken cancellationToken) => throw new System.NotImplementedException();
 }

@@ -8,5 +8,8 @@ using Shared.Core.Configuration;
 [ConfigOrder(2)]
 public class LayerInstaller_Authorization : IServiceInstaller
 {
-    public void Configure(IServiceCollection services, IConfiguration configuration) => services.AddAuthorization();
+    public void Configure(IServiceCollection services, IConfiguration configuration)
+    {
+        _ = services.AddAuthorization();
+    }
 }

@@ -30,7 +30,10 @@ public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailCon
         User user = await this._userManager.FindByEmailAsync(request.Input.Email);
 
         return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
-            .Ensure(x => !x.EmailConfirmed, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
+            .Ensure(x =>
+            {
+                return !x.EmailConfirmed;
+            }, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
             .MapAsync(async x =>
             {
                 var token = await this._userManager.GenerateEmailConfirmationTokenAsync(x);

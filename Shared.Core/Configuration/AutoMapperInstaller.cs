@@ -7,5 +7,8 @@ using Shared.Core.Attributes;
 [ConfigOrder(0)]
 public class AutoMapperInstaller : IServiceInstaller
 {
-    public void Configure(IServiceCollection services, IConfiguration configuration) => services.AddAutoMapper(typeof(Shared.Core.Marker).Assembly);
+    public void Configure(IServiceCollection services, IConfiguration configuration)
+    {
+        _ = services.AddAutoMapper(typeof(Shared.Core.Marker).Assembly);
+    }
 }
