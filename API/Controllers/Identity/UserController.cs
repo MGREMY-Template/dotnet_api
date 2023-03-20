@@ -45,8 +45,8 @@ public class UserController : GenericController
     }
 
     [HttpGet(nameof(GetById))]
-    [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromQuery] Guid id,
         CancellationToken cancellationToken = default)
