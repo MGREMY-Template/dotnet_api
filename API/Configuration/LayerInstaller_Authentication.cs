@@ -1,6 +1,7 @@
 ﻿namespace API.Configuration;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -37,5 +38,11 @@ public sealed partial class LayerInstaller_Authentication : IServiceInstaller
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetFromEnvironmentVariable("JWT", "KEY")))
                 };
             });
+    }
+
+    public void Install(IApplicationBuilder applicationBuilder)
+    {
+        _ = applicationBuilder.UseAuthentication();
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Shared.Core.Configuration;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
@@ -10,5 +11,9 @@ public class AutoMapperInstaller : IServiceInstaller
     public void Configure(IServiceCollection services, IConfiguration configuration)
     {
         _ = services.AddAutoMapper(typeof(Shared.Core.Marker).Assembly);
+    }
+
+    public void Install(IApplicationBuilder applicationBuilder)
+    {
     }
 }

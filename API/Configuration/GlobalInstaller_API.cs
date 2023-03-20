@@ -1,4 +1,4 @@
-﻿namespace Shared.Application.Configuration;
+﻿namespace API.Configuration;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -6,15 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
 using Shared.Core.Configuration;
 
-[ConfigOrder(1)]
-public class ServicesInstaller : IServiceInstaller
+[ConfigOrder(3)]
+public sealed partial class GlobalInstaller_API : IServiceInstaller
 {
     public void Configure(IServiceCollection services, IConfiguration configuration)
     {
-        _ = services.AddMediatR(conf =>
-            {
-                _ = conf.RegisterServicesFromAssembly(typeof(Shared.Application.Marker).Assembly);
-            });
+        _ = services.AddControllers();
     }
 
     public void Install(IApplicationBuilder applicationBuilder)

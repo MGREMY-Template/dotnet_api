@@ -1,9 +1,11 @@
 ﻿namespace API.Configuration;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
 using Shared.Core.Configuration;
+using System.Linq;
 
 [ConfigOrder(0)]
 public class ServiceInstaller_Localization : IServiceInstaller
@@ -14,5 +16,16 @@ public class ServiceInstaller_Localization : IServiceInstaller
             {
 
             });
+    }
+
+    public void Install(IApplicationBuilder applicationBuilder)
+    {
+        RequestLocalizationOptions localizationOptions = new RequestLocalizationOptions()
+            .SetDefaultCulture(ServiceInstaller_Swagger.AcceptedLanguages.Keys.FirstOrDefault())
+            .AddSupportedCultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray())
+            .AddSupportedUICultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray());
+        localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
+
+        _ = applicationBuilder.UseRequestLocalization(localizationOptions);
     }
 }

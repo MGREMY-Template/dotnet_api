@@ -1,5 +1,6 @@
 ﻿namespace Shared.Infrastructure.Configuration;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
@@ -49,5 +50,9 @@ public class RepositoriesInstaller : IServiceInstaller
             && typeInfo.Name.EndsWith("Repository")
             && typeInfo.IsInterface;
         }
+    }
+
+    public void Install(IApplicationBuilder applicationBuilder)
+    {
     }
 }

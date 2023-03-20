@@ -1,5 +1,6 @@
 ﻿namespace API.Configuration;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,5 +32,9 @@ public class LayerInstaller_Infrastructure : IServiceInstaller
         using ServiceProvider scope = services.BuildServiceProvider();
         IdentityContext identityContext = scope.GetRequiredService<IdentityContext>();
         identityContext.Database.Migrate();
+    }
+
+    public void Install(IApplicationBuilder applicationBuilder)
+    {
     }
 }

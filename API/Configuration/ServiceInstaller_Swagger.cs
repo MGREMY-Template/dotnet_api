@@ -1,7 +1,10 @@
 ﻿namespace API.Configuration;
 
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Shared.Core.Attributes;
@@ -70,6 +73,17 @@ public class ServiceInstaller_Swagger : IServiceInstaller
 
                 c.OperationFilter<AcceptLanguageHeaderFilter>();
             });
+
+        _ = services.AddEndpointsApiExplorer();
+    }
+
+    public void Install(IApplicationBuilder applicationBuilder)
+    {
+        if (applicationBuilder.ApplicationServices.GetRequiredService<IWebHostEnvironment>().IsDevelopment())
+        {
+            _ = applicationBuilder.UseSwagger();
+            _ = applicationBuilder.UseSwaggerUI();
+        }
     }
 
     private class AcceptLanguageHeaderFilter : IOperationFilter
