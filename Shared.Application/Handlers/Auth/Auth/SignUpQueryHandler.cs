@@ -3,7 +3,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Microsoft.IdentityModel.Tokens;
 using Shared.Application.Extensions;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;

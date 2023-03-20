@@ -1,5 +1,6 @@
 ﻿namespace API.Configuration;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,5 +34,9 @@ public class ServiceInstaller_Identity : IServiceInstaller
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             }).AddEntityFrameworkStores<IdentityContext>()
             .AddDefaultTokenProviders();
+    }
+
+    public void Install(IApplicationBuilder applicationBuilder)
+    {
     }
 }

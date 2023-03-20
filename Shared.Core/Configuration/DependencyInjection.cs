@@ -1,5 +1,6 @@
 ﻿namespace Shared.Core.Configuration;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
@@ -45,6 +46,49 @@ public static class DependencyInjection
         }
 
         return services;
+
+        static bool IsAssignableToType<T>(TypeInfo typeInfo)
+        {
+            return typeof(T).IsAssignableFrom(typeInfo)
+            && !typeInfo.IsInterface
+            && !typeInfo.IsAbstract;
+        }
+    }
+
+    public static IApplicationBuilder Install(
+        this IApplicationBuilder applicationBuilder,
+        params Assembly[] assemblies)
+    {
+        IEnumerable<IServiceInstaller> serviceInstallers = assemblies
+            .SelectMany(a =>
+            {
+                return a.DefinedTypes;
+            })
+            .Where(IsAssignableToType<IServiceInstaller>)
+            .OrderBy<TypeInfo, int>(a =>
+            {
+                Attribute[] attrs = Attribute.GetCustomAttributes(a);
+
+                foreach (Attribute attr in attrs)
+                {
+                    if (attr is ConfigOrderAttribute coa)
+                    {
+                        return coa.Order;
+                    }
+                }
+
+                return -1;
+
+            })
+            .Select(Activator.CreateInstance)
+            .Cast<IServiceInstaller>();
+
+        foreach (IServiceInstaller serviceInstaller in serviceInstallers)
+        {
+            serviceInstaller.Install(applicationBuilder);
+        }
+
+        return applicationBuilder;
 
         static bool IsAssignableToType<T>(TypeInfo typeInfo)
         {
