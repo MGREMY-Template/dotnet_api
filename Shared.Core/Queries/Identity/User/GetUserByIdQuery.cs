@@ -8,9 +8,4 @@ using System;
 public class GetUserByIdQuery : IRequest<Result<UserDto>>
 {
     public Guid Id { get; set; }
-
-    public GetUserByIdQuery(Guid id)
-    {
-        this.Id = id;
-    }
 }

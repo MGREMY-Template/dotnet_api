@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Auth.AuthController.Input;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
 using Shared.Core.Queries.Auth.Auth;
 using System.Threading;
@@ -27,10 +26,9 @@ public class AuthController : GenericController
     [ProducesResponseType(typeof(Result<SignUpOutput>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(Result<SignUpOutput>), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SignUp(
-        [FromBody] SignUpInput input,
+        [FromBody] SignUpQuery query,
         CancellationToken cancellationToken = default)
     {
-        var query = new SignUpQuery(input);
         Result<SignUpOutput> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
@@ -38,11 +36,11 @@ public class AuthController : GenericController
     [HttpGet(nameof(GetEmailConfimationToken))]
     [ProducesResponseType(typeof(Result<GetEmailConfirmationTokenOutput>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<GetEmailConfirmationTokenOutput>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Result<GetEmailConfirmationTokenOutput>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetEmailConfimationToken(
-        [FromQuery] GetEmailConfirmationInput input,
+        [FromBody] GetEmailConfirmationTokenQuery query,
         CancellationToken cancellationToken = default)
     {
-        var query = new GetEmailConfirmationTokenQuery(input);
         Result<GetEmailConfirmationTokenOutput> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
@@ -50,23 +48,23 @@ public class AuthController : GenericController
     [HttpPost(nameof(ConfirmEmail))]
     [ProducesResponseType(typeof(Result<ConfirmEmailOutput>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<ConfirmEmailOutput>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Result<ConfirmEmailOutput>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ConfirmEmail(
-        [FromQuery] ConfirmEmailInput input,
+        [FromBody] ConfirmEmailQuery query,
         CancellationToken cancellationToken = default)
     {
-        var query = new ConfirmEmailQuery(input);
         Result<ConfirmEmailOutput> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 
     [HttpPost(nameof(SignIn))]
     [ProducesResponseType(typeof(Result<SignInOutput>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Result<SignInOutput>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Result<SignInOutput>), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SignIn(
-        [FromBody] SignInInput input,
+        [FromBody] SignInQuery query,
         CancellationToken cancellationToken = default)
     {
-        var query = new SignInQuery(input);
         Result<SignInOutput> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }

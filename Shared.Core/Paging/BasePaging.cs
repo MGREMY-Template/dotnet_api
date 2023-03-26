@@ -6,7 +6,7 @@ public partial class BasePaging : IPaging
 
     public int Skip { get; set; } = 0;
 
-    public string OrderBy { get; set; }
+    public string OrderBy { get; set; } = "Id";
 
     public bool IsOrderByDescending { get; set; } = true;
 
