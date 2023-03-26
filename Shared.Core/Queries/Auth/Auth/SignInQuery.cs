@@ -2,15 +2,11 @@
 
 using MediatR;
 using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Auth.AuthController.Input;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
+using System.ComponentModel.DataAnnotations;
 
 public class SignInQuery : IRequest<Result<SignInOutput>>
 {
-    public SignInInput Input { get; set; }
-
-    public SignInQuery(SignInInput input)
-    {
-        this.Input = input;
-    }
+    [Required] public string Email { get; set; }
+    [Required] public string Password { get; set; }
 }

@@ -27,7 +27,7 @@ public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailCon
 
     public async Task<Result<GetEmailConfirmationTokenOutput>> Handle(GetEmailConfirmationTokenQuery request, CancellationToken cancellationToken)
     {
-        User user = await this._userManager.FindByEmailAsync(request.Input.Email);
+        User user = await this._userManager.FindByEmailAsync(request.Email);
 
         return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
             .Ensure(x =>

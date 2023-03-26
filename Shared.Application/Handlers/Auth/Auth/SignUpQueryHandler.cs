@@ -29,14 +29,14 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<SignUpOutp
     {
         var user = new User
         {
-            UserName = request.Input.Email,
-            Email = request.Input.Email,
+            UserName = request.Email,
+            Email = request.Email,
         };
 
         return Result.Create(user, 201, 500, this._globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
             .EnsureAsync(async x =>
             {
-                IdentityResult result = await this._userManager.CreateAsync(x, request.Input.Password);
+                IdentityResult result = await this._userManager.CreateAsync(x, request.Password);
 
                 return (result.Succeeded, result.ErrorsToStringArray());
             }, 400)

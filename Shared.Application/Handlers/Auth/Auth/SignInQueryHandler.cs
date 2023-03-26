@@ -37,13 +37,13 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
 
     public async Task<Result<SignInOutput>> Handle(SignInQuery request, CancellationToken cancellationToken)
     {
-        User user = await this._userManager.FindByEmailAsync(request.Input.Email);
+        User user = await this._userManager.FindByEmailAsync(request.Email);
 
         return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
             .EnsureAsync(this._signInManager.CanSignInAsync, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserSignInError))
             .EnsureAsync(async x =>
             {
-                return await this._userManager.CheckPasswordAsync(x, request.Input.Password);
+                return await this._userManager.CheckPasswordAsync(x, request.Password);
             }, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.PasswordIncorrect))
             .MapAsync(async x =>
             {

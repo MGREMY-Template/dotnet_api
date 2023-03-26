@@ -27,16 +27,16 @@ public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Resul
 
     public async Task<Result<ConfirmEmailOutput>> Handle(ConfirmEmailQuery request, CancellationToken cancellationToken)
     {
-        User user = await this._userManager.FindByEmailAsync(request.Input.Email);
+        User user = await this._userManager.FindByEmailAsync(request.Email);
 
-        return Result.Create(user, 201, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
+        return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
             .Ensure(x =>
             {
                 return !x.EmailConfirmed;
             }, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
             .EnsureAsync(async x =>
             {
-                IdentityResult result = await this._userManager.ConfirmEmailAsync(x, request.Input.Token);
+                IdentityResult result = await this._userManager.ConfirmEmailAsync(x, request.Token);
 
                 return (result.Succeeded, result.ErrorsToStringArray());
             }, 400)

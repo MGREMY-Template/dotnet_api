@@ -2,15 +2,11 @@
 
 using MediatR;
 using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Auth.AuthController.Input;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
+using System.ComponentModel.DataAnnotations;
 
 public class ConfirmEmailQuery : IRequest<Result<ConfirmEmailOutput>>
 {
-    public ConfirmEmailInput Input { get; set; }
-
-    public ConfirmEmailQuery(ConfirmEmailInput input)
-    {
-        this.Input = input;
-    }
+    [Required] public string Email { get; set; }
+    [Required] public string Token { get; set; }
 }
