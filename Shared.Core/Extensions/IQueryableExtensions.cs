@@ -1,4 +1,4 @@
-﻿namespace Shared.Infrastructure.Extensions;
+﻿namespace Shared.Core.Extensions;
 
 using Shared.Core.Paging;
 using System.Linq;

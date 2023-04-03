@@ -8,6 +8,7 @@ using MySqlConnector;
 using Shared.Core.Attributes;
 using Shared.Core.Configuration;
 using Shared.Core.Extensions;
+using Shared.Core.Interface;
 using Shared.Infrastructure.Data;
 
 [ConfigOrder(0)]
@@ -32,6 +33,11 @@ public class LayerInstaller_Infrastructure : IServiceInstaller
         using ServiceProvider scope = services.BuildServiceProvider();
         IdentityContext identityContext = scope.GetRequiredService<IdentityContext>();
         identityContext.Database.Migrate();
+
+        _ = services.AddScoped<IAppDbContext>(provider =>
+        {
+            return provider.GetService<IdentityContext>();
+        });
     }
 
     public void Install(IApplicationBuilder applicationBuilder)
