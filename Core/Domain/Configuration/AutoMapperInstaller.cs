@@ -4,7 +4,7 @@ using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.Core.Attributes;
+using Domain.Attributes;
 
 [ConfigOrder(0)]
 public class AutoMapperInstaller : IServiceInstaller

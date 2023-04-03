@@ -10,8 +10,8 @@ using Domain.Resources.Application.Services.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Shared.Core.DataTransferObject.Auth.AuthController.Output;
-using Shared.Core.Extensions;
+using Domain.DataTransferObject.Auth.AuthController.Output;
+using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,7 +24,7 @@ public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Resul
     public ConfirmEmailQueryHandler(
         UserManager<User> userManager,
         IMapper mapper,
-        IStringLocalizer<Core.Resources.Application.Services.Auth.AuthService> stringLocalizer)
+        IStringLocalizer<Domain.Resources.Application.Services.Auth.AuthService> stringLocalizer)
     {
         this._userManager = userManager;
         this._mapper = mapper;

@@ -9,7 +9,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Shared.Core.Extensions;
+using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,7 +24,7 @@ public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, Result<
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetUserByIdQueryHandler> logger,
-        IStringLocalizer<Core.Resources.Application.Services.Identity.UserService> stringLocalizer)
+        IStringLocalizer<Domain.Resources.Application.Services.Identity.UserService> stringLocalizer)
     {
         this._context = context;
         this._mapper = mapper;
@@ -34,7 +34,7 @@ public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, Result<
 
     public async Task<Result<UserDto>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        return Result.Create(await this._context.Users.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Identity.UserServiceConstants.UserNotFound))
+        return Result.Create(await this._context.Users.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(Domain.Resources.Application.Services.Identity.UserServiceConstants.UserNotFound))
             .Map(this._mapper.Map<UserDto>);
     }
 }

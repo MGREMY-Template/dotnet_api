@@ -11,7 +11,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Shared.Core.Extensions;
+using Domain.Extensions;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,7 +27,7 @@ public class GetListUserQueryHandler : IRequestHandler<GetUserListQuery, Result<
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetListUserQueryHandler> logger,
-        IStringLocalizer<Core.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
     {
         this._context = context;
         this._mapper = mapper;

@@ -10,7 +10,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Shared.Core.Extensions;
+using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,7 +25,7 @@ public sealed class GetAllUserQueryHandler : IRequestHandler<GetUserAllQuery, Re
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetAllUserQueryHandler> logger,
-        IStringLocalizer<Core.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
     {
         this._context = context;
         this._mapper = mapper;

@@ -10,7 +10,7 @@ using Domain.Resources.Application;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Shared.Core.Extensions;
+using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,7 +23,7 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
     public SignUpQueryHandler(
         UserManager<User> userManager,
         IMapper mapper,
-        IStringLocalizer<Core.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
     {
         this._userManager = userManager;
         this._mapper = mapper;

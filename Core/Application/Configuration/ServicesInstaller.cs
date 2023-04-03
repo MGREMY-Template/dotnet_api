@@ -4,7 +4,7 @@ using Domain.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.Core.Attributes;
+using Domain.Attributes;
 
 [ConfigOrder(1)]
 public class ServicesInstaller : IServiceInstaller

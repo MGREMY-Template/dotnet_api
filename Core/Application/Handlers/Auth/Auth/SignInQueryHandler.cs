@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
-using Shared.Core.Extensions;
+using Domain.Extensions;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -29,7 +29,7 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
         UserManager<User> userManager,
         SignInManager<User> signInManager,
         IConfiguration configuration,
-        IStringLocalizer<Core.Resources.Application.Services.Auth.AuthService> stringLocalizer)
+        IStringLocalizer<Domain.Resources.Application.Services.Auth.AuthService> stringLocalizer)
     {
         this._userManager = userManager;
         this._signInManager = signInManager;

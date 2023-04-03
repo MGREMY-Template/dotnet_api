@@ -8,7 +8,7 @@ using Domain.Resources.Application.Services.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Shared.Core.Extensions;
+using Domain.Extensions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,7 +20,7 @@ public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailCon
 
     public GetEmailConfirmationTokenQueryHandler(
         UserManager<User> userManager,
-        IStringLocalizer<Core.Resources.Application.Services.Auth.AuthService> stringLocalizer)
+        IStringLocalizer<Domain.Resources.Application.Services.Auth.AuthService> stringLocalizer)
     {
         this._userManager = userManager;
         this._stringLocalizer = stringLocalizer;
