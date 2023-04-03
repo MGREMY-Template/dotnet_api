@@ -7,7 +7,6 @@ using Domain.Queries.Identity.User;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Core.Queries.Identity.User;
 using System.Threading;
 using System.Threading.Tasks;
 

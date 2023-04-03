@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
-using Shared.Core.Attributes;
+using Domain.Attributes;
 
 [ConfigOrder(0)]
 public class LayerInstaller_Infrastructure : IServiceInstaller

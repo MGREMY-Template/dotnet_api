@@ -20,7 +20,7 @@ public class Program
             .Configure(
                 builder.Configuration,
                 typeof(Program).Assembly,
-                typeof(Marker).Assembly,
+                typeof(Application.Marker).Assembly,
                 typeof(Infrastructure.Marker).Assembly,
                 typeof(Domain.Marker).Assembly);
 
@@ -28,7 +28,7 @@ public class Program
 
         app.Install(
             typeof(Program).Assembly,
-            typeof(Marker).Assembly,
+            typeof(Application.Marker).Assembly,
             typeof(Infrastructure.Marker).Assembly,
             typeof(Domain.Marker).Assembly);
 
