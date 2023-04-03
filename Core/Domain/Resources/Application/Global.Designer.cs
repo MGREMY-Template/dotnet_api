@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shared.Core.Resources.Application {
+namespace Domain.Resources.Application {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Shared.Core.Resources.Application {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.Core.Resources.Application.Global", typeof(Global).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Domain.Resources.Application.Global", typeof(Global).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

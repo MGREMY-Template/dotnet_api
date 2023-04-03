@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shared.Core.Resources.Application.Services.Auth {
+namespace Domain.Resources.Logging.Services.Auth {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Shared.Core.Resources.Application.Services.Auth {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.Core.Resources.Application.Services.Auth.AuthService", typeof(AuthService).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Domain.Resources.Logging.Services.Auth.AuthService", typeof(AuthService).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,69 +57,6 @@ namespace Shared.Core.Resources.Application.Services.Auth {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à The email address is already confirmed.
-        /// </summary>
-        public static string EmailAlreadyConfirmed {
-            get {
-                return ResourceManager.GetString("EmailAlreadyConfirmed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Error while confirming the email address.
-        /// </summary>
-        public static string EmailConfirmationError {
-            get {
-                return ResourceManager.GetString("EmailConfirmationError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à The email address&apos;s format is invalid.
-        /// </summary>
-        public static string EmailInvalidFormat {
-            get {
-                return ResourceManager.GetString("EmailInvalidFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Password incorrect.
-        /// </summary>
-        public static string PasswordIncorrect {
-            get {
-                return ResourceManager.GetString("PasswordIncorrect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à The user already exists.
-        /// </summary>
-        public static string UserAlreadyExists {
-            get {
-                return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à User not found.
-        /// </summary>
-        public static string UserNotFound {
-            get {
-                return ResourceManager.GetString("UserNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Error while signing in.
-        /// </summary>
-        public static string UserSignInError {
-            get {
-                return ResourceManager.GetString("UserSignInError", resourceCulture);
             }
         }
     }

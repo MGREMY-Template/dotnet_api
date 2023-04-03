@@ -28,9 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared.Application\Shared.Application.csproj" />
-    <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
-    <ProjectReference Include="..\Shared.Infrastructure\Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Core\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Core\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Infra\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

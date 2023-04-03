@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shared.Core.Resources.Logging.Services.Identity {
+namespace Domain.Resources.Logging.Services.Identity {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Shared.Core.Resources.Logging.Services.Identity {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.Core.Resources.Logging.Services.Identity.UserService", typeof(UserService).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Domain.Resources.Logging.Services.Identity.UserService", typeof(UserService).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

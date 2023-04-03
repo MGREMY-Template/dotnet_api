@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shared.Core.Resources.Application.Services.Identity {
+namespace Domain.Resources.Application.Services.Auth {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Shared.Core.Resources.Application.Services.Identity {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class UserService {
+    public class AuthService {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal UserService() {
+        internal AuthService() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Shared.Core.Resources.Application.Services.Identity {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.Core.Resources.Application.Services.Identity.UserService", typeof(UserService).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Domain.Resources.Application.Services.Auth.AuthService", typeof(AuthService).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,65 @@ namespace Shared.Core.Resources.Application.Services.Identity {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The email address is already confirmed.
+        /// </summary>
+        public static string EmailAlreadyConfirmed {
+            get {
+                return ResourceManager.GetString("EmailAlreadyConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error while confirming the email address.
+        /// </summary>
+        public static string EmailConfirmationError {
+            get {
+                return ResourceManager.GetString("EmailConfirmationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The email address&apos;s format is invalid.
+        /// </summary>
+        public static string EmailInvalidFormat {
+            get {
+                return ResourceManager.GetString("EmailInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Password incorrect.
+        /// </summary>
+        public static string PasswordIncorrect {
+            get {
+                return ResourceManager.GetString("PasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The user already exists.
+        /// </summary>
+        public static string UserAlreadyExists {
+            get {
+                return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à User not found.
         /// </summary>
         public static string UserNotFound {
             get {
                 return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error while signing in.
+        /// </summary>
+        public static string UserSignInError {
+            get {
+                return ResourceManager.GetString("UserSignInError", resourceCulture);
             }
         }
     }
