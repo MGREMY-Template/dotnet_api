@@ -3,23 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{0C738515-0524-4798-91EF-5E57EEC477D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "Host\API\API.csproj", "{0C738515-0524-4798-91EF-5E57EEC477D5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{33B8F2EE-82A6-449E-A040-92011F851A8A} = {33B8F2EE-82A6-449E-A040-92011F851A8A}
 		{C52C38E6-4496-4761-B2B3-27C63B98560B} = {C52C38E6-4496-4761-B2B3-27C63B98560B}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Core", "Shared.Core\Shared.Core.csproj", "{D556E72F-32B3-4B71-A01E-C25FB86EB6D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Core\Domain\Domain.csproj", "{D556E72F-32B3-4B71-A01E-C25FB86EB6D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Application", "Shared.Application\Shared.Application.csproj", "{C52C38E6-4496-4761-B2B3-27C63B98560B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Core\Application\Application.csproj", "{C52C38E6-4496-4761-B2B3-27C63B98560B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Infrastructure", "Shared.Infrastructure\Shared.Infrastructure.csproj", "{33B8F2EE-82A6-449E-A040-92011F851A8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infra\Infrastructure\Infrastructure.csproj", "{33B8F2EE-82A6-449E-A040-92011F851A8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{ABB6B8D5-F7DB-4D45-9812-C57806BAC029}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.vsconfig = .vsconfig
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{05C3F8FB-2B0A-4578-B517-8F36251C7120}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{E6FF6F9E-FE47-4A9B-AF4A-355E6E721B1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{9E0ADF3E-DE3E-480A-BD2D-6EF25C2D44F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +52,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C738515-0524-4798-91EF-5E57EEC477D5} = {9E0ADF3E-DE3E-480A-BD2D-6EF25C2D44F8}
+		{D556E72F-32B3-4B71-A01E-C25FB86EB6D6} = {05C3F8FB-2B0A-4578-B517-8F36251C7120}
+		{C52C38E6-4496-4761-B2B3-27C63B98560B} = {05C3F8FB-2B0A-4578-B517-8F36251C7120}
+		{33B8F2EE-82A6-449E-A040-92011F851A8A} = {E6FF6F9E-FE47-4A9B-AF4A-355E6E721B1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {984968BB-B81D-44D4-AC4E-AB19F7B04DED}
