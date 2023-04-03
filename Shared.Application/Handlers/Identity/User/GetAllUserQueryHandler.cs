@@ -10,11 +10,10 @@ using Shared.Core.DataTransferObject.Identity.UserController;
 using Shared.Core.Extensions;
 using Shared.Core.Interface;
 using Shared.Core.Queries.Identity.User;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-public sealed class GetAllUserQueryHandler : IRequestHandler<GetUserAllQuery, Result<IEnumerable<UserDto>>>
+public sealed class GetAllUserQueryHandler : IRequestHandler<GetUserAllQuery, Result<UserDto[]>>
 {
     private readonly IAppDbContext _context;
     private readonly IMapper _mapper;
@@ -33,9 +32,9 @@ public sealed class GetAllUserQueryHandler : IRequestHandler<GetUserAllQuery, Re
         this._globalStringLocalizer = globalStringLocalizer;
     }
 
-    public async Task<Result<IEnumerable<UserDto>>> Handle(GetUserAllQuery request, CancellationToken cancellationToken)
+    public async Task<Result<UserDto[]>> Handle(GetUserAllQuery request, CancellationToken cancellationToken)
     {
         return Result.Create(await this._context.Users.ToArrayAsync(cancellationToken), 200, 400, this._globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
-            .Map(this._mapper.Map<IEnumerable<UserDto>>);
+            .Map(this._mapper.Map<UserDto[]>);
     }
 }

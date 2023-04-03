@@ -6,7 +6,7 @@ using Shared.Core.DataTransferObject.Identity.UserController;
 using Shared.Core.Paging;
 using System.Collections.Generic;
 
-public class GetUserListQuery : IRequest<Result<IEnumerable<UserDto>>>
+public class GetUserListQuery : IRequest<Result<UserDto[]>>
 {
     public IPaging Paging { get; set; }
 
