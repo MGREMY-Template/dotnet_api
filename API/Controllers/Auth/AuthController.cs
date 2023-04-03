@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
+using Shared.Core.DataTransferObject.Identity.UserController;
 using Shared.Core.Queries.Auth.Auth;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,13 +24,13 @@ public class AuthController : GenericController
     }
 
     [HttpPost(nameof(SignUp))]
-    [ProducesResponseType(typeof(Result<SignUpOutput>), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(Result<SignUpOutput>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SignUp(
         [FromBody] SignUpQuery query,
         CancellationToken cancellationToken = default)
     {
-        Result<SignUpOutput> result = await this._mediator.Send(query, cancellationToken);
+        Result<UserDto> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 
@@ -46,14 +47,14 @@ public class AuthController : GenericController
     }
 
     [HttpPost(nameof(ConfirmEmail))]
-    [ProducesResponseType(typeof(Result<ConfirmEmailOutput>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(Result<ConfirmEmailOutput>), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result<ConfirmEmailOutput>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ConfirmEmail(
         [FromBody] ConfirmEmailQuery query,
         CancellationToken cancellationToken = default)
     {
-        Result<ConfirmEmailOutput> result = await this._mediator.Send(query, cancellationToken);
+        Result<UserDto> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 

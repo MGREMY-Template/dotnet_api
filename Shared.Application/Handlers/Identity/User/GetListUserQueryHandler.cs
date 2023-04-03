@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class GetListUserQueryHandler : IRequestHandler<GetUserListQuery, Result<IEnumerable<UserDto>>>
+public class GetListUserQueryHandler : IRequestHandler<GetUserListQuery, Result<UserDto[]>>
 {
     private readonly IAppDbContext _context;
     private readonly IMapper _mapper;
@@ -33,9 +33,9 @@ public class GetListUserQueryHandler : IRequestHandler<GetUserListQuery, Result<
         this._globalStringLocalizer = globalStringLocalizer;
     }
 
-    public async Task<Result<IEnumerable<UserDto>>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
+    public async Task<Result<UserDto[]>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
     {
         return Result.Create(await this._context.Users.AsQueryable().ApplyPaging(request.Paging).ToArrayAsync(cancellationToken), 200, 500, this._globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
-            .Map(this._mapper.Map<IEnumerable<UserDto>>);
+            .Map(this._mapper.Map<UserDto[]>);
     }
 }

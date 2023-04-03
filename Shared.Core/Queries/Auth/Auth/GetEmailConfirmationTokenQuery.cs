@@ -7,5 +7,5 @@ using System.ComponentModel.DataAnnotations;
 
 public class GetEmailConfirmationTokenQuery : IRequest<Result<GetEmailConfirmationTokenOutput>>
 {
-    [Required] public string Email { get; set; }
+    [Required] [EmailAddress] public string Email { get; set; }
 }

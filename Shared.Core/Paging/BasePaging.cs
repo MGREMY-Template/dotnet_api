@@ -1,13 +1,14 @@
 ﻿namespace Shared.Core.Paging;
 
+using System.ComponentModel;
+
 public partial class BasePaging : IPaging
 {
-    public int Take { get; set; } = 10;
+    [DefaultValue(10)] public int Take { get; set; } = 10;
 
-    public int Skip { get; set; } = 0;
+    [DefaultValue(0)] public int Skip { get; set; } = 0;
 
-    public string OrderBy { get; set; } = "Id";
+    [DefaultValue("Id")] public string OrderBy { get; set; } = "Id";
 
-    public bool IsOrderByDescending { get; set; } = true;
-
+    [DefaultValue(true)] public bool IsOrderByDescending { get; set; } = true;
 }

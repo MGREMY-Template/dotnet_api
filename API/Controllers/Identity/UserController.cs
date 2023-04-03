@@ -7,7 +7,6 @@ using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Identity.UserController;
 using Shared.Core.Paging;
 using Shared.Core.Queries.Identity.User;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,21 +22,21 @@ public class UserController : GenericController
     }
 
     [HttpGet(nameof(GetAll))]
-    [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Result<UserDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken = default)
     {
-        Result<IEnumerable<UserDto>> result = await this._mediator.Send(new GetUserAllQuery(), cancellationToken);
+        Result<UserDto[]> result = await this._mediator.Send(new GetUserAllQuery(), cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 
     [HttpGet(nameof(GetList))]
-    [ProducesResponseType(typeof(Result<IEnumerable<UserDto>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Result<UserDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetList(
         [FromQuery] BasePaging paging,
         CancellationToken cancellationToken = default)
     {
-        Result<IEnumerable<UserDto>> result = await this._mediator.Send(new GetUserListQuery(paging), cancellationToken);
+        Result<UserDto[]> result = await this._mediator.Send(new GetUserListQuery(paging), cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 
