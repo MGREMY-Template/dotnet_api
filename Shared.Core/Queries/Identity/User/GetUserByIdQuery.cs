@@ -4,8 +4,9 @@ using MediatR;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Identity.UserController;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 public class GetUserByIdQuery : IRequest<Result<UserDto>>
 {
-    public Guid Id { get; set; }
+    [Required] public Guid Id { get; set; }
 }

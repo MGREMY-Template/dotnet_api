@@ -7,7 +7,6 @@ using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Identity.UserController;
 using Shared.Core.Paging;
 using Shared.Core.Queries.Identity.User;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -4,11 +4,11 @@ using MediatR;
 using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Identity.UserController;
 using Shared.Core.Paging;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 public class GetUserListQuery : IRequest<Result<UserDto[]>>
 {
-    public IPaging Paging { get; set; }
+    [Required] public IPaging Paging { get; set; }
 
     public GetUserListQuery(IPaging paging)
     {

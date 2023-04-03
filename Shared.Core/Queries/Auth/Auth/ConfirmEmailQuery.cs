@@ -7,6 +7,6 @@ using System.ComponentModel.DataAnnotations;
 
 public class ConfirmEmailQuery : IRequest<Result<UserDto>>
 {
-    [Required] public string Email { get; set; }
+    [Required] [EmailAddress] public string Email { get; set; }
     [Required] public string Token { get; set; }
 }
