@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Attributes;
+﻿namespace Domain.Attributes;
 
 using System;
 

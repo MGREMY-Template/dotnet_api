@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Resources.Logging;
+﻿namespace Domain.Resources.Logging;
 
 public class GlobalConstants
 {

@@ -1,9 +1,12 @@
 namespace API;
 
+using Application;
+using Domain;
+using Domain.Configuration;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.Core.Configuration;
 
 public class Program
 {
@@ -17,17 +20,17 @@ public class Program
             .Configure(
                 builder.Configuration,
                 typeof(Program).Assembly,
-                typeof(Shared.Application.Marker).Assembly,
-                typeof(Shared.Infrastructure.Marker).Assembly,
-                typeof(Shared.Core.Marker).Assembly);
+                typeof(Marker).Assembly,
+                typeof(Infrastructure.Marker).Assembly,
+                typeof(Domain.Marker).Assembly);
 
         WebApplication app = builder.Build();
 
         app.Install(
             typeof(Program).Assembly,
-            typeof(Shared.Application.Marker).Assembly,
-            typeof(Shared.Infrastructure.Marker).Assembly,
-            typeof(Shared.Core.Marker).Assembly);
+            typeof(Marker).Assembly,
+            typeof(Infrastructure.Marker).Assembly,
+            typeof(Domain.Marker).Assembly);
 
         app.MapControllers();
 

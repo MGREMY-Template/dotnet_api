@@ -1,13 +1,13 @@
 ﻿namespace API.Configuration;
 
+using Domain.Configuration;
+using Domain.Entities.Identity;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
-using Shared.Core.Configuration;
-using Shared.Core.Entities.Identity;
-using Shared.Infrastructure.Data;
 using System;
 
 [ConfigOrder(0)]

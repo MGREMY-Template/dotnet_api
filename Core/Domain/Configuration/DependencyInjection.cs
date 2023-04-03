@@ -1,9 +1,9 @@
-﻿namespace Shared.Core.Configuration;
+﻿namespace Domain.Configuration;
 
+using Domain.Attributes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.Core.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +22,7 @@ public static class DependencyInjection
                 return a.DefinedTypes;
             })
             .Where(IsAssignableToType<IServiceInstaller>)
-            .OrderBy<TypeInfo, int>(a =>
+            .OrderBy(a =>
             {
                 Attribute[] attrs = Attribute.GetCustomAttributes(a);
 
@@ -65,7 +65,7 @@ public static class DependencyInjection
                 return a.DefinedTypes;
             })
             .Where(IsAssignableToType<IServiceInstaller>)
-            .OrderBy<TypeInfo, int>(a =>
+            .OrderBy(a =>
             {
                 Attribute[] attrs = Attribute.GetCustomAttributes(a);
 

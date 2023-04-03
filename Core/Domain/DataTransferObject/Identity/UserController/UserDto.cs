@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.DataTransferObject.Identity.UserController;
+﻿namespace Domain.DataTransferObject.Identity.UserController;
 
 using System;
 

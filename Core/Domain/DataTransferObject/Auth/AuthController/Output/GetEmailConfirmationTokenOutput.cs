@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.DataTransferObject.Auth.AuthController.Output;
+﻿namespace Domain.DataTransferObject.Auth.AuthController.Output;
 
 public record GetEmailConfirmationTokenOutput
 {

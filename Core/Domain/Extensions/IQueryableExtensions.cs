@@ -1,6 +1,6 @@
-﻿namespace Shared.Core.Extensions;
+﻿namespace Domain.Extensions;
 
-using Shared.Core.Paging;
+using Domain.Paging;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 

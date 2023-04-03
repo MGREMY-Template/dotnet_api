@@ -1,7 +1,7 @@
-﻿namespace Shared.Core.Interface;
+﻿namespace Domain.Interface;
 
+using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
-using Shared.Core.Entities.Identity;
 using System.Threading;
 using System.Threading.Tasks;
 

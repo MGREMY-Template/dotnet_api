@@ -1,10 +1,10 @@
-﻿namespace Shared.Application.Configuration;
+﻿namespace Application.Configuration;
 
+using Domain.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Core.Attributes;
-using Shared.Core.Configuration;
 
 [ConfigOrder(1)]
 public class ServicesInstaller : IServiceInstaller
@@ -13,7 +13,7 @@ public class ServicesInstaller : IServiceInstaller
     {
         _ = services.AddMediatR(conf =>
             {
-                _ = conf.RegisterServicesFromAssembly(typeof(Shared.Application.Marker).Assembly);
+                _ = conf.RegisterServicesFromAssembly(typeof(Marker).Assembly);
             });
     }
 

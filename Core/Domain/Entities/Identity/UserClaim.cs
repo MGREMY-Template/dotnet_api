@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Entities.Identity;
+﻿namespace Domain.Entities.Identity;
 
 using Microsoft.AspNetCore.Identity;
 using System;

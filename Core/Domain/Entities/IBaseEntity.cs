@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Entities;
+﻿namespace Domain.Entities;
 
 using System;
 

@@ -1,13 +1,13 @@
 ﻿namespace API.Controllers.Auth;
 
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Auth.AuthController.Output;
+using Domain.DataTransferObject.Identity.UserController;
+using Domain.Queries.Auth.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Auth.AuthController.Output;
-using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Core.Queries.Auth.Auth;
 using System.Threading;
 using System.Threading.Tasks;
 

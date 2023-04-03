@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Paging;
+﻿namespace Domain.Paging;
 
 public interface IPaging
 {

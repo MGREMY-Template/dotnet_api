@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Extensions;
+﻿namespace Domain.Extensions;
 
 using Microsoft.Extensions.Configuration;
 using System.Linq;

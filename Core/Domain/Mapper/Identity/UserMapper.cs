@@ -1,8 +1,8 @@
-﻿namespace Shared.Core.Mapper.Identity;
+﻿namespace Domain.Mapper.Identity;
 
 using AutoMapper;
-using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Core.Entities.Identity;
+using Domain.DataTransferObject.Identity.UserController;
+using Domain.Entities.Identity;
 
 public class UserMapper : Profile
 {

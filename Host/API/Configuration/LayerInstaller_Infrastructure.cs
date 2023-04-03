@@ -1,15 +1,15 @@
 ﻿namespace API.Configuration;
 
+using Domain.Configuration;
+using Domain.Extensions;
+using Domain.Interface;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
 using Shared.Core.Attributes;
-using Shared.Core.Configuration;
-using Shared.Core.Extensions;
-using Shared.Core.Interface;
-using Shared.Infrastructure.Data;
 
 [ConfigOrder(0)]
 public class LayerInstaller_Infrastructure : IServiceInstaller

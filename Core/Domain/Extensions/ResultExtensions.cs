@@ -1,6 +1,6 @@
 ﻿namespace Shared.Core.Extensions;
 
-using Shared.Core.DataTransferObject;
+using Domain.DataTransferObject;
 using System;
 using System.Threading.Tasks;
 

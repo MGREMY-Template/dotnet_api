@@ -1,4 +1,4 @@
-﻿namespace Shared.Application.Extensions;
+﻿namespace Application.Extensions;
 
 using Microsoft.AspNetCore.Identity;
 using System.Linq;

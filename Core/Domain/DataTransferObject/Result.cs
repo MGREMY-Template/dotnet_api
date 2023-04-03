@@ -1,5 +1,4 @@
-﻿namespace Shared.Core.DataTransferObject;
-
+﻿namespace Domain.DataTransferObject;
 public class Result
 {
     public bool IsSuccess { get; }

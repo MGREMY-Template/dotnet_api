@@ -1,16 +1,17 @@
-﻿namespace Shared.Application.Handlers.Auth.Auth;
+﻿namespace Application.Handlers.Auth.Auth;
 
+using Application.Extensions;
 using AutoMapper;
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity.UserController;
+using Domain.Entities.Identity;
+using Domain.Queries.Auth.Auth;
+using Domain.Resources.Application.Services.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Shared.Application.Extensions;
-using Shared.Core.DataTransferObject;
 using Shared.Core.DataTransferObject.Auth.AuthController.Output;
-using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Core.Entities.Identity;
 using Shared.Core.Extensions;
-using Shared.Core.Queries.Auth.Auth;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,11 +35,11 @@ public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Resul
     {
         User user = await this._userManager.FindByEmailAsync(request.Email);
 
-        return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
+        return Result.Create(user, 200, 404, this._stringLocalizer.GetString(AuthServiceConstants.UserNotFound))
             .Ensure(x =>
             {
                 return !x.EmailConfirmed;
-            }, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.EmailAlreadyConfirmed))
+            }, 400, this._stringLocalizer.GetString(AuthServiceConstants.EmailAlreadyConfirmed))
             .EnsureAsync(async x =>
             {
                 IdentityResult result = await this._userManager.ConfirmEmailAsync(x, request.Token);

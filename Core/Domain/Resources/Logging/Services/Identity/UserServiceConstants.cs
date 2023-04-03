@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Resources.Logging.Services.Identity;
+﻿namespace Domain.Resources.Logging.Services.Identity;
 
 public class UserServiceConstants
 {

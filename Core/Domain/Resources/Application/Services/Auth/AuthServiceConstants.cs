@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Resources.Application.Services.Auth;
+﻿namespace Domain.Resources.Application.Services.Auth;
 
 public class AuthServiceConstants
 {

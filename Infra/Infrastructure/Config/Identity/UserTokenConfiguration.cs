@@ -1,8 +1,8 @@
-﻿namespace Shared.Infrastructure.Config.Identity;
+﻿namespace Infrastructure.Config.Identity;
 
+using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Shared.Core.Entities.Identity;
 
 public class UserTokenConfiguration : IEntityTypeConfiguration<UserToken>
 {

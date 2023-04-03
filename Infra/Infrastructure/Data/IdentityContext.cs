@@ -1,9 +1,10 @@
-﻿namespace Shared.Infrastructure.Data;
+﻿namespace Infrastructure.Data;
 
+using Domain.Entities.Identity;
+using Domain.Interface;
+using Infrastructure;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Shared.Core.Entities.Identity;
-using Shared.Core.Interface;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ public class IdentityContext : IdentityDbContext<User, Role, Guid, UserClaim, Us
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        _ = builder.ApplyConfigurationsFromAssembly(typeof(Shared.Infrastructure.Marker).Assembly);
+        _ = builder.ApplyConfigurationsFromAssembly(typeof(Marker).Assembly);
     }
 
     public override int SaveChanges()

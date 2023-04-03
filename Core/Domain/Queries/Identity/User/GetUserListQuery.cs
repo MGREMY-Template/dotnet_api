@@ -1,9 +1,9 @@
-﻿namespace Shared.Core.Queries.Identity.User;
+﻿namespace Domain.Queries.Identity.User;
 
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity.UserController;
+using Domain.Paging;
 using MediatR;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Core.Paging;
 using System.ComponentModel.DataAnnotations;
 
 public class GetUserListQuery : IRequest<Result<UserDto[]>>

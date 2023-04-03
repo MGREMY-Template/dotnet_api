@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Resources.Application;
+﻿namespace Domain.Resources.Application;
 
 public class GlobalConstants
 {

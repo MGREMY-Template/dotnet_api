@@ -1,15 +1,16 @@
-﻿namespace Shared.Application.Handlers.Auth.Auth;
+﻿namespace Application.Handlers.Auth.Auth;
 
+using Application.Extensions;
 using AutoMapper;
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity.UserController;
+using Domain.Entities.Identity;
+using Domain.Queries.Auth.Auth;
+using Domain.Resources.Application;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Shared.Application.Extensions;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Core.Entities.Identity;
 using Shared.Core.Extensions;
-using Shared.Core.Queries.Auth.Auth;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,7 +38,7 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
             Email = request.Email,
         };
 
-        return Result.Create(user, 201, 500, this._globalStringLocalizer.GetString(Core.Resources.Application.GlobalConstants.InternalServerError))
+        return Result.Create(user, 201, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
             .EnsureAsync(async x =>
             {
                 IdentityResult result = await this._userManager.CreateAsync(x, request.Password);

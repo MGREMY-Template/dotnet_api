@@ -1,15 +1,17 @@
-﻿namespace Shared.Application.Handlers.Auth.Auth;
+﻿namespace Application.Handlers.Auth.Auth;
 
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Auth.AuthController.Output;
+using Domain.Entities.Identity;
+using Domain.Extensions;
+using Domain.Queries.Auth.Auth;
+using Domain.Resources.Application.Services.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Auth.AuthController.Output;
-using Shared.Core.Entities.Identity;
 using Shared.Core.Extensions;
-using Shared.Core.Queries.Auth.Auth;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -39,12 +41,12 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
     {
         User user = await this._userManager.FindByEmailAsync(request.Email);
 
-        return Result.Create(user, 200, 404, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserNotFound))
-            .EnsureAsync(this._signInManager.CanSignInAsync, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.UserSignInError))
+        return Result.Create(user, 200, 404, this._stringLocalizer.GetString(AuthServiceConstants.UserNotFound))
+            .EnsureAsync(this._signInManager.CanSignInAsync, 400, this._stringLocalizer.GetString(AuthServiceConstants.UserSignInError))
             .EnsureAsync(async x =>
             {
                 return await this._userManager.CheckPasswordAsync(x, request.Password);
-            }, 400, this._stringLocalizer.GetString(Core.Resources.Application.Services.Auth.AuthServiceConstants.PasswordIncorrect))
+            }, 400, this._stringLocalizer.GetString(AuthServiceConstants.PasswordIncorrect))
             .MapAsync(async x =>
             {
                 _ = this._configuration.AsEnumerable();

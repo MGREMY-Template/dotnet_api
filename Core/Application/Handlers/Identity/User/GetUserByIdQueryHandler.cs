@@ -1,15 +1,15 @@
-﻿namespace Shared.Application.Handlers.Identity.User;
+﻿namespace Application.Handlers.Identity.User;
 
 using AutoMapper;
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity.UserController;
+using Domain.Interface;
+using Domain.Queries.Identity.User;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Identity.UserController;
 using Shared.Core.Extensions;
-using Shared.Core.Interface;
-using Shared.Core.Queries.Identity.User;
 using System.Threading;
 using System.Threading.Tasks;
 

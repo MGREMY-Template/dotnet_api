@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Configuration;
+﻿namespace Domain.Configuration;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;

@@ -1,11 +1,12 @@
 ﻿namespace API.Controllers.Identity;
 
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity.UserController;
+using Domain.Paging;
+using Domain.Queries.Identity.User;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Identity.UserController;
-using Shared.Core.Paging;
 using Shared.Core.Queries.Identity.User;
 using System.Threading;
 using System.Threading.Tasks;

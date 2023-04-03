@@ -1,12 +1,12 @@
-﻿namespace Shared.Core.Queries.Auth.Auth;
+﻿namespace Domain.Queries.Auth.Auth;
 
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity.UserController;
 using MediatR;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Identity.UserController;
 using System.ComponentModel.DataAnnotations;
 
 public class SignUpQuery : IRequest<Result<UserDto>>
 {
-    [Required] [EmailAddress] public string Email { get; set; }
+    [Required][EmailAddress] public string Email { get; set; }
     [Required] public string Password { get; set; }
 }

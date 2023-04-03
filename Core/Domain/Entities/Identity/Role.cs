@@ -1,5 +1,6 @@
-﻿namespace Shared.Core.Entities.Identity;
+﻿namespace Domain.Entities.Identity;
 
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
 

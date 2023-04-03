@@ -1,4 +1,4 @@
-﻿namespace Shared.Core.Paging;
+﻿namespace Domain.Paging;
 
 using System.ComponentModel;
 

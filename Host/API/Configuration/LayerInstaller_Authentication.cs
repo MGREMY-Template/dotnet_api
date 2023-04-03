@@ -1,13 +1,13 @@
 ﻿namespace API.Configuration;
 
+using Domain.Configuration;
+using Domain.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Core.Attributes;
-using Shared.Core.Configuration;
-using Shared.Core.Extensions;
 using System.Text;
 
 [ConfigOrder(2)]

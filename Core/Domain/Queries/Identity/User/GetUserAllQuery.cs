@@ -1,8 +1,8 @@
-﻿namespace Shared.Core.Queries.Identity.User;
+﻿namespace Domain.Queries.Identity.User;
 
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity.UserController;
 using MediatR;
-using Shared.Core.DataTransferObject;
-using Shared.Core.DataTransferObject.Identity.UserController;
 using System.Collections.Generic;
 
 public class GetUserAllQuery : IRequest<Result<UserDto[]>>
