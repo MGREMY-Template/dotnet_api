@@ -9,8 +9,5 @@ public class UserTokenConfiguration : IEntityTypeConfiguration<UserToken>
     public void Configure(EntityTypeBuilder<UserToken> builder)
     {
         _ = builder.ToTable($"__Identity_{nameof(UserToken)}");
-
-        _ = builder.Property(ut => ut.Value)
-            .IsRequired();
     }
 }
