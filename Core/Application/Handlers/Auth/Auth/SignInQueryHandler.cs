@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
-using Domain.Extensions;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
