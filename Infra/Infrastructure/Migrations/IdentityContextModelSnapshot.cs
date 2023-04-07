@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Shared.Infrastructure.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityContext))]
     partial class IdentityContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace Shared.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.Role", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -27,23 +27,17 @@ namespace Shared.Infrastructure.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -52,18 +46,16 @@ namespace Shared.Infrastructure.Migrations
                     b.ToTable("__Identity_Role", (string)null);
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.RoleClaim", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.RoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<Guid>("RoleId")
@@ -71,13 +63,12 @@ namespace Shared.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId", "ClaimType")
-                        .IsUnique();
+                    b.HasIndex("RoleId");
 
                     b.ToTable("__Identity_RoleClaim", (string)null);
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.User", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +82,6 @@ namespace Shared.Infrastructure.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
@@ -105,7 +95,6 @@ namespace Shared.Infrastructure.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("NormalizedEmail")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
@@ -114,7 +103,6 @@ namespace Shared.Infrastructure.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("PhoneNumber")
@@ -136,7 +124,6 @@ namespace Shared.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .IsUnique()
                         .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
@@ -146,18 +133,16 @@ namespace Shared.Infrastructure.Migrations
                     b.ToTable("__Identity_User", (string)null);
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserClaim", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<Guid>("UserId")
@@ -165,13 +150,12 @@ namespace Shared.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId", "ClaimType")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("__Identity_UserClaim", (string)null);
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserLogin", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserLogin", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("varchar(255)");
@@ -192,7 +176,7 @@ namespace Shared.Infrastructure.Migrations
                     b.ToTable("__Identity_UserLogin", (string)null);
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserRole", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserRole", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
@@ -207,7 +191,7 @@ namespace Shared.Infrastructure.Migrations
                     b.ToTable("__Identity_UserRole", (string)null);
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserToken", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserToken", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
@@ -219,7 +203,6 @@ namespace Shared.Infrastructure.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Value")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
@@ -227,51 +210,51 @@ namespace Shared.Infrastructure.Migrations
                     b.ToTable("__Identity_UserToken", (string)null);
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.RoleClaim", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.RoleClaim", b =>
                 {
-                    b.HasOne("Shared.Core.Entities.Identity.Role", null)
+                    b.HasOne("Domain.Entities.Identity.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserClaim", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserClaim", b =>
                 {
-                    b.HasOne("Shared.Core.Entities.Identity.User", null)
+                    b.HasOne("Domain.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserLogin", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserLogin", b =>
                 {
-                    b.HasOne("Shared.Core.Entities.Identity.User", null)
+                    b.HasOne("Domain.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserRole", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserRole", b =>
                 {
-                    b.HasOne("Shared.Core.Entities.Identity.Role", null)
+                    b.HasOne("Domain.Entities.Identity.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Core.Entities.Identity.User", null)
+                    b.HasOne("Domain.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Shared.Core.Entities.Identity.UserToken", b =>
+            modelBuilder.Entity("Domain.Entities.Identity.UserToken", b =>
                 {
-                    b.HasOne("Shared.Core.Entities.Identity.User", null)
+                    b.HasOne("Domain.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

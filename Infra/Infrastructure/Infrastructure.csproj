@@ -26,4 +26,12 @@
     <ProjectReference Include="..\..\Core\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Miguel\source\repos\Template\DotNet-API\Infra\Infrastructure\Migrations\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Miguel\source\repos\Template\DotNet-API\Infra\Infrastructure\Migrations\.editorconfig" />
+  </ItemGroup>
+
 </Project>
