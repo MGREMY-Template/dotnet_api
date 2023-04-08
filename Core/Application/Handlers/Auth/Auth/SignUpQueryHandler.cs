@@ -34,7 +34,7 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
     {
         var user = new User
         {
-            UserName = request.Email,
+            UserName = request.UserName,
             Email = request.Email,
         };
 
