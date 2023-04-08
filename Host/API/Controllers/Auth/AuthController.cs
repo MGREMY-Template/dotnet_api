@@ -39,7 +39,7 @@ public class AuthController : GenericController
     [ProducesResponseType(typeof(Result<GetEmailConfirmationTokenOutput>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Result<GetEmailConfirmationTokenOutput>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetEmailConfimationToken(
-        [FromBody] GetEmailConfirmationTokenQuery query,
+        [FromQuery] GetEmailConfirmationTokenQuery query,
         CancellationToken cancellationToken = default)
     {
         Result<GetEmailConfirmationTokenOutput> result = await this._mediator.Send(query, cancellationToken);
