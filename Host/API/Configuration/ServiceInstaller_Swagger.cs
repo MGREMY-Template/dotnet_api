@@ -70,6 +70,7 @@ public class ServiceInstaller_Swagger : IServiceInstaller
                     new string[] {}
                 }
             });
+                c.AddSignalRSwaggerGen();
 
                 c.OperationFilter<AcceptLanguageHeaderFilter>();
             });

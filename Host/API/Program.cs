@@ -1,9 +1,6 @@
 namespace API;
 
-using Application;
-using Domain;
 using Domain.Configuration;
-using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
