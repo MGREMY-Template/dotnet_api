@@ -6,7 +6,7 @@ using Domain.Paging;
 using MediatR;
 using System.ComponentModel.DataAnnotations;
 
-public class GetUserTokenListQuery : IRequest<Result<UserTokenDto>>
+public class GetUserTokenListQuery : IRequest<Result<UserTokenDto[]>>
 {
     [Required] public IPaging Paging { get; set; }
 

@@ -18,6 +18,12 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Handlers\Identity\UserToken\" />
+    <Folder Include="Handlers\Identity\UserRole\" />
+    <Folder Include="Handlers\Identity\UserLogin\" />
+    <Folder Include="Handlers\Identity\UserClaim\" />
+    <Folder Include="Handlers\Identity\Role\" />
+    <Folder Include="Handlers\Identity\RoleClaim\" />
   </ItemGroup>
 
 </Project>
