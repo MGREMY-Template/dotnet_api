@@ -16,6 +16,12 @@ public class UserLoginMapper : Profile
                     opt.MapFrom(src => src.UserId);
                 })
             .ForMember(x =>
+                x.LoginProvider,
+                opt =>
+                {
+                    opt.MapFrom(src => src.LoginProvider);
+                })
+            .ForMember(x =>
                 x.ProviderKey,
                 opt =>
                 {

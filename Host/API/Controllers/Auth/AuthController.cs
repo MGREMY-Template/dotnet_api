@@ -15,12 +15,9 @@ using System.Threading.Tasks;
 [Route("api/Auth/[controller]")]
 public class AuthController : GenericController
 {
-    private readonly IMediator _mediator;
-
     public AuthController(
-        IMediator mediator)
+        IMediator mediator) : base(mediator)
     {
-        this._mediator = mediator;
     }
 
     [HttpPost(nameof(SignUp))]

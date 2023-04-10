@@ -7,13 +7,14 @@ using System.Linq.Dynamic.Core;
 public static class IQueryableExtensions
 {
     public static IQueryable<T> ApplyPaging<T>(
-        this IQueryable<T> inputQuery,
+        this IQueryable<T> query,
         IPaging paging)
     {
-        IQueryable<T> query = inputQuery.AsQueryable();
-
         query = query.Skip(paging.Skip).Take(paging.Take);
-        query = query.OrderBy(paging.OrderBy, paging.IsOrderByDescending ? "desc" : "asc");
+        if (typeof(T).PropertyExist(paging.OrderBy))
+        {
+            query = query.OrderBy(paging.OrderBy, paging.IsOrderByDescending ? "desc" : "asc");
+        }
 
         return query;
     }
