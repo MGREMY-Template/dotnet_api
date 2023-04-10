@@ -1,12 +1,14 @@
 ﻿namespace Domain.DataTransferObject.Identity.UserController;
 
 using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 public record UserDto
 {
-    public Guid Id { get; set; }
-    public string UserName { get; set; }
-    public string Email { get; set; }
+    [Required, DisplayName("Id")] public Guid Id { get; set; }
+    [Required, DisplayName("User name")] public string UserName { get; set; }
+    [Required, EmailAddress, DisplayName("Email")] public string Email { get; set; }
 
     public UserDto(Guid id, string userName, string email)
     {
