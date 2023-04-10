@@ -12,6 +12,6 @@ public class GetUserTokenListQuery : IRequest<Result<UserTokenDto[]>>
 
     public GetUserTokenListQuery(IPaging paging)
     {
-
+        this.Paging = paging;
     }
 }

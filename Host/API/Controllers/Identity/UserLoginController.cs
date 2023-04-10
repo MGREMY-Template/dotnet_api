@@ -41,7 +41,7 @@ public class UserLoginController : GenericController
     [ProducesResponseType(typeof(Result<UserLoginDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<UserLoginDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
-        GetUserLoginByIdQuery query,
+        [FromQuery] GetUserLoginByIdQuery query,
         CancellationToken cancellationToken = default)
     {
         Result<UserLoginDto> result = await this._mediator.Send(query, cancellationToken);
