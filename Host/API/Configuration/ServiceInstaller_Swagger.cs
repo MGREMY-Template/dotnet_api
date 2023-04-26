@@ -21,10 +21,10 @@ public class ServiceInstaller_Swagger : IServiceInstaller
         get
         {
             return new()
-        {
-            { "fr-FR", new OpenApiExample{ Value = new OpenApiString("fr-FR") } },
-            { "en-US", new OpenApiExample{ Value = new OpenApiString("en-US") } },
-        };
+            {
+                { "fr-FR", new OpenApiExample{ Value = new OpenApiString("fr-FR") } },
+                { "en-US", new OpenApiExample{ Value = new OpenApiString("en-US") } },
+            };
         }
     }
 
@@ -70,7 +70,7 @@ public class ServiceInstaller_Swagger : IServiceInstaller
                     new string[] {}
                 }
             });
-                c.AddSignalRSwaggerGen();
+                //c.AddSignalRSwaggerGen();
 
                 c.OperationFilter<AcceptLanguageHeaderFilter>();
             });
@@ -100,6 +100,7 @@ public class ServiceInstaller_Swagger : IServiceInstaller
                 Description = "Accept-Language value",
                 Examples = AcceptedLanguages,
                 Required = true,
+                Schema = new OpenApiSchema { Type = "string" },
             });
         }
     }
