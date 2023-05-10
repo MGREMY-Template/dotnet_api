@@ -1,4 +1,4 @@
-﻿namespace Domain.Authorization;
+﻿namespace Domain.Constants;
 
 public class ClaimDefinition
 {

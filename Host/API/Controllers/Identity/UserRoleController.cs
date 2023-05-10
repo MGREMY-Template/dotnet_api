@@ -9,8 +9,8 @@ using Domain.DataTransferObject.Identity.UserRoleController;
 using Domain.DataTransferObject;
 using Domain.Queries.Identity.UserRole;
 using Domain.Paging;
-using Domain.Authorization;
 using Microsoft.AspNetCore.Authorization;
+using Domain.Constants;
 
 [Route("api/Identity/[controller]")]
 public class UserRoleController : GenericController

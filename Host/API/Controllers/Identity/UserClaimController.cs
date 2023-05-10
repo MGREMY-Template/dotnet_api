@@ -1,6 +1,6 @@
 ﻿namespace API.Controllers.Identity;
 
-using Domain.Authorization;
+using Domain.Constants;
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Identity.UserClaimController;
 using Domain.DataTransferObject.Identity.UserController;

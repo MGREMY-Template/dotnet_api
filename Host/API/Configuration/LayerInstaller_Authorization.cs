@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Domain.Attributes;
-using Domain.Authorization;
 using Domain.Extensions;
+using Domain.Constants;
 
 [ConfigOrder(2)]
 public class LayerInstaller_Authorization : IServiceInstaller
