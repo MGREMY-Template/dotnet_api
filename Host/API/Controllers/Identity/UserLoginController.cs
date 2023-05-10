@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
 
-[Route("api/Identity/[controller]")]
+[Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserLoginController : GenericController
 {
     public UserLoginController(

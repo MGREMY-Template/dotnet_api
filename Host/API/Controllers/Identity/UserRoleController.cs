@@ -12,7 +12,7 @@ using Domain.Paging;
 using Microsoft.AspNetCore.Authorization;
 using Domain.Constants;
 
-[Route("api/Identity/[controller]")]
+[Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserRoleController : GenericController
 {
     public UserRoleController(
