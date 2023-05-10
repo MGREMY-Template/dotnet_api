@@ -1,11 +1,13 @@
 ﻿namespace API.Controllers.Identity;
 
+using Domain.Authorization;
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Identity.UserClaimController;
 using Domain.DataTransferObject.Identity.UserController;
 using Domain.Paging;
 using Domain.Queries.Identity.UserClaim;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
@@ -19,7 +21,7 @@ public class UserClaimController : GenericController
     {
     }
 
-    [HttpGet(nameof(GetAll))]
+    [HttpGet(nameof(GetAll)), Authorize(ClaimDefinition.IDENTITY_USERCLAIM_GETALL)]
     [ProducesResponseType(typeof(Result<UserClaimDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken = default)
@@ -28,7 +30,7 @@ public class UserClaimController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetList))]
+    [HttpGet(nameof(GetList)), Authorize(ClaimDefinition.IDENTITY_USERCLAIM_GETLIST)]
     [ProducesResponseType(typeof(Result<UserClaimDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetList(
         [FromQuery] BasePaging paging,
@@ -38,7 +40,7 @@ public class UserClaimController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetById))]
+    [HttpGet(nameof(GetById)), Authorize(ClaimDefinition.IDENTITY_USERCLAIM_GETBYID)]
     [ProducesResponseType(typeof(Result<UserClaimDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<UserClaimDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(

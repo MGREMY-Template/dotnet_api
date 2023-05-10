@@ -5,13 +5,26 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Domain.Attributes;
+using Domain.Authorization;
+using Domain.Extensions;
 
 [ConfigOrder(2)]
 public class LayerInstaller_Authorization : IServiceInstaller
 {
     public void Configure(IServiceCollection services, IConfiguration configuration)
     {
-        _ = services.AddAuthorization();
+        _ = services.AddAuthorization(opt =>
+        {
+            var claims = typeof(ClaimDefinition).GetAllPublicConstantValues<string>();
+
+            foreach (var claim in claims)
+            {
+                opt.AddPolicy(claim, p =>
+                {
+                    p.RequireClaim(claim, "1");
+                });
+            }
+        });
     }
 
     public void Install(IApplicationBuilder applicationBuilder)

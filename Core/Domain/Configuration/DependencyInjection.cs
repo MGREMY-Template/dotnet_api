@@ -46,13 +46,6 @@ public static class DependencyInjection
         }
 
         return services;
-
-        static bool IsAssignableToType<T>(TypeInfo typeInfo)
-        {
-            return typeof(T).IsAssignableFrom(typeInfo)
-            && !typeInfo.IsInterface
-            && !typeInfo.IsAbstract;
-        }
     }
 
     public static IApplicationBuilder Install(
@@ -89,12 +82,12 @@ public static class DependencyInjection
         }
 
         return applicationBuilder;
+    }
 
-        static bool IsAssignableToType<T>(TypeInfo typeInfo)
-        {
-            return typeof(T).IsAssignableFrom(typeInfo)
-            && !typeInfo.IsInterface
-            && !typeInfo.IsAbstract;
-        }
+    private static bool IsAssignableToType<T>(TypeInfo typeInfo)
+    {
+        return typeof(T).IsAssignableFrom(typeInfo)
+        && !typeInfo.IsInterface
+        && !typeInfo.IsAbstract;
     }
 }

@@ -10,6 +10,14 @@ using System.Linq;
 [ConfigOrder(0)]
 public class ServiceInstaller_Localization : IServiceInstaller
 {
+    public static string[] AcceptedLanguages
+    {
+        get
+        {
+            return new[] { "fr-FR", "en-US" };
+        }
+    }
+
     public void Configure(IServiceCollection services, IConfiguration configuration)
     {
         _ = services.AddLocalization(opt =>
@@ -21,9 +29,9 @@ public class ServiceInstaller_Localization : IServiceInstaller
     public void Install(IApplicationBuilder applicationBuilder)
     {
         RequestLocalizationOptions localizationOptions = new RequestLocalizationOptions()
-            .SetDefaultCulture(ServiceInstaller_Swagger.AcceptedLanguages.Keys.FirstOrDefault())
-            .AddSupportedCultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray())
-            .AddSupportedUICultures(ServiceInstaller_Swagger.AcceptedLanguages.Keys.ToArray());
+            .SetDefaultCulture(AcceptedLanguages.FirstOrDefault())
+            .AddSupportedCultures(AcceptedLanguages)
+            .AddSupportedUICultures(AcceptedLanguages);
         localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
 
         _ = applicationBuilder.UseRequestLocalization(localizationOptions);

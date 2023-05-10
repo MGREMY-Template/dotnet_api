@@ -8,12 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
-using SignalRSwaggerGen.Attributes;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-[SignalRHub]
 [Authorize]
 public class NotificationHub : Hub
 {
