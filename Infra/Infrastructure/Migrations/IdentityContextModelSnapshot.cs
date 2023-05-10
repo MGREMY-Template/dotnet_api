@@ -19,26 +19,6 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "7.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Domain.Entities.AppSetting", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("__App_AppSetting", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Name = "IS_INITIALIZED",
-                            Value = "0"
-                        });
-                });
-
             modelBuilder.Entity("Domain.Entities.Identity.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -64,6 +44,14 @@ namespace Infrastructure.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("__Identity_Role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("88071f9d-4fa7-4618-9d04-6d430e121e73"),
+                            Name = "ROLE_ADMIN",
+                            NormalizedName = "ROLE_ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Identity.RoleClaim", b =>
@@ -151,6 +139,23 @@ namespace Infrastructure.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("__Identity_User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a1b5ad4c-235c-46e3-a2b4-9f0a12c6b271",
+                            Email = "admin@admin.admin",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.ADMIN",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDxk5EthOl3tW2BdXKdmAoxUUAvai68jo1xp7mb1Id0qfBcFB1N+vvHisZ8/TIs9Cw==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Identity.UserClaim", b =>
@@ -173,6 +178,155 @@ namespace Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("__Identity_UserClaim", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "CLAIM_IDENTITY_USER:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "CLAIM_IDENTITY_USER:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "CLAIM_IDENTITY_USER:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClaimType = "CLAIM_IDENTITY_ROLE:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ClaimType = "CLAIM_IDENTITY_ROLE:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ClaimType = "CLAIM_IDENTITY_ROLE:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClaimType = "CLAIM_IDENTITY_ROLECLAIM:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ClaimType = "CLAIM_IDENTITY_ROLECLAIM:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ClaimType = "CLAIM_IDENTITY_ROLECLAIM:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "CLAIM_IDENTITY_USERCLAIM:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClaimType = "CLAIM_IDENTITY_USERCLAIM:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClaimType = "CLAIM_IDENTITY_USERCLAIM:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ClaimType = "CLAIM_IDENTITY_USERLOGIN:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClaimType = "CLAIM_IDENTITY_USERLOGIN:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClaimType = "CLAIM_IDENTITY_USERLOGIN:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ClaimType = "CLAIM_IDENTITY_USERROLE:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ClaimType = "CLAIM_IDENTITY_USERROLE:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ClaimType = "CLAIM_IDENTITY_USERROLE:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ClaimType = "CLAIM_IDENTITY_USERTOKEN:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ClaimType = "CLAIM_IDENTITY_USERTOKEN:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ClaimType = "CLAIM_IDENTITY_USERTOKEN:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Identity.UserLogin", b =>
@@ -209,6 +363,13 @@ namespace Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("__Identity_UserRole", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd"),
+                            RoleId = new Guid("88071f9d-4fa7-4618-9d04-6d430e121e73")
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Identity.UserToken", b =>
