@@ -13,6 +13,7 @@ using Domain.Attributes;
 using Domain.Entities.Identity;
 using System;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 [ConfigOrder(1)]
 public class LayerInstaller_Infrastructure : IServiceInstaller
@@ -61,12 +62,14 @@ public class LayerInstaller_Infrastructure : IServiceInstaller
 
             user.PasswordHash = passwordHasher.HashPassword(user, configuration.GetFromEnvironmentVariable("INIT", "USER", "PASSWORD") ?? "password");
 
+            context.Users.Add(user);
+
             foreach (var claim in typeof(Domain.Constants.ClaimDefinition).GetAllPublicConstantValues<string>())
             {
                 context.UserClaims.Add(new UserClaim { UserId = user.Id, ClaimType = claim, ClaimValue = "1" });
             }
 
-            context.Users.Add(user);
+            context.UserRoles.Add(new UserRole { RoleId = context.Roles.First(x => x.Name.Equals(Domain.Constants.RoleDefinition.ADMIN)).Id, UserId = user.Id });
 
             context.AppSettings.Find(Domain.Constants.AppSettingConstants.IS_INITIALIZED).Value = "1";
 
