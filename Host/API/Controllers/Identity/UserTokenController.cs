@@ -9,6 +9,8 @@ using Domain.DataTransferObject.Identity.UserTokenController;
 using Domain.DataTransferObject;
 using Domain.Queries.Identity.UserToken;
 using Domain.Paging;
+using Microsoft.AspNetCore.Authorization;
+using Domain.Authorization;
 
 [Route("api/Identity/[controller]")]
 public class UserTokenController : GenericController
@@ -18,7 +20,7 @@ public class UserTokenController : GenericController
     {
     }
 
-    [HttpGet(nameof(GetAll))]
+    [HttpGet(nameof(GetAll)), Authorize(ClaimDefinition.IDENTITY_USERTOKEN_GETALL)]
     [ProducesResponseType(typeof(Result<UserTokenDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken = default)
@@ -27,7 +29,7 @@ public class UserTokenController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetList))]
+    [HttpGet(nameof(GetList)), Authorize(ClaimDefinition.IDENTITY_USERTOKEN_GETLIST)]
     [ProducesResponseType(typeof(Result<UserTokenDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetList(
         [FromQuery] BasePaging paging,
@@ -37,7 +39,7 @@ public class UserTokenController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetById))]
+    [HttpGet(nameof(GetById)), Authorize(ClaimDefinition.IDENTITY_USERTOKEN_GETBYID)]
     [ProducesResponseType(typeof(Result<UserTokenDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<UserTokenDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(

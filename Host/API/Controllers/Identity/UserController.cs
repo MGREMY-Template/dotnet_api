@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Domain.Authorization;
 
 [Route("api/Identity/[controller]")]
 public class UserController : GenericController
@@ -18,7 +20,7 @@ public class UserController : GenericController
     {
     }
 
-    [HttpGet(nameof(GetAll))]
+    [HttpGet(nameof(GetAll)), Authorize(ClaimDefinition.IDENTITY_USER_GETALL)]
     [ProducesResponseType(typeof(Result<UserDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken = default)
@@ -27,7 +29,7 @@ public class UserController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetList))]
+    [HttpGet(nameof(GetList)), Authorize(ClaimDefinition.IDENTITY_USER_GETLIST)]
     [ProducesResponseType(typeof(Result<UserDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetList(
         [FromQuery] BasePaging paging,
@@ -37,7 +39,7 @@ public class UserController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetById))]
+    [HttpGet(nameof(GetById)), Authorize(ClaimDefinition.IDENTITY_USER_GETBYID)]
     [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<UserDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(

@@ -1,10 +1,12 @@
 ﻿namespace API.Controllers.Identity;
 
+using Domain.Authorization;
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Identity.RoleController;
 using Domain.Paging;
 using Domain.Queries.Identity.Role;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
@@ -18,7 +20,7 @@ public class RoleController : GenericController
     {
     }
 
-    [HttpGet(nameof(GetAll))]
+    [HttpGet(nameof(GetAll)), Authorize(ClaimDefinition.IDENTITY_ROLE_GETALL)]
     [ProducesResponseType(typeof(Result<RoleDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken = default)
@@ -27,7 +29,7 @@ public class RoleController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetList))]
+    [HttpGet(nameof(GetList)), Authorize(ClaimDefinition.IDENTITY_ROLE_GETLIST)]
     [ProducesResponseType(typeof(Result<RoleDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetList(
         [FromQuery] BasePaging paging,
@@ -37,7 +39,7 @@ public class RoleController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetById))]
+    [HttpGet(nameof(GetById)), Authorize(ClaimDefinition.IDENTITY_ROLE_GETBYID)]
     [ProducesResponseType(typeof(Result<RoleDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<RoleDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(

@@ -9,6 +9,8 @@ using Domain.DataTransferObject.Identity.UserRoleController;
 using Domain.DataTransferObject;
 using Domain.Queries.Identity.UserRole;
 using Domain.Paging;
+using Domain.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/Identity/[controller]")]
 public class UserRoleController : GenericController
@@ -18,7 +20,7 @@ public class UserRoleController : GenericController
     {
     }
 
-    [HttpGet(nameof(GetAll))]
+    [HttpGet(nameof(GetAll)), Authorize(ClaimDefinition.IDENTITY_USERROLE_GETALL)]
     [ProducesResponseType(typeof(Result<UserRoleDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken = default)
@@ -27,7 +29,7 @@ public class UserRoleController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetList))]
+    [HttpGet(nameof(GetList)), Authorize(ClaimDefinition.IDENTITY_USERROLE_GETLIST)]
     [ProducesResponseType(typeof(Result<UserRoleDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetList(
         [FromQuery] BasePaging paging,
@@ -37,7 +39,7 @@ public class UserRoleController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetById))]
+    [HttpGet(nameof(GetById)), Authorize(ClaimDefinition.IDENTITY_USERROLE_GETBYID)]
     [ProducesResponseType(typeof(Result<UserRoleDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<UserRoleDto>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
