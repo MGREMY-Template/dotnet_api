@@ -1,6 +1,5 @@
 ﻿namespace Infrastructure.Data;
 
-using Domain.Entities;
 using Domain.Entities.Identity;
 using Domain.Interface;
 using Infrastructure;
@@ -29,6 +28,4 @@ public class IdentityContext : IdentityDbContext<User, Role, Guid, UserClaim, Us
     {
         return base.SaveChangesAsync(cancellationToken);
     }
-
-    public DbSet<AppSetting> AppSettings { get; set; }
 }

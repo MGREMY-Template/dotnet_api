@@ -38,43 +38,10 @@ public class LayerInstaller_Infrastructure : IServiceInstaller
         IdentityContext identityContext = scope.GetRequiredService<IdentityContext>();
         identityContext.Database.Migrate();
 
-        if (identityContext.AppSettings.Find(Domain.Constants.AppSettingConstants.IS_INITIALIZED).Value.Equals("0"))
-        {
-            InitializeData(identityContext, configuration, scope.GetRequiredService<IPasswordHasher<User>>());
-        }
-
         _ = services.AddScoped<IAppDbContext>(provider =>
         {
             return provider.GetService<IdentityContext>();
         });
-
-        static void InitializeData(IdentityContext context, IConfiguration configuration, IPasswordHasher<User> passwordHasher)
-        {
-            var user = new User
-            {
-                Id = Guid.Parse("d8645da5-5583-4287-9e20-51f8dd6796bd"),
-                UserName = configuration.GetFromEnvironmentVariable("INIT", "USER", "USERNAME") ?? "admin",
-                NormalizedUserName = configuration.GetFromEnvironmentVariable("INIT", "USER", "USERNAME")?.ToUpper()?.Normalize() ?? "admin".Normalize(),
-                Email = configuration.GetFromEnvironmentVariable("INIT", "USER", "EMAIL") ?? "admin@admin.admin",
-                NormalizedEmail = configuration.GetFromEnvironmentVariable("INIT", "USER", "EMAIL")?.ToUpper()?.Normalize() ?? "admin@admin.admin".Normalize(),
-                EmailConfirmed = true,
-            };
-
-            user.PasswordHash = passwordHasher.HashPassword(user, configuration.GetFromEnvironmentVariable("INIT", "USER", "PASSWORD") ?? "password");
-
-            context.Users.Add(user);
-
-            foreach (var claim in typeof(Domain.Constants.ClaimDefinition).GetAllPublicConstantValues<string>())
-            {
-                context.UserClaims.Add(new UserClaim { UserId = user.Id, ClaimType = claim, ClaimValue = "1" });
-            }
-
-            context.UserRoles.Add(new UserRole { RoleId = Guid.Parse("88071f9d-4fa7-4618-9d04-6d430e121e73"), UserId = user.Id });
-
-            context.AppSettings.Find(Domain.Constants.AppSettingConstants.IS_INITIALIZED).Value = "1";
-
-            context.SaveChanges();
-        }
     }
 
     public void Install(IApplicationBuilder applicationBuilder)

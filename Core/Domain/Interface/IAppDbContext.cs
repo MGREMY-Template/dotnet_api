@@ -18,5 +18,4 @@ public interface IAppDbContext
     public DbSet<UserLogin> UserLogins { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<UserToken> UserTokens { get; set; }
-    public DbSet<AppSetting> AppSettings { get; set; }
 }
