@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Domain.Authorization;
+using Domain.Constants;
 
 [Route("api/Identity/[controller]")]
 public class UserController : GenericController
