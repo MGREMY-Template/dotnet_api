@@ -8,18 +8,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddUserSeedDataMigration : Migration
+    public partial class UserRoleClaimSeeding : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "__App_AppSetting");
+            migrationBuilder.InsertData(
+                table: "__Identity_Role",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { new Guid("88071f9d-4fa7-4618-9d04-6d430e121e73"), null, "ROLE_ADMIN", "ROLE_ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "__Identity_User",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd"), 0, "1de48a50-9fa2-4e0a-a0bb-f317e17ce8f2", "admin@admin.admin", true, false, null, "ADMIN@ADMIN.ADMIN", "ADMIN", "AQAAAAIAAYagAAAAEDxk5EthOl3tW2BdXKdmAoxUUAvai68jo1xp7mb1Id0qfBcFB1N+vvHisZ8/TIs9Cw==", null, false, null, false, "admin" });
+                values: new object[] { new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd"), 0, "a1b5ad4c-235c-46e3-a2b4-9f0a12c6b271", "admin@admin.admin", true, false, null, "ADMIN@ADMIN.ADMIN", "ADMIN", "AQAAAAIAAYagAAAAEDxk5EthOl3tW2BdXKdmAoxUUAvai68jo1xp7mb1Id0qfBcFB1N+vvHisZ8/TIs9Cw==", null, false, null, false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "__Identity_UserClaim",
@@ -169,29 +171,14 @@ namespace Infrastructure.Migrations
                 keyValues: new object[] { new Guid("88071f9d-4fa7-4618-9d04-6d430e121e73"), new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd") });
 
             migrationBuilder.DeleteData(
+                table: "__Identity_Role",
+                keyColumn: "Id",
+                keyValue: new Guid("88071f9d-4fa7-4618-9d04-6d430e121e73"));
+
+            migrationBuilder.DeleteData(
                 table: "__Identity_User",
                 keyColumn: "Id",
                 keyValue: new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd"));
-
-            migrationBuilder.CreateTable(
-                name: "__App_AppSetting",
-                columns: table => new
-                {
-                    Name = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Value = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK___App_AppSetting", x => x.Name);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.InsertData(
-                table: "__App_AppSetting",
-                columns: new[] { "Name", "Value" },
-                values: new object[] { "IS_INITIALIZED", "0" });
         }
     }
 }

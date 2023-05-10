@@ -145,7 +145,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1de48a50-9fa2-4e0a-a0bb-f317e17ce8f2",
+                            ConcurrencyStamp = "a1b5ad4c-235c-46e3-a2b4-9f0a12c6b271",
                             Email = "admin@admin.admin",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
