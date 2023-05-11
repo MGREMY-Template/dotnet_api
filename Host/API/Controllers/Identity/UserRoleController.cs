@@ -5,14 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Threading;
-using Domain.DataTransferObject.Identity.UserRoleController;
 using Domain.DataTransferObject;
 using Domain.Queries.Identity.UserRole;
 using Domain.Paging;
 using Microsoft.AspNetCore.Authorization;
 using Domain.Constants;
 
-[Route("api/Identity/[controller]")]
+[Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserRoleController : GenericController
 {
     public UserRoleController(

@@ -2,8 +2,6 @@
 
 using Domain.Constants;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.UserClaimController;
-using Domain.DataTransferObject.Identity.UserController;
 using Domain.Paging;
 using Domain.Queries.Identity.UserClaim;
 using MediatR;
@@ -13,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
 
-[Route("api/Identity[controller]")]
+[Route("api/Identity[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserClaimController : GenericController
 {
     public UserClaimController(

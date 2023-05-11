@@ -2,7 +2,6 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.UserController;
 using Domain.Interface;
 using Domain.Queries.Identity.User;
 using MediatR;

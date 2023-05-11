@@ -2,7 +2,6 @@
 
 using Domain.Constants;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.RoleController;
 using Domain.Paging;
 using Domain.Queries.Identity.Role;
 using MediatR;
@@ -12,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
 
-[Route("api/Identity/[controller]")]
+[Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class RoleController : GenericController
 {
     public RoleController(

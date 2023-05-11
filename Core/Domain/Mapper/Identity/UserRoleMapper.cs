@@ -1,7 +1,7 @@
 ﻿namespace Domain.Mapper.Identity;
 
 using AutoMapper;
-using Domain.DataTransferObject.Identity.UserRoleController;
+using Domain.DataTransferObject;
 using Domain.Entities.Identity;
 
 public class UserRoleMapper : Profile

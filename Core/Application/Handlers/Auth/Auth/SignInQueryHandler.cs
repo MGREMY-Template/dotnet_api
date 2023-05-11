@@ -12,7 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,11 +55,19 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration.GetFromEnvironmentVariable("JWT", "KEY")));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-                System.Collections.Generic.IList<System.Security.Claims.Claim> claims = await this._userManager.GetClaimsAsync(x);
+                var userRoles = (await this._userManager.GetRolesAsync(x)).Select(role =>
+                    {
+                        return new Claim(ClaimTypes.Role, role);
+                    });
+                var userClaims = await this._userManager.GetClaimsAsync(x);
+                var dataClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, x.Id.ToString()),
+                };
 
                 var tokenOptions = new JwtSecurityToken(this._configuration.GetFromEnvironmentVariable("JWT", "ISSUER"),
                     this._configuration.GetFromEnvironmentVariable("JWT", "AUDIENCE"),
-                    claims,
+                    userRoles.Concat(userClaims).Concat(dataClaims),
                     expires: DateTime.Now.AddMinutes(3600),
                     signingCredentials: credentials);
 

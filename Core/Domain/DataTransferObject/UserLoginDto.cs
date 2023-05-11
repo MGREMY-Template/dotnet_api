@@ -1,4 +1,4 @@
-﻿namespace Domain.DataTransferObject.Identity.UserLoginController;
+﻿namespace Domain.DataTransferObject;
 
 using System;
 using System.ComponentModel;

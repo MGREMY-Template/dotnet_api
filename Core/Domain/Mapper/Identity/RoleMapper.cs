@@ -1,7 +1,7 @@
 ﻿namespace Domain.Mapper.Identity;
 
 using AutoMapper;
-using Domain.DataTransferObject.Identity.RoleController;
+using Domain.DataTransferObject;
 using Domain.Entities.Identity;
 
 public class RoleMapper : Profile
@@ -16,11 +16,11 @@ public class RoleMapper : Profile
                     opt.MapFrom(src => src.Id);
                 })
             .ForMember(x =>
-            x.Name,
-            opt =>
-            {
-                opt.MapFrom(src => src.Name);
-            })
+                x.Name,
+                opt =>
+                {
+                    opt.MapFrom(src => src.Name);
+                })
             .ReverseMap();
     }
 }

@@ -1,10 +1,7 @@
 ﻿namespace Application.Handlers.Identity.UserRole;
 
-using Application.Handlers.Identity.Role;
 using AutoMapper;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.RoleController;
-using Domain.DataTransferObject.Identity.UserRoleController;
 using Domain.Interface;
 using Domain.Queries.Identity.UserRole;
 using MediatR;

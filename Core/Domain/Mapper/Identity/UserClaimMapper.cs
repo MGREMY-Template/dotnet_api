@@ -1,7 +1,7 @@
 ﻿namespace Domain.Mapper.Identity;
 
 using AutoMapper;
-using Domain.DataTransferObject.Identity.UserClaimController;
+using Domain.DataTransferObject;
 using Domain.Entities.Identity;
 
 public class UserClaimMapper : Profile

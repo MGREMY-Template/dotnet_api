@@ -5,14 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Threading;
-using Domain.DataTransferObject.Identity.UserTokenController;
 using Domain.DataTransferObject;
 using Domain.Queries.Identity.UserToken;
 using Domain.Paging;
 using Microsoft.AspNetCore.Authorization;
 using Domain.Constants;
 
-[Route("api/Identity/[controller]")]
+[Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserTokenController : GenericController
 {
     public UserTokenController(
