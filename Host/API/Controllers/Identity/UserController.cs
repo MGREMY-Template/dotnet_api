@@ -1,7 +1,6 @@
 ﻿namespace API.Controllers.Identity;
 
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.UserController;
 using Domain.Paging;
 using Domain.Queries.Identity.User;
 using MediatR;

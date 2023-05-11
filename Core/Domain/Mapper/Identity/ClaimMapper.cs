@@ -2,30 +2,30 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
-using Domain.Entities.Identity;
+using System.Security.Claims;
 
-public class UserMapper : Profile
+public class ClaimMapper : Profile
 {
-    public UserMapper()
+    public ClaimMapper()
     {
-        _ = this.CreateMap<User, UserDto>()
+        _ = this.CreateMap<Claim, ClaimDto>()
             .ForMember(x =>
-                x.Id,
+                x.Issuer,
                 opt =>
                 {
-                    opt.MapFrom(src => src.Id);
+                    opt.MapFrom(src => src.Issuer);
                 })
             .ForMember(x =>
-                x.Email,
+                x.Type,
                 opt =>
                 {
-                    opt.MapFrom(src => src.Email);
+                    opt.MapFrom(src => src.Type);
                 })
             .ForMember(x =>
-                x.UserName,
+                x.Value,
                 opt =>
                 {
-                    opt.MapFrom(src => src.UserName);
+                    opt.MapFrom(src => src.Value);
                 })
             .ReverseMap();
     }

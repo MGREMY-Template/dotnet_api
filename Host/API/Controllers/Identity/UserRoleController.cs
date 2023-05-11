@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Threading;
-using Domain.DataTransferObject.Identity.UserRoleController;
 using Domain.DataTransferObject;
 using Domain.Queries.Identity.UserRole;
 using Domain.Paging;

@@ -1,4 +1,4 @@
-﻿namespace Domain.DataTransferObject.Identity.RoleController;
+﻿namespace Domain.DataTransferObject;
 
 using System;
 using System.ComponentModel;

@@ -2,7 +2,6 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.RoleClaimController;
 using Domain.Interface;
 using Domain.Queries.Identity.RoleClaim;
 using MediatR;
@@ -11,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity.RoleController;
 using Microsoft.EntityFrameworkCore;
 
 public class GetRoleClaimByIdQueryHandler : IRequestHandler<GetRoleClaimByIdQuery, Result<RoleClaimDto>>

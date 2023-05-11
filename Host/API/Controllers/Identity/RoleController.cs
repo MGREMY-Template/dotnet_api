@@ -2,7 +2,6 @@
 
 using Domain.Constants;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.RoleController;
 using Domain.Paging;
 using Domain.Queries.Identity.Role;
 using MediatR;

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Threading;
-using Domain.DataTransferObject.Identity.UserTokenController;
 using Domain.DataTransferObject;
 using Domain.Queries.Identity.UserToken;
 using Domain.Paging;

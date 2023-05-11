@@ -2,7 +2,6 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.RoleController;
 using Domain.Interface;
 using Domain.Queries.Identity.Role;
 using Domain.Resources.Application;

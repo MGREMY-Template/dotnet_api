@@ -1,8 +1,7 @@
 ﻿namespace API.Hubs;
 
 using AutoMapper;
-using Domain.DataTransferObject.Identity.RoleController;
-using Domain.DataTransferObject.Identity.UserController;
+using Domain.DataTransferObject;
 using Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

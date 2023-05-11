@@ -60,10 +60,14 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
                         return new Claim(ClaimTypes.Role, role);
                     });
                 var userClaims = await this._userManager.GetClaimsAsync(x);
+                var dataClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, x.Id.ToString()),
+                };
 
                 var tokenOptions = new JwtSecurityToken(this._configuration.GetFromEnvironmentVariable("JWT", "ISSUER"),
                     this._configuration.GetFromEnvironmentVariable("JWT", "AUDIENCE"),
-                    userRoles.Concat(userClaims),
+                    userRoles.Concat(userClaims).Concat(dataClaims),
                     expires: DateTime.Now.AddMinutes(3600),
                     signingCredentials: credentials);
 

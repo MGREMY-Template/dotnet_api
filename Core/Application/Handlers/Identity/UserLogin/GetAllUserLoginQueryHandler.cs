@@ -2,7 +2,6 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.UserLoginController;
 using Domain.Interface;
 using Domain.Queries.Identity.UserLogin;
 using Domain.Resources.Application;

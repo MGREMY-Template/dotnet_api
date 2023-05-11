@@ -2,7 +2,6 @@
 
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Auth.AuthController.Output;
-using Domain.DataTransferObject.Identity.UserController;
 using Domain.Queries.Auth.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

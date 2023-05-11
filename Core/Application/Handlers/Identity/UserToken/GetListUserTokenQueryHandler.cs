@@ -2,8 +2,6 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
-using Domain.DataTransferObject.Identity.RoleController;
-using Domain.DataTransferObject.Identity.UserTokenController;
 using Domain.Extensions;
 using Domain.Interface;
 using Domain.Queries.Identity.UserToken;
