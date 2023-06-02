@@ -28,6 +28,34 @@
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:8080"
+    },
+    "http back only": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "APP_CFG__DB__ADDR": "localhost",
+        "APP_CFG__DB__DB": "DotNet-API",
+        "APP_CFG__DB__PORT": "3306",
+        "APP_CFG__DB__PWD": "password",
+        "APP_CFG__DB__UID": "user",
+        "APP_CFG__IDT__LCK__ALLOW_NEW_USR": "true",
+        "APP_CFG__IDT__LCK__MAX_ATTEMPS": "5",
+        "APP_CFG__IDT__LCK__TIME": "5",
+        "APP_CFG__IDT__PWD__LENGTH": "8",
+        "APP_CFG__IDT__PWD__RQR_DIGIT": "true",
+        "APP_CFG__IDT__PWD__RQR_LWR_CSE": "true",
+        "APP_CFG__IDT__PWD__RQR_NO_ALPHANUM": "false",
+        "APP_CFG__IDT__PWD__RQR_UPR_CSE": "true",
+        "APP_CFG__IDT__SIGNIN__RQR_CONF_ACCOUNT": "true",
+        "APP_CFG__IDT__SIGNIN__RQR_CONF_EMAIL": "true",
+        "APP_CFG__IDT__SIGNIN__RQR_CONF_PHONE_NUM": "false",
+        "APP_CFG__JWT__AUDIENCE": "http://localhost:8080",
+        "APP_CFG__JWT__ISSUER": "http://localhost:8080",
+        "APP_CFG__JWT__KEY": "umVwSOVM59spQxRormKrfpgczu3U2poJTuuKPIKu",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:8080"
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json"
