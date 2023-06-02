@@ -13,8 +13,13 @@ public class MiddlewareInstaller_OptionsRequests : IServiceInstaller
         {
             opt.AddDefaultPolicy(policy =>
             {
-                policy.AllowAnyOrigin();
+                policy.SetIsOriginAllowed((host) =>
+                    {
+                        return true;
+                    });
+                policy.AllowAnyMethod();
                 policy.AllowAnyHeader();
+                policy.AllowCredentials();
             });
         });
     }

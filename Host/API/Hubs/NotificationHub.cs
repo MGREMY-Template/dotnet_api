@@ -3,6 +3,7 @@
 using AutoMapper;
 using Domain.DataTransferObject;
 using Domain.Entities.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
@@ -11,7 +12,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-[Authorize]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class NotificationHub : Hub
 {
     private readonly string _notificationMethod = "Notification";
@@ -61,36 +62,36 @@ public class NotificationHub : Hub
         await base.OnDisconnectedAsync(exception);
     }
 
-    public async Task NotifyAll(string title, string message)
+    public async Task NotifyAll(NotificationDto notification)
     {
-        await this.Clients.All.SendAsync(this._notificationMethod, title, message);
+        await this.Clients.All.SendAsync(this._notificationMethod, notification);
     }
 
-    public async Task NotifyUser(string title, string message, UserDto user)
+    public async Task NotifyUser(NotificationDto notification, UserDto user)
     {
         await this.Clients.User(this._mapper.Map<User>(user).Id.ToString())
-            .SendAsync(this._notificationMethod, title, message);
+            .SendAsync(this._notificationMethod, notification);
     }
 
-    public async Task NotifyUsers(string title, string message, params UserDto[] users)
+    public async Task NotifyUsers(NotificationDto notification, params UserDto[] users)
     {
         await this.Clients.Users(this._mapper.Map<User[]>(users).Select(x =>
         {
             return x.Id.ToString();
-        })).SendAsync(this._notificationMethod, title, message);
+        })).SendAsync(this._notificationMethod, notification);
     }
 
-    public async Task NotifyRole(string title, string message, RoleDto role)
+    public async Task NotifyRole(NotificationDto notification, RoleDto role)
     {
         await this.Clients.Group(this._mapper.Map<Role>(role).Name)
-            .SendAsync(this._notificationMethod, title, message);
+            .SendAsync(this._notificationMethod, notification);
     }
 
-    public async Task NotifyRoles(string title, string message, params RoleDto[] roles)
+    public async Task NotifyRoles(NotificationDto notification, params RoleDto[] roles)
     {
         await this.Clients.Groups(this._mapper.Map<Role[]>(roles).Select(x =>
         {
             return x.Name;
-        })).SendAsync(this._notificationMethod, title, message);
+        })).SendAsync(this._notificationMethod, notification);
     }
 }
