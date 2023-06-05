@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Handlers\Application\Application\" />
   </ItemGroup>
 
 </Project>

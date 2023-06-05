@@ -1,5 +1,6 @@
 ﻿namespace Infrastructure.Data;
 
+using Domain.Entities.Application;
 using Domain.Entities.Identity;
 using Domain.Interface;
 using Infrastructure;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 public class IdentityContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IAppDbContext
 {
+    public DbSet<AppFile> Files { get; set; }
+
     public IdentityContext(DbContextOptions<IdentityContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder)

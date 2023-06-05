@@ -20,6 +20,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             NormalizedEmail = "admin@admin.admin".ToUpper().Normalize(),
             PasswordHash = "AQAAAAIAAYagAAAAEDxk5EthOl3tW2BdXKdmAoxUUAvai68jo1xp7mb1Id0qfBcFB1N+vvHisZ8/TIs9Cw==",
             EmailConfirmed = true,
+            ConcurrencyStamp = "a4a90689-ff12-4cc7-a040-81e38d564959",
         });
     }
 }
