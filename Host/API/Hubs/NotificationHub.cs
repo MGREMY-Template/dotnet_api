@@ -1,8 +1,8 @@
 ﻿namespace API.Hubs;
 
-using AutoMapper;
 using Domain.DataTransferObject;
 using Domain.Entities.Identity;
+using Domain.Mapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,31 +15,25 @@ using System.Threading.Tasks;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class NotificationHub : Hub
 {
+    private readonly static SignalRConnectionMapping<string> _connections = new();
     private readonly string _notificationMethod = "Notification";
 
     private readonly UserManager<User> _userManager;
     private readonly ILogger _logger;
-    private readonly IMapper _mapper;
 
     public NotificationHub(
         UserManager<User> userManager,
-        ILogger<NotificationHub> logger,
-        IMapper mapper)
+        ILogger<NotificationHub> logger)
     {
         this._userManager = userManager;
         this._logger = logger;
-        this._mapper = mapper;
     }
 
     public override async Task OnConnectedAsync()
     {
-        var user = await this._userManager.GetUserAsync(this.Context.User);
-        var roles = await this._userManager.GetRolesAsync(user);
+        var id = this._userManager.GetUserId(this.Context.User);
 
-        foreach (var role in roles)
-        {
-            await this.Groups.AddToGroupAsync(user.Id.ToString(), role);
-        }
+        _connections.Add(id, this.Context.ConnectionId);
 
         await base.OnConnectedAsync();
     }
@@ -51,13 +45,9 @@ public class NotificationHub : Hub
             this._logger.LogWarning(exception: exception, message: null, args: null);
         }
 
-        var user = await this._userManager.GetUserAsync(this.Context.User);
-        var roles = await this._userManager.GetRolesAsync(user);
+        var id = this._userManager.GetUserId(this.Context.User);
 
-        foreach (var role in roles)
-        {
-            await this.Groups.RemoveFromGroupAsync(user.Id.ToString(), role);
-        }
+        _connections.Remove(id, this.Context.ConnectionId);
 
         await base.OnDisconnectedAsync(exception);
     }
@@ -67,31 +57,41 @@ public class NotificationHub : Hub
         await this.Clients.All.SendAsync(this._notificationMethod, notification);
     }
 
-    public async Task NotifyUser(NotificationDto notification, UserDto user)
+    public Task NotifyUser(NotificationDto notification, string userId)
     {
-        await this.Clients.User(this._mapper.Map<User>(user).Id.ToString())
-            .SendAsync(this._notificationMethod, notification);
+        foreach (var connectionId in _connections.GetConnections(userId))
+        {
+            this.Clients.Client(connectionId).SendAsync(this._notificationMethod, notification);
+        }
+
+        return Task.CompletedTask;
     }
 
-    public async Task NotifyUsers(NotificationDto notification, params UserDto[] users)
+    public Task NotifyUsers(NotificationDto notification, params string[] userIds)
     {
-        await this.Clients.Users(this._mapper.Map<User[]>(users).Select(x =>
+        foreach (var userId in userIds)
+        {
+            this.NotifyUser(notification, userId);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public async Task NotifyRole(NotificationDto notification, string roleId)
+    {
+        var userIds = (await this._userManager.GetUsersInRoleAsync(roleId)).Select(x =>
         {
             return x.Id.ToString();
-        })).SendAsync(this._notificationMethod, notification);
+        }).ToArray();
+
+        await this.NotifyUsers(notification, userIds);
     }
 
-    public async Task NotifyRole(NotificationDto notification, RoleDto role)
+    public async Task NotifyRoles(NotificationDto notification, params string[] roleIds)
     {
-        await this.Clients.Group(this._mapper.Map<Role>(role).Name)
-            .SendAsync(this._notificationMethod, notification);
-    }
-
-    public async Task NotifyRoles(NotificationDto notification, params RoleDto[] roles)
-    {
-        await this.Clients.Groups(this._mapper.Map<Role[]>(roles).Select(x =>
+        foreach (var roleId in roleIds)
         {
-            return x.Name;
-        })).SendAsync(this._notificationMethod, notification);
+            await this.NotifyRole(notification, roleId);
+        }
     }
 }

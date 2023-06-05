@@ -63,6 +63,7 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
                 var dataClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, x.Id.ToString()),
+                    new Claim(ClaimTypes.Name, x.UserName),
                 };
 
                 var tokenOptions = new JwtSecurityToken(this._configuration.GetFromEnvironmentVariable("JWT", "ISSUER"),
