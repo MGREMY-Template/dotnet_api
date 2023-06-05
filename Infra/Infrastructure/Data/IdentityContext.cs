@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 public class IdentityContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IAppDbContext
 {
-    public DbSet<AppFile> Files { get; set; }
+    public DbSet<AppFile> AppFiles { get; set; }
 
     public IdentityContext(DbContextOptions<IdentityContext> options) : base(options) { }
 

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Interface;
 
-using Domain.Entities;
+using Domain.Entities.Application;
 using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -18,4 +18,5 @@ public interface IAppDbContext
     public DbSet<UserLogin> UserLogins { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<UserToken> UserTokens { get; set; }
+    public DbSet<AppFile> AppFiles { get; set; }
 }

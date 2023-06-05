@@ -354,6 +354,27 @@ namespace Infrastructure.Migrations
                             ClaimType = "CLAIM_IDENTITY_USERTOKEN:GETLIST",
                             ClaimValue = "1",
                             UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ClaimType = "CLAIM_IDENTITY_APPFILE:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ClaimType = "CLAIM_IDENTITY_APPFILE:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ClaimType = "CLAIM_IDENTITY_APPFILE:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
                         });
                 });
 

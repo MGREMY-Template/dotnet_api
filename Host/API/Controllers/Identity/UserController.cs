@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Domain.Constants;
+using Domain.DataTransferObject.Identity;
 
 [Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserController : GenericController

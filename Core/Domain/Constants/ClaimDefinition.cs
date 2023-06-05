@@ -45,4 +45,11 @@ public class ClaimDefinition
     public const string IDENTITY_USERTOKEN_GETLIST = $"{IDENTITY_PREFIX}USERTOKEN{SUFIX_GETBYID}";
     public const string IDENTITY_USERTOKEN_GETBYID = $"{IDENTITY_PREFIX}USERTOKEN{SUFIX_GETLIST}";
     #endregion
+
+    #region Application/APPFILE
+    public const string IDENTITY_APPFILE_GETALL = $"{IDENTITY_PREFIX}APPFILE{SUFIX_GETALL}";
+    public const string IDENTITY_APPFILE_GETLIST = $"{IDENTITY_PREFIX}APPFILE{SUFIX_GETBYID}";
+    public const string IDENTITY_APPFILE_GETBYID = $"{IDENTITY_PREFIX}APPFILE{SUFIX_GETLIST}";
+
+    #endregion
 }
