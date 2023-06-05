@@ -1,6 +1,6 @@
 ﻿namespace Domain.DataTransferObject.Auth.AccountController.Output;
 
-using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
 
 public record GetRolesOutput
 {

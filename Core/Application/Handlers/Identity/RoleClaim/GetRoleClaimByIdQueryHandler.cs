@@ -11,6 +11,7 @@ using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Domain.DataTransferObject.Identity;
 
 public class GetRoleClaimByIdQueryHandler : IRequestHandler<GetRoleClaimByIdQuery, Result<RoleClaimDto>>
 {

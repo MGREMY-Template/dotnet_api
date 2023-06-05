@@ -10,6 +10,7 @@ using Domain.Queries.Identity.UserToken;
 using Domain.Paging;
 using Microsoft.AspNetCore.Authorization;
 using Domain.Constants;
+using Domain.DataTransferObject.Identity;
 
 [Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserTokenController : GenericController

@@ -1,20 +1,20 @@
-﻿namespace Domain.DataTransferObject;
+﻿namespace Domain.DataTransferObject.Identity;
 
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-public record RoleClaimDto
+public record UserClaimDto
 {
     [Required, DisplayName("Id")] public int Id { get; set; }
-    [Required, DisplayName("Role id")] public Guid RoleId { get; set; }
+    [Required, DisplayName("User id")] public Guid UserId { get; set; }
     [Required, DisplayName("Type")] public string ClaimType { get; set; }
     [Required, DisplayName("Value")] public string ClaimValue { get; set; }
 
-    public RoleClaimDto(int id, Guid roleId, string claimType, string claimValue)
+    public UserClaimDto(int id, Guid userId, string claimType, string claimValue)
     {
         this.Id = id;
-        this.RoleId = roleId;
+        this.UserId = userId;
         this.ClaimType = claimType;
         this.ClaimValue = claimValue;
     }

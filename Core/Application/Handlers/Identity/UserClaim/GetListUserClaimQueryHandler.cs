@@ -2,6 +2,7 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
 using Domain.Extensions;
 using Domain.Interface;
 using Domain.Queries.Identity.UserClaim;

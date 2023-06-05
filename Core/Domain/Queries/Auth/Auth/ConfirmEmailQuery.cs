@@ -1,6 +1,7 @@
 ﻿namespace Domain.Queries.Auth.Auth;
 
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
 using MediatR;
 using System.ComponentModel.DataAnnotations;
 

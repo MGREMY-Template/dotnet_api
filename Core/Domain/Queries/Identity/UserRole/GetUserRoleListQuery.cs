@@ -1,6 +1,7 @@
 ﻿namespace Domain.Queries.Identity.UserRole;
 
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
 using Domain.Paging;
 using MediatR;
 using System.ComponentModel.DataAnnotations;

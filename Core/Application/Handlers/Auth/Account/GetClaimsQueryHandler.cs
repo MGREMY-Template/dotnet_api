@@ -3,6 +3,7 @@
 using AutoMapper;
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Auth.AccountController.Output;
+using Domain.DataTransferObject.Identity;
 using Domain.Entities.Identity;
 using Domain.Extensions;
 using Domain.Queries.Auth.Account;
