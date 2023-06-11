@@ -1,15 +1,21 @@
 ﻿namespace Domain.Extensions;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 public static class TypeExtensions
 {
-    public static bool PropertyExist(this Type type, string propertyName)
+    public static bool PropertyExist(this Type type, string propertyName, out string realPropertyName)
     {
-        return type.GetTypeInfo().GetDeclaredProperty(propertyName) is not null;
+        if (type.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance) is PropertyInfo property)
+        {
+            realPropertyName = property.Name;
+            return true;
+        }
+
+        realPropertyName = string.Empty;
+        return false;
     }
 
     public static T[] GetAllPublicConstantValues<T>(this Type type)

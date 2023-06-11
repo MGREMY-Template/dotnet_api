@@ -10,11 +10,12 @@ public static class IQueryableExtensions
         this IQueryable<T> query,
         IPaging paging)
     {
-        query = query.Skip(paging.Skip).Take(paging.Take);
-        if (typeof(T).PropertyExist(paging.OrderBy))
+        if (typeof(T).PropertyExist(paging.OrderBy, out var property))
         {
-            query = query.OrderBy(paging.OrderBy, paging.IsOrderByDescending ? "desc" : "asc");
+            query = query.OrderBy($"{property} {(paging.IsOrderByDescending ? "desc" : "asc")}");
         }
+
+        query = query.Skip(paging.Skip).Take(paging.Take);
 
         return query;
     }
