@@ -7,6 +7,7 @@ using Domain.Queries.Identity.Role;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,5 +48,14 @@ public class RoleController : GenericController
     {
         Result<RoleDto> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
+    }
+
+    [HttpGet(nameof(Count)), Authorize(ClaimDefinition.IDENTITY_ROLE_GETALL)]
+    [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Count(
+        CancellationToken cancellationToken = default)
+    {
+        var result = await this._mediator.Send(new GetRoleCountQuery(), cancellationToken);
+        return this.Ok(result);
     }
 }

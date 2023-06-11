@@ -48,4 +48,13 @@ public class UserController : GenericController
         Result<UserDto> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
+
+    [HttpGet(nameof(Count)), Authorize(ClaimDefinition.IDENTITY_USER_GETALL)]
+    [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Count(
+        CancellationToken cancellationToken = default)
+    {
+        var result = await this._mediator.Send(new GetUserCountQuery(), cancellationToken);
+        return this.Ok(result);
+    }
 }
