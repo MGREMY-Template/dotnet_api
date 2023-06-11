@@ -22,16 +22,10 @@ public class AppFileMapper : Profile
                 opt.MapFrom(src => src.UserId);
             })
         .ForMember(x =>
-            x.CreationDate,
+            x.Size,
             opt =>
             {
-                opt.MapFrom(src => src.CreationDate);
-            })
-        .ForMember(x =>
-            x.Content,
-            opt =>
-            {
-                opt.MapFrom(src => src.Content);
+                opt.MapFrom(src => src.Size);
             })
         .ReverseMap();
     }

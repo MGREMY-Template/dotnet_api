@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230605210454_add_claims_APPFILE_POST")]
+    partial class add_claims_APPFILE_POST
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,8 +37,8 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
 
-                    b.Property<long>("Size")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
@@ -380,13 +383,6 @@ namespace Infrastructure.Migrations
                         {
                             Id = 25,
                             ClaimType = "CLAIM_APPFILE:POST_APPFILE",
-                            ClaimValue = "1",
-                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
-                        },
-                        new
-                        {
-                            Id = 26,
-                            ClaimType = "CLAIM_APPFILE_GET_STREAM",
                             ClaimValue = "1",
                             UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
                         });

@@ -45,14 +45,6 @@ public sealed class GetAllAppFileQueryHandler : IRequestHandler<GetAppFileAllQue
     public async Task<Result<AppFileDto[]>> Handle(GetAppFileAllQuery request, CancellationToken cancellationToken)
     {
         return Result.Create(await this._context.AppFiles.ToArrayAsync(cancellationToken), 200, 400, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
-            .Map(x =>
-            {
-                foreach (var appFile in x)
-                {
-                    appFile.Content = this._appFileHelper.ReadContent(Path.Combine(this._configuration.GetFromEnvironmentVariable("DATA_DIR"), "APP_FILE", appFile.Id.ToString()));
-                }
-
-                return this._mapper.Map<AppFileDto[]>(x);
-            });
+            .Map(this._mapper.Map<AppFileDto[]>);
     }
 }

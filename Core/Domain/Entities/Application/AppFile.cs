@@ -10,7 +10,7 @@ public class AppFile : IBaseEntity<Guid>
     public Guid Id { get; set; }
     public DateTime CreationDate { get; set; }
     public string MimeType { get; set; }
-    public int Size { get; set; }
+    public long Size { get; set; }
     public Stream Content { get; set; }
     public Guid UserId { get; set; }
 
