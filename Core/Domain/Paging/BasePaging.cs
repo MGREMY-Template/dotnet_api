@@ -10,5 +10,5 @@ public partial class BasePaging : IPaging
 
     [DefaultValue("Id")] public string OrderBy { get; set; } = "Id";
 
-    [DefaultValue(true)] public bool IsOrderByDescending { get; set; } = true;
+    [DefaultValue(true)] public bool IsOrderByDescending { get; set; } = false;
 }
