@@ -19,6 +19,6 @@ public class GetCountRoleClaimQueryHandler : IRequestHandler<GetRoleClaimCountQu
 
     public async Task<long> Handle(GetRoleClaimCountQuery request, CancellationToken cancellationToken)
     {
-        return await this._context.Roles.LongCountAsync(cancellationToken);
+        return await this._context.RoleClaims.LongCountAsync(cancellationToken);
     }
 }

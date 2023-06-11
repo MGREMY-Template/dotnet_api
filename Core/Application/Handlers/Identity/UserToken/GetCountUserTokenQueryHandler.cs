@@ -19,6 +19,6 @@ public class GetCountUserTokenQueryHandler : IRequestHandler<GetUserTokenCountQu
 
     public async Task<long> Handle(GetUserTokenCountQuery request, CancellationToken cancellationToken)
     {
-        return await this._context.Roles.LongCountAsync(cancellationToken);
+        return await this._context.UserTokens.LongCountAsync(cancellationToken);
     }
 }
