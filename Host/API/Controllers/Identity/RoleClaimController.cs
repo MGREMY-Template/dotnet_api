@@ -48,4 +48,13 @@ public class RoleClaimController : GenericController
         Result<RoleClaimDto> result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
+
+    [HttpGet(nameof(Count)), Authorize(ClaimDefinition.IDENTITY_ROLECLAIM_GETALL)]
+    [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Count(
+        CancellationToken cancellationToken = default)
+    {
+        var result = await this._mediator.Send(new GetRoleClaimCountQuery(), cancellationToken);
+        return this.Ok(result);
+    }
 }
