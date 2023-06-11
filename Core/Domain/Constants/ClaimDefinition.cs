@@ -8,6 +8,7 @@ public class ClaimDefinition
     private const string SUFIX_GETALL = ":GETALL";
     private const string SUFIX_GETLIST = ":GETLIST";
     private const string SUFIX_GETBYID = ":GETBYID";
+    private const string SUFIX_POST = ":POST";
     #endregion
 
     #region Identity/USER
@@ -47,9 +48,10 @@ public class ClaimDefinition
     #endregion
 
     #region Application/APPFILE
-    public const string IDENTITY_APPFILE_GETALL = $"{IDENTITY_PREFIX}APPFILE{SUFIX_GETALL}";
-    public const string IDENTITY_APPFILE_GETLIST = $"{IDENTITY_PREFIX}APPFILE{SUFIX_GETBYID}";
-    public const string IDENTITY_APPFILE_GETBYID = $"{IDENTITY_PREFIX}APPFILE{SUFIX_GETLIST}";
-
+    public const string APPLICATION_APPFILE_GETALL = $"{PREFIX}APPFILE{SUFIX_GETALL}";
+    public const string APPLICATION_APPFILE_GETLIST = $"{PREFIX}APPFILE{SUFIX_GETBYID}";
+    public const string APPLICATION_APPFILE_GETBYID = $"{PREFIX}APPFILE{SUFIX_GETLIST}";
+    public const string APPLICATION_APPFILE_POSTAPPFILE = $"{PREFIX}APPFILE{SUFIX_POST}_APPFILE";
+    public const string APPLICATION_APPFILE_GETSTREAM = $"{PREFIX}APPFILE_GET_STREAM";
     #endregion
 }

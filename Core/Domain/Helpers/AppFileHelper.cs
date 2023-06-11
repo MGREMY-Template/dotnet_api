@@ -2,6 +2,7 @@
 
 using Domain.Interface.Helper;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 public class AppFileHelper : IAppFileHelper
@@ -18,10 +19,15 @@ public class AppFileHelper : IAppFileHelper
         return output;
     }
 
-    public async Task WriteContent(string filePath, Stream content)
+    public async Task WriteContent(string directoryPath, string fileName, Stream content, CancellationToken cancellationToken = default)
     {
-        await content.FlushAsync();
-        using var fileStream = File.Create(filePath);
-        await content.CopyToAsync(fileStream);
+        await content.FlushAsync(cancellationToken);
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        using var fileStream = File.Create(Path.Combine(directoryPath, fileName));
+        await content.CopyToAsync(fileStream, cancellationToken);
     }
 }
