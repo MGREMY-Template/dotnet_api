@@ -1,7 +1,11 @@
 ﻿namespace Domain.DataTransferObject;
+
+using System.ComponentModel.DataAnnotations;
+
 public class Result
 {
-    public bool IsSuccess { get; }
+    [Required] public bool IsSuccess { get; }
+    [Required]
     public bool IsFailure
     {
         get
@@ -10,7 +14,7 @@ public class Result
         }
     }
 
-    public int StatusCode { get; }
+    [Required] public int StatusCode { get; }
     public string[] Messages { get; protected set; }
 
     protected Result(bool isSuccess, int statusCode)

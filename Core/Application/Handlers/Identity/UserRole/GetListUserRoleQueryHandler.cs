@@ -34,7 +34,7 @@ public class GetListUserRoleQueryHandler : IRequestHandler<GetUserRoleListQuery,
 
     public async Task<Result<UserRoleDto[]>> Handle(GetUserRoleListQuery request, CancellationToken cancellationToken)
     {
-        return Result.Create(await this._context.Roles.AsQueryable().ApplyPaging(request.Paging).ToArrayAsync(cancellationToken), 200, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
+        return Result.Create(await this._context.UserRoles.AsQueryable().ApplyPaging(request.Paging).ToArrayAsync(cancellationToken), 200, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
             .Map(this._mapper.Map<UserRoleDto[]>);
     }
 }
