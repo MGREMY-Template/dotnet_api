@@ -25,7 +25,7 @@ public class AppFileController : GenericController
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken = default)
     {
-        Result<AppFileDto[]> result = await this._mediator.Send(new GetAppFileAllQuery(), cancellationToken);
+        var result = await this._mediator.Send(new GetAppFileAllQuery(), cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 
@@ -35,7 +35,7 @@ public class AppFileController : GenericController
         [FromQuery] BasePaging paging,
         CancellationToken cancellationToken = default)
     {
-        Result<AppFileDto[]> result = await this._mediator.Send(new GetAppFileListQuery(paging), cancellationToken);
+        var result = await this._mediator.Send(new GetAppFileListQuery(paging), cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 
@@ -45,7 +45,7 @@ public class AppFileController : GenericController
         [FromQuery] GetAppFileByIdQuery query,
         CancellationToken cancellationToken = default)
     {
-        Result<AppFileDto> result = await this._mediator.Send(query, cancellationToken);
+        var result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 
@@ -56,8 +56,18 @@ public class AppFileController : GenericController
         [FromQuery] GetAppFileStreamQuery query,
         CancellationToken cancellationToken = default)
     {
-        PhysicalFileResult result = await this._mediator.Send(query, cancellationToken);
+        var result = await this._mediator.Send(query, cancellationToken);
         return result;
+    }
+
+    [HttpGet(nameof(GetBytes)), Authorize(ClaimDefinition.APPLICATION_APPFILE_GETSTREAM)]
+    [ProducesResponseType(typeof(Result<byte[]>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetBytes(
+        [FromQuery] GetAppFileBytesQuery query,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await this._mediator.Send(query, cancellationToken);
+        return this.StatusCode(result.StatusCode, result);
     }
 
     [HttpPost(nameof(Post)), Authorize(ClaimDefinition.APPLICATION_APPFILE_POSTAPPFILE)]
@@ -68,7 +78,7 @@ public class AppFileController : GenericController
         [FromForm] PostAppFileQuery query,
         CancellationToken cancellationToken = default)
     {
-        Result<AppFileDto> result = await this._mediator.Send(query, cancellationToken);
+        var result = await this._mediator.Send(query, cancellationToken);
         return this.StatusCode(result.StatusCode, result);
     }
 }
