@@ -1,6 +1,5 @@
 ﻿namespace Application.Handlers.Auth.Auth;
 
-using Application.Extensions;
 using AutoMapper;
 using Domain.DataTransferObject;
 using Domain.Entities.Identity;
@@ -9,10 +8,11 @@ using Domain.Resources.Application.Services.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Domain.DataTransferObject.Auth.AuthController.Output;
 using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.DataTransferObject.Identity;
+using global::Application.Extensions;
 
 public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Result<UserDto>>
 {

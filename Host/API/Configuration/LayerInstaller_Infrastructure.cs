@@ -10,10 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
 using Domain.Attributes;
-using Domain.Entities.Identity;
-using System;
-using Microsoft.AspNetCore.Identity;
-using System.Linq;
 
 [ConfigOrder(1)]
 public class LayerInstaller_Infrastructure : IServiceInstaller

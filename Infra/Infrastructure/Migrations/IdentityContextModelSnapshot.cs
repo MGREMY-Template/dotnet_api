@@ -19,6 +19,34 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "7.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Domain.Entities.Application.AppFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("MimeType")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AppFile", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Identity.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -145,7 +173,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a1b5ad4c-235c-46e3-a2b4-9f0a12c6b271",
+                            ConcurrencyStamp = "a4a90689-ff12-4cc7-a040-81e38d564959",
                             Email = "admin@admin.admin",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -326,6 +354,41 @@ namespace Infrastructure.Migrations
                             ClaimType = "CLAIM_IDENTITY_USERTOKEN:GETLIST",
                             ClaimValue = "1",
                             UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ClaimType = "CLAIM_APPFILE:GETALL",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ClaimType = "CLAIM_APPFILE:GETBYID",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ClaimType = "CLAIM_APPFILE:GETLIST",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ClaimType = "CLAIM_APPFILE:POST_APPFILE",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ClaimType = "CLAIM_APPFILE_GET_STREAM",
+                            ClaimValue = "1",
+                            UserId = new Guid("d8645da5-5583-4287-9e20-51f8dd6796bd")
                         });
                 });
 
@@ -391,6 +454,17 @@ namespace Infrastructure.Migrations
                     b.ToTable("__Identity_UserToken", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Application.AppFile", b =>
+                {
+                    b.HasOne("Domain.Entities.Identity.User", "CreationUser")
+                        .WithMany("Files")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreationUser");
+                });
+
             modelBuilder.Entity("Domain.Entities.Identity.RoleClaim", b =>
                 {
                     b.HasOne("Domain.Entities.Identity.Role", null)
@@ -440,6 +514,11 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Identity.User", b =>
+                {
+                    b.Navigation("Files");
                 });
 #pragma warning restore 612, 618
         }

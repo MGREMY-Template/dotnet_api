@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.DataTransferObject.Identity;
 
 public class GetListRoleQueryHandler : IRequestHandler<GetRoleListQuery, Result<RoleDto[]>>
 {

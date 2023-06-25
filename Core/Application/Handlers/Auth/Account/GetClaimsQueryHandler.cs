@@ -3,6 +3,7 @@
 using AutoMapper;
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Auth.AccountController.Output;
+using Domain.DataTransferObject.Identity;
 using Domain.Entities.Identity;
 using Domain.Extensions;
 using Domain.Queries.Auth.Account;
@@ -11,8 +12,6 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -11,6 +11,7 @@
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.2" />
   </ItemGroup>
 
@@ -19,6 +20,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Application\Services\Application\AppFile\AppFileService.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppFileService.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Application\Services\Auth\AuthService.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -86,6 +92,10 @@
     <EmbeddedResource Update="Resources\Application\Global.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Application\Services\Application\AppFile\AppFileService.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppFileService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Application\Services\Auth\AuthService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
