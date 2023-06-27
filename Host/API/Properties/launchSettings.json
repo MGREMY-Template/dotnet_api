@@ -5,7 +5,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "APP_CFG__DATA_DIR": "C:\\Users\\Miguel\\AppData\\Local\\Temp",
+        "APP_CFG__DATA_DIR": "C:\\TMP",
         "APP_CFG__DB__ADDR": "localhost",
         "APP_CFG__DB__DB": "DotNet-API",
         "APP_CFG__DB__PORT": "3306",
@@ -34,7 +34,7 @@
       "commandName": "Project",
       "launchUrl": "swagger",
       "environmentVariables": {
-        "APP_CFG__DATA_DIR": "/var/data/",
+        "APP_CFG__DATA_DIR": "C:\\TMP",
         "APP_CFG__DB__ADDR": "localhost",
         "APP_CFG__DB__DB": "DotNet-API",
         "APP_CFG__DB__PORT": "3306",

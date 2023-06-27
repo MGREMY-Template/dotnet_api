@@ -49,18 +49,7 @@ public class AppFileController : GenericController
         return this.StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet(nameof(GetStream)), Authorize(ClaimDefinition.APPLICATION_APPFILE_GETSTREAM)]
-    [ProducesResponseType(typeof(PhysicalFileResult), StatusCodes.Status200OK)]
-    [Produces("multipart/form-data")]
-    public async Task<IActionResult> GetStream(
-        [FromQuery] GetAppFileStreamQuery query,
-        CancellationToken cancellationToken = default)
-    {
-        var result = await this._mediator.Send(query, cancellationToken);
-        return result;
-    }
-
-    [HttpGet(nameof(GetBytes)), Authorize(ClaimDefinition.APPLICATION_APPFILE_GETSTREAM)]
+    [HttpGet(nameof(GetBytes)), AllowAnonymous]
     [ProducesResponseType(typeof(Result<byte[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetBytes(
         [FromQuery] GetAppFileBytesQuery query,
