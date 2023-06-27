@@ -27,6 +27,12 @@ public class AppFileMapper : Profile
             {
                 opt.MapFrom(src => src.Size);
             })
+        .ForMember(x =>
+            x.MimeType,
+            opt =>
+            {
+                opt.MapFrom(src => src.MimeType);
+            })
         .ReverseMap();
     }
 }

@@ -9,10 +9,10 @@ using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
-using Domain.Extensions;
 using Domain.DataTransferObject;
 using Domain.Resources.Application.Services.Application.AppFile;
 using Microsoft.Extensions.Localization;
+using Domain.Extensions;
 
 public class GetAppFileBytesQueryHandler : IRequestHandler<GetAppFileBytesQuery, Result<byte[]>>
 {
