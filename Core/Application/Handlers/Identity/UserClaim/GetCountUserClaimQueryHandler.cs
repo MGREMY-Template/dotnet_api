@@ -1,11 +1,11 @@
 ﻿namespace Application.Handlers.Identity.UserClaim;
 
 using Domain.Interface;
-using MediatR;
-using System.Threading.Tasks;
-using System.Threading;
 using Domain.Queries.Identity.UserClaim;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class GetCountUserClaimQueryHandler : IRequestHandler<GetUserClaimCountQuery, long>
 {

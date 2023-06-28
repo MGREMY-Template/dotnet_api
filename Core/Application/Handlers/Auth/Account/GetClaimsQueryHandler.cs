@@ -6,12 +6,14 @@ using Domain.DataTransferObject.Auth.AccountController.Output;
 using Domain.DataTransferObject.Identity;
 using Domain.Entities.Identity;
 using Domain.Extensions;
+using Domain.Interface.Helper;
 using Domain.Queries.Auth.Account;
 using Domain.Resources.Application;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,23 +30,23 @@ public class GetClaimsQueryHandler : IRequestHandler<GetClaimsQuery, Result<GetC
         IMapper mapper,
         UserManager<User> userManager,
         RoleManager<Role> roleManager,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._httpContextAccessor = httpContextAccessor;
         this._mapper = mapper;
         this._userManager = userManager;
         this._roleManager = roleManager;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
     public async Task<Result<GetClaimsOutput>> Handle(GetClaimsQuery request, CancellationToken cancellationToken)
     {
-        var user = await this._userManager.GetUserAsync(this._httpContextAccessor.HttpContext.User);
+        User user = await this._userManager.GetUserAsync(this._httpContextAccessor.HttpContext.User);
 
         return Result.Create(user, 200, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
             .MapAsync(async x =>
             {
-                var userClaims = await this._userManager.GetClaimsAsync(x);
+                ICollection<System.Security.Claims.Claim> userClaims = await this._userManager.GetClaimsAsync(x);
 
                 return new GetClaimsOutput
                 {

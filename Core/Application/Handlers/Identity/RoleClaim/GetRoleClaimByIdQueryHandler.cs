@@ -2,16 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Identity.RoleClaim;
+using Domain.Resources.Application.Services.Identity;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Domain.DataTransferObject.Identity;
 
 public class GetRoleClaimByIdQueryHandler : IRequestHandler<GetRoleClaimByIdQuery, Result<RoleClaimDto>>
 {
@@ -24,17 +26,17 @@ public class GetRoleClaimByIdQueryHandler : IRequestHandler<GetRoleClaimByIdQuer
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetRoleClaimByIdQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Services.Identity.RoleClaimService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(RoleClaimService));
     }
 
     public async Task<Result<RoleClaimDto>> Handle(GetRoleClaimByIdQuery request, CancellationToken cancellationToken)
     {
-        return Result.Create(await this._context.RoleClaims.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(Domain.Resources.Application.Services.Identity.RoleClaimService.RoleClaimNotFound))
+        return Result.Create(await this._context.RoleClaims.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(RoleClaimService.RoleClaimNotFound))
             .Map(this._mapper.Map<RoleClaimDto>);
     }
 }

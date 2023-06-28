@@ -1,10 +1,10 @@
 ﻿namespace Application.Configuration;
 
+using Domain.Attributes;
 using Domain.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Domain.Attributes;
 
 [ConfigOrder(1)]
 public class ServicesInstaller : IServiceInstaller

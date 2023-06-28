@@ -1,18 +1,18 @@
 ﻿namespace Application.Handlers.Application.AppFile;
 
-using Domain.Interface.Helper;
+using Domain.DataTransferObject;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Applciation.AppFile;
+using Domain.Resources.Application.Services.Application.AppFile;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using Domain.DataTransferObject;
-using Domain.Resources.Application.Services.Application.AppFile;
-using Microsoft.Extensions.Localization;
-using Domain.Extensions;
 
 public class GetAppFileBytesQueryHandler : IRequestHandler<GetAppFileBytesQuery, Result<byte[]>>
 {
@@ -25,13 +25,13 @@ public class GetAppFileBytesQueryHandler : IRequestHandler<GetAppFileBytesQuery,
     public GetAppFileBytesQueryHandler(
         IAppDbContext context,
         ILogger<GetAppFileBytesQueryHandler> logger,
-        IStringLocalizer<AppFileService> stringLocalizer,
+        IStringLocalizerHelper stringLocalizerHelper,
         IAppFileHelper appFileHelper,
         IConfiguration configuration)
     {
         this._context = context;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AppFileServiceConstants));
         this._appFileHelper = appFileHelper;
         this._configuration = configuration;
     }

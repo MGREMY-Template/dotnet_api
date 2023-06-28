@@ -21,7 +21,7 @@ public class AppFileHelper : IAppFileHelper
 
     public Stream ReadContent(string filePath)
     {
-        var output = Stream.Null;
+        Stream output = Stream.Null;
 
         if (this.Exists(filePath))
         {
@@ -48,10 +48,10 @@ public class AppFileHelper : IAppFileHelper
         await content.FlushAsync(cancellationToken);
         if (!Directory.Exists(directoryPath))
         {
-            Directory.CreateDirectory(directoryPath);
+            _ = Directory.CreateDirectory(directoryPath);
         }
 
-        using var fileStream = File.Create(Path.Combine(directoryPath, fileName));
+        using FileStream fileStream = File.Create(Path.Combine(directoryPath, fileName));
         await content.CopyToAsync(fileStream, cancellationToken);
     }
 }

@@ -5,6 +5,7 @@ using Domain.DataTransferObject;
 using Domain.DataTransferObject.Identity;
 using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Identity.UserToken;
 using Domain.Resources.Application;
 using MediatR;
@@ -25,12 +26,12 @@ public class GetListUserTokenQueryHandler : IRequestHandler<GetUserTokenListQuer
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetListUserTokenQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
     public async Task<Result<UserTokenDto[]>> Handle(GetUserTokenListQuery request, CancellationToken cancellationToken)

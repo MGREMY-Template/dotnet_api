@@ -3,12 +3,13 @@
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Auth.AuthController.Output;
 using Domain.Entities.Identity;
+using Domain.Extensions;
+using Domain.Interface.Helper;
 using Domain.Queries.Auth.Auth;
 using Domain.Resources.Application.Services.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Domain.Extensions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,10 +21,10 @@ public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailCon
 
     public GetEmailConfirmationTokenQueryHandler(
         UserManager<User> userManager,
-        IStringLocalizer<Domain.Resources.Application.Services.Auth.AuthService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._userManager = userManager;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AuthServiceConstants));
     }
 
     public async Task<Result<GetEmailConfirmationTokenOutput>> Handle(GetEmailConfirmationTokenQuery request, CancellationToken cancellationToken)

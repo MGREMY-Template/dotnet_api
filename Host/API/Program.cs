@@ -23,13 +23,13 @@ public class Program
 
         WebApplication app = builder.Build();
 
-        app.Install(
+        _ = app.Install(
             typeof(Program).Assembly,
             typeof(Application.Marker).Assembly,
             typeof(Infrastructure.Marker).Assembly,
             typeof(Domain.Marker).Assembly);
 
-        app.MapControllers();
+        _ = app.MapControllers();
 
         app.Run();
     }

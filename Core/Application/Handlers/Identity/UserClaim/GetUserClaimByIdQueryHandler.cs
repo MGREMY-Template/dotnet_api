@@ -2,16 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Identity.UserClaim;
+using Domain.Resources.Application.Services.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity;
 
 public class GetUserClaimByIdQueryHandler : IRequestHandler<GetUserClaimByIdQuery, Result<UserClaimDto>>
 {
@@ -24,17 +26,17 @@ public class GetUserClaimByIdQueryHandler : IRequestHandler<GetUserClaimByIdQuer
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetUserClaimByIdQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Services.Identity.UserClaimService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(UserClaimServiceConstants));
     }
 
     public async Task<Result<UserClaimDto>> Handle(GetUserClaimByIdQuery request, CancellationToken cancellationToken)
     {
-        return Result.Create(await this._context.UserClaims.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(Domain.Resources.Application.Services.Identity.UserClaimServiceConstants.UserClaimNotFound))
+        return Result.Create(await this._context.UserClaims.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(UserClaimServiceConstants.UserClaimNotFound))
             .Map(this._mapper.Map<UserClaimDto>);
     }
 }

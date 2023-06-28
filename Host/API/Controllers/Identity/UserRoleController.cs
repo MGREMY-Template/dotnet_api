@@ -1,16 +1,16 @@
 ﻿namespace API.Controllers.Identity;
 
+using Domain.Constants;
+using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
+using Domain.Paging;
+using Domain.Queries.Identity.UserRole;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using System.Threading;
-using Domain.DataTransferObject;
-using Domain.Queries.Identity.UserRole;
-using Domain.Paging;
-using Microsoft.AspNetCore.Authorization;
-using Domain.Constants;
-using Domain.DataTransferObject.Identity;
+using System.Threading.Tasks;
 
 [Route("api/Identity/[controller]"), Authorize(Roles = RoleDefinition.ADMIN)]
 public class UserRoleController : GenericController

@@ -2,16 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Identity.UserRole;
+using Domain.Resources.Application.Services.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity;
 
 public class GetUserRoleByIdQueryHandler : IRequestHandler<GetUserRoleByIdQuery, Result<UserRoleDto>>
 {
@@ -24,17 +26,17 @@ public class GetUserRoleByIdQueryHandler : IRequestHandler<GetUserRoleByIdQuery,
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetUserRoleByIdQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Services.Identity.UserRoleService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(UserRoleServiceConstants));
     }
 
     public async Task<Result<UserRoleDto>> Handle(GetUserRoleByIdQuery request, CancellationToken cancellationToken)
     {
-        return Result.Create(await this._context.UserRoles.FirstOrDefaultAsync(x => x.UserId.Equals(request.UserId) && x.RoleId.Equals(request.RoleId), cancellationToken), 200, 404, this._stringLocalizer.GetString(Domain.Resources.Application.Services.Identity.UserRoleServiceConstants.UserRoleNotFound))
+        return Result.Create(await this._context.UserRoles.FirstOrDefaultAsync(x => x.UserId.Equals(request.UserId) && x.RoleId.Equals(request.RoleId), cancellationToken), 200, 404, this._stringLocalizer.GetString(UserRoleServiceConstants.UserRoleNotFound))
             .Map(this._mapper.Map<UserRoleDto>);
     }
 }

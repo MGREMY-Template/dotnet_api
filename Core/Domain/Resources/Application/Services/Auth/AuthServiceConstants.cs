@@ -1,5 +1,8 @@
 ﻿namespace Domain.Resources.Application.Services.Auth;
 
+using Domain.Attributes;
+
+[StringLocalizerTarget(typeof(AuthService))]
 public class AuthServiceConstants
 {
     public const string EmailAlreadyConfirmed = "EmailAlreadyConfirmed";

@@ -13,19 +13,19 @@ public class MiddlewareInstaller_OptionsRequests : IServiceInstaller
         {
             opt.AddDefaultPolicy(policy =>
             {
-                policy.SetIsOriginAllowed((host) =>
+                _ = policy.SetIsOriginAllowed((host) =>
                     {
                         return true;
                     });
-                policy.AllowAnyMethod();
-                policy.AllowAnyHeader();
-                policy.AllowCredentials();
+                _ = policy.AllowAnyMethod();
+                _ = policy.AllowAnyHeader();
+                _ = policy.AllowCredentials();
             });
         });
     }
 
     public void Install(IApplicationBuilder applicationBuilder)
     {
-        applicationBuilder.UseCors();
+        _ = applicationBuilder.UseCors();
     }
 }

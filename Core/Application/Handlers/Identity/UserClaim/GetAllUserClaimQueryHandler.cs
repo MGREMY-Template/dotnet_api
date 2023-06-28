@@ -2,17 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Identity.UserClaim;
 using Domain.Resources.Application;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity;
 
 public class GetAllUserClaimQueryHandler : IRequestHandler<GetUserClaimAllQuery, Result<UserClaimDto[]>>
 {
@@ -25,12 +26,12 @@ public class GetAllUserClaimQueryHandler : IRequestHandler<GetUserClaimAllQuery,
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetAllUserClaimQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
     public async Task<Result<UserClaimDto[]>> Handle(GetUserClaimAllQuery request, CancellationToken cancellationToken)

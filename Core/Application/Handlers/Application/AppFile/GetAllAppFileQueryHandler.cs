@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,14 +29,14 @@ public sealed class GetAllAppFileQueryHandler : IRequestHandler<GetAppFileAllQue
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetAllAppFileQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer,
+        IStringLocalizerHelper stringLocalizerHelper,
         IAppFileHelper appFileHelper,
         IConfiguration configuration)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
         this._appFileHelper = appFileHelper;
         this._configuration = configuration;
     }

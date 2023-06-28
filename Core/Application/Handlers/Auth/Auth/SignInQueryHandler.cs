@@ -4,6 +4,7 @@ using Domain.DataTransferObject;
 using Domain.DataTransferObject.Auth.AuthController.Output;
 using Domain.Entities.Identity;
 using Domain.Extensions;
+using Domain.Interface.Helper;
 using Domain.Queries.Auth.Auth;
 using Domain.Resources.Application.Services.Auth;
 using MediatR;
@@ -31,12 +32,12 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
         UserManager<User> userManager,
         SignInManager<User> signInManager,
         IConfiguration configuration,
-        IStringLocalizer<Domain.Resources.Application.Services.Auth.AuthService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._userManager = userManager;
         this._signInManager = signInManager;
         this._configuration = configuration;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AuthServiceConstants));
     }
 
     public async Task<Result<SignInOutput>> Handle(SignInQuery request, CancellationToken cancellationToken)
@@ -55,11 +56,11 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration.GetFromEnvironmentVariable("JWT", "KEY")));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-                var userRoles = (await this._userManager.GetRolesAsync(x)).Select(role =>
+                IEnumerable<Claim> userRoles = (await this._userManager.GetRolesAsync(x)).Select(role =>
                     {
                         return new Claim(ClaimTypes.Role, role);
                     });
-                var userClaims = await this._userManager.GetClaimsAsync(x);
+                IList<Claim> userClaims = await this._userManager.GetClaimsAsync(x);
                 var dataClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, x.Id.ToString()),

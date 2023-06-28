@@ -2,17 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
 using Domain.Entities.Identity;
+using Domain.Extensions;
+using Domain.Interface.Helper;
 using Domain.Queries.Auth.Auth;
 using Domain.Resources.Application;
+using global::Application.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity;
-using global::Application.Extensions;
 
 public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
 {
@@ -23,14 +24,14 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
     public SignUpQueryHandler(
         UserManager<User> userManager,
         IMapper mapper,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._userManager = userManager;
         this._mapper = mapper;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
-    public async Task<Result<UserDto>> Handle(SignUpQuery request, CancellationToken cancellationToken)
+    public Task<Result<UserDto>> Handle(SignUpQuery request, CancellationToken cancellationToken)
     {
         var user = new User
         {
@@ -38,7 +39,7 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
             Email = request.Email,
         };
 
-        return Result.Create(user, 201, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
+        return Task.FromResult(Result.Create(user, 201, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
             .EnsureAsync(async x =>
             {
                 IdentityResult result = await this._userManager.CreateAsync(x, request.Password);
@@ -50,6 +51,6 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
                 x = await this._userManager.FindByEmailAsync(x.Email);
 
                 return this._mapper.Map<UserDto>(x);
-            });
+            }));
     }
 }

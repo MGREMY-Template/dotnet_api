@@ -2,16 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Identity.UserToken;
+using Domain.Resources.Application.Services.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity;
 
 public class GetUserTokenByIdQueryHandler : IRequestHandler<GetUserTokenByIdQuery, Result<UserTokenDto>>
 {
@@ -24,17 +26,17 @@ public class GetUserTokenByIdQueryHandler : IRequestHandler<GetUserTokenByIdQuer
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetUserTokenByIdQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Services.Identity.UserTokenService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(UserTokenServiceConstants));
     }
 
     public async Task<Result<UserTokenDto>> Handle(GetUserTokenByIdQuery request, CancellationToken cancellationToken)
     {
-        return Result.Create(await this._context.UserTokens.FirstOrDefaultAsync(x => x.UserId.Equals(request.UserId) && x.LoginProvider.Equals(request.LoginProvider) && x.Name.Equals(request.Name), cancellationToken), 200, 404, this._stringLocalizer.GetString(Domain.Resources.Application.Services.Identity.UserTokenServiceConstants.UserTokenNotFound))
+        return Result.Create(await this._context.UserTokens.FirstOrDefaultAsync(x => x.UserId.Equals(request.UserId) && x.LoginProvider.Equals(request.LoginProvider) && x.Name.Equals(request.Name), cancellationToken), 200, 404, this._stringLocalizer.GetString(UserTokenServiceConstants.UserTokenNotFound))
             .Map(this._mapper.Map<UserTokenDto>);
     }
 }

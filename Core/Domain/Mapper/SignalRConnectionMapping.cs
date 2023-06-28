@@ -19,8 +19,7 @@ public class SignalRConnectionMapping<T>
     {
         lock (this._connections)
         {
-            HashSet<string> connections;
-            if (!this._connections.TryGetValue(key, out connections))
+            if (!this._connections.TryGetValue(key, out HashSet<string> connections))
             {
                 connections = new HashSet<string>();
                 this._connections.Add(key, connections);
@@ -28,7 +27,7 @@ public class SignalRConnectionMapping<T>
 
             lock (connections)
             {
-                connections.Add(connectionId);
+                _ = connections.Add(connectionId);
             }
         }
     }
@@ -44,19 +43,18 @@ public class SignalRConnectionMapping<T>
     {
         lock (this._connections)
         {
-            HashSet<string> connections;
-            if (!this._connections.TryGetValue(key, out connections))
+            if (!this._connections.TryGetValue(key, out HashSet<string> connections))
             {
                 return;
             }
 
             lock (connections)
             {
-                connections.Remove(connectionId);
+                _ = connections.Remove(connectionId);
 
                 if (!connections.Any())
                 {
-                    this._connections.Remove(key);
+                    _ = this._connections.Remove(key);
                 }
             }
         }

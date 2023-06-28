@@ -1,5 +1,6 @@
 ﻿namespace API.Configuration;
 
+using Domain.Attributes;
 using Domain.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Domain.Attributes;
 using System.Linq;
 
 [ConfigOrder(0)]
