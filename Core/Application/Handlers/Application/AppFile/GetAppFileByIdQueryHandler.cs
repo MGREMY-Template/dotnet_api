@@ -29,14 +29,14 @@ public class GetAppFileByIdQueryHandler : IRequestHandler<GetAppFileByIdQuery, R
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetAppFileByIdQueryHandler> logger,
-        IStringLocalizer<AppFileService> stringLocalizer,
+        IStringLocalizerHelper stringLocalizerHelper,
         IAppFileHelper appFileHelper,
         IConfiguration configuration)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AppFileServiceConstants));
         this._appFileHelper = appFileHelper;
         this._configuration = configuration;
     }

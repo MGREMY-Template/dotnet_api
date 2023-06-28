@@ -25,13 +25,13 @@ public class GetAppFileBytesQueryHandler : IRequestHandler<GetAppFileBytesQuery,
     public GetAppFileBytesQueryHandler(
         IAppDbContext context,
         ILogger<GetAppFileBytesQueryHandler> logger,
-        IStringLocalizer<AppFileService> stringLocalizer,
+        IStringLocalizerHelper stringLocalizerHelper,
         IAppFileHelper appFileHelper,
         IConfiguration configuration)
     {
         this._context = context;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AppFileServiceConstants));
         this._appFileHelper = appFileHelper;
         this._configuration = configuration;
     }

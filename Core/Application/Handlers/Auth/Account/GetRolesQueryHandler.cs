@@ -6,6 +6,7 @@ using Domain.DataTransferObject.Auth.AccountController.Output;
 using Domain.DataTransferObject.Identity;
 using Domain.Entities.Identity;
 using Domain.Extensions;
+using Domain.Interface.Helper;
 using Domain.Queries.Auth.Account;
 using Domain.Resources.Application;
 using MediatR;
@@ -13,7 +14,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,13 +30,13 @@ public class GetRolesQueryHandler : IRequestHandler<GetRolesQuery, Result<GetRol
         IMapper mapper,
         UserManager<User> userManager,
         RoleManager<Role> roleManager,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._httpContextAccessor = httpContextAccessor;
         this._mapper = mapper;
         this._userManager = userManager;
         this._roleManager = roleManager;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
     public async Task<Result<GetRolesOutput>> Handle(GetRolesQuery request, CancellationToken cancellationToken)

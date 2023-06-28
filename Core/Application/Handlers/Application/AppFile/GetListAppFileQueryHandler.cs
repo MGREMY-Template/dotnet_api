@@ -14,7 +14,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Domain.Extensions;
-using System.IO;
 using Domain.Resources.Application;
 
 public class GetListAppFileQueryHandler : IRequestHandler<GetAppFileListQuery, Result<AppFileDto[]>>
@@ -30,14 +29,14 @@ public class GetListAppFileQueryHandler : IRequestHandler<GetAppFileListQuery, R
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetListAppFileQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer,
+        IStringLocalizerHelper stringLocalizerHelper,
         IAppFileHelper appFileHelper,
         IConfiguration configuration)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
         this._appFileHelper = appFileHelper;
         this._configuration = configuration;
     }

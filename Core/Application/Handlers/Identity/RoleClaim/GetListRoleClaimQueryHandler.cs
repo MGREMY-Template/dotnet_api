@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Domain.Resources.Application;
 using Domain.DataTransferObject.Identity;
+using Domain.Interface.Helper;
 
 public class GetListRoleClaimQueryHandler : IRequestHandler<GetRoleClaimListQuery, Result<RoleClaimDto[]>>
 {
@@ -25,12 +26,12 @@ public class GetListRoleClaimQueryHandler : IRequestHandler<GetRoleClaimListQuer
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetListRoleClaimQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
     public async Task<Result<RoleClaimDto[]>> Handle(GetRoleClaimListQuery request, CancellationToken cancellationToken)

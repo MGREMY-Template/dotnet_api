@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Domain.DataTransferObject.Identity;
 using global::Application.Extensions;
+using Domain.Interface.Helper;
 
 public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
 {
@@ -23,11 +24,11 @@ public class SignUpQueryHandler : IRequestHandler<SignUpQuery, Result<UserDto>>
     public SignUpQueryHandler(
         UserManager<User> userManager,
         IMapper mapper,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._userManager = userManager;
         this._mapper = mapper;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
     public async Task<Result<UserDto>> Handle(SignUpQuery request, CancellationToken cancellationToken)

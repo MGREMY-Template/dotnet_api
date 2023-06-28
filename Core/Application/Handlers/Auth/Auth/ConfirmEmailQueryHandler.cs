@@ -12,6 +12,7 @@ using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.DataTransferObject.Identity;
+using Domain.Interface.Helper;
 using global::Application.Extensions;
 
 public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Result<UserDto>>
@@ -23,11 +24,11 @@ public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Resul
     public ConfirmEmailQueryHandler(
         UserManager<User> userManager,
         IMapper mapper,
-        IStringLocalizer<Domain.Resources.Application.Services.Auth.AuthService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._userManager = userManager;
         this._mapper = mapper;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AuthServiceConstants));
     }
 
     public async Task<Result<UserDto>> Handle(ConfirmEmailQuery request, CancellationToken cancellationToken)

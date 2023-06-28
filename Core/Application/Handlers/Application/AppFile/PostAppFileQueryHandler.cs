@@ -36,22 +36,21 @@ public class PostAppFileQueryHandler : IRequestHandler<PostAppFileQuery, Result<
         IAppDbContext context,
         IMapper mapper,
         ILogger<PostAppFileQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer,
+        IStringLocalizerHelper stringLocalizerHelper,
         UserManager<User> userManager,
         IHttpContextAccessor httpContextAccessor,
         IAppFileHelper appFileHelper,
-        IConfiguration configuration,
-        IStringLocalizer<AppFileService> appFileStringLocalizer)
+        IConfiguration configuration)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
         this._userManager = userManager;
         this._httpContextAccessor = httpContextAccessor;
         this._appFileHelper = appFileHelper;
         this._configuration = configuration;
-        this._appFileStringLocalizer = appFileStringLocalizer;
+        this._appFileStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AppFileServiceConstants));
     }
 
     public async Task<Result<AppFileDto>> Handle(PostAppFileQuery request, CancellationToken cancellationToken)

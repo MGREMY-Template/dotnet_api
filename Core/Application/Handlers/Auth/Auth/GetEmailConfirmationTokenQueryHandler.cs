@@ -12,6 +12,7 @@ using Domain.Extensions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.Interface.Helper;
 
 public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailConfirmationTokenQuery, Result<GetEmailConfirmationTokenOutput>>
 {
@@ -20,10 +21,10 @@ public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailCon
 
     public GetEmailConfirmationTokenQueryHandler(
         UserManager<User> userManager,
-        IStringLocalizer<Domain.Resources.Application.Services.Auth.AuthService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._userManager = userManager;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(AuthServiceConstants));
     }
 
     public async Task<Result<GetEmailConfirmationTokenOutput>> Handle(GetEmailConfirmationTokenQuery request, CancellationToken cancellationToken)

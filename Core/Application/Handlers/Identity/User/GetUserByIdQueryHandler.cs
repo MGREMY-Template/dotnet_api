@@ -12,6 +12,8 @@ using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.DataTransferObject.Identity;
+using Domain.Interface.Helper;
+using Domain.Resources.Application.Services.Identity;
 
 public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, Result<UserDto>>
 {
@@ -24,17 +26,17 @@ public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, Result<
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetUserByIdQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Services.Identity.UserService> stringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._stringLocalizer = stringLocalizer;
+        this._stringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(UserServiceConstants));
     }
 
     public async Task<Result<UserDto>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        return Result.Create(await this._context.Users.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(Domain.Resources.Application.Services.Identity.UserServiceConstants.UserNotFound))
+        return Result.Create(await this._context.Users.FirstOrDefaultAsync(x => x.Id.Equals(request.Id), cancellationToken), 200, 404, this._stringLocalizer.GetString(UserServiceConstants.UserNotFound))
             .Map(this._mapper.Map<UserDto>);
     }
 }

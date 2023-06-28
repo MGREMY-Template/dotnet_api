@@ -13,6 +13,7 @@ using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.DataTransferObject.Identity;
+using Domain.Interface.Helper;
 
 public sealed class GetAllUserQueryHandler : IRequestHandler<GetUserAllQuery, Result<UserDto[]>>
 {
@@ -25,12 +26,12 @@ public sealed class GetAllUserQueryHandler : IRequestHandler<GetUserAllQuery, Re
         IAppDbContext context,
         IMapper mapper,
         ILogger<GetAllUserQueryHandler> logger,
-        IStringLocalizer<Domain.Resources.Application.Global> globalStringLocalizer)
+        IStringLocalizerHelper stringLocalizerHelper)
     {
         this._context = context;
         this._mapper = mapper;
         this._logger = logger;
-        this._globalStringLocalizer = globalStringLocalizer;
+        this._globalStringLocalizer = stringLocalizerHelper.GetStringLocalizer(typeof(GlobalConstants));
     }
 
     public async Task<Result<UserDto[]>> Handle(GetUserAllQuery request, CancellationToken cancellationToken)

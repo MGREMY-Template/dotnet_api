@@ -11,6 +11,7 @@ public class HelperInstaller : IServiceInstaller
     public void Configure(IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IAppFileHelper, AppFileHelper>();
+        services.AddSingleton<IStringLocalizerHelper, StringLocalizerHelper>();
     }
 
     public void Install(IApplicationBuilder applicationBuilder)
