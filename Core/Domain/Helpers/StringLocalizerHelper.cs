@@ -16,15 +16,8 @@ public class StringLocalizerHelper : IStringLocalizerHelper
 
     public IStringLocalizer GetStringLocalizer(Type source)
     {
-        if (Attribute.GetCustomAttribute(source, typeof(StringLocalizerTargetAttribute)) is StringLocalizerTargetAttribute attribute)
-        {
-            var target = attribute.Target;
-
-            return this._factory.Create(target);
-        }
-        else
-        {
-            throw new ArgumentException("Class doesn't have StringLocalizerTarget attribute", nameof(source));
-        }
+        return Attribute.GetCustomAttribute(source, typeof(StringLocalizerTargetAttribute)) is StringLocalizerTargetAttribute attribute
+            ? this._factory.Create(attribute.Target)
+            : throw new ArgumentException("Class doesn't have StringLocalizerTarget attribute", nameof(source));
     }
 }

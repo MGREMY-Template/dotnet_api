@@ -2,18 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Identity.UserClaim;
+using Domain.Resources.Application.Services.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity;
-using Domain.Interface.Helper;
-using Domain.Resources.Application.Services.Identity;
 
 public class GetUserClaimByIdQueryHandler : IRequestHandler<GetUserClaimByIdQuery, Result<UserClaimDto>>
 {

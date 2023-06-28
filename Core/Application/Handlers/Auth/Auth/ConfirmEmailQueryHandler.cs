@@ -2,18 +2,18 @@
 
 using AutoMapper;
 using Domain.DataTransferObject;
+using Domain.DataTransferObject.Identity;
 using Domain.Entities.Identity;
+using Domain.Extensions;
+using Domain.Interface.Helper;
 using Domain.Queries.Auth.Auth;
 using Domain.Resources.Application.Services.Auth;
+using global::Application.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Domain.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.DataTransferObject.Identity;
-using Domain.Interface.Helper;
-using global::Application.Extensions;
 
 public class ConfirmEmailQueryHandler : IRequestHandler<ConfirmEmailQuery, Result<UserDto>>
 {

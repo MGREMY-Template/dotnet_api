@@ -3,9 +3,9 @@
 using Domain.Interface;
 using Domain.Queries.Identity.UserToken;
 using MediatR;
-using System.Threading.Tasks;
-using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class GetCountUserTokenQueryHandler : IRequestHandler<GetUserTokenCountQuery, long>
 {

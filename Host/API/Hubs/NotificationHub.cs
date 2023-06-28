@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class NotificationHub : Hub
 {
-    private readonly static SignalRConnectionMapping<string> _connections = new();
+    private static readonly SignalRConnectionMapping<string> _connections = new();
     private readonly string _notificationMethod = "Notification";
 
     private readonly UserManager<User> _userManager;
@@ -61,7 +61,7 @@ public class NotificationHub : Hub
     {
         foreach (var connectionId in _connections.GetConnections(userId))
         {
-            this.Clients.Client(connectionId).SendAsync(this._notificationMethod, notification);
+            _ = this.Clients.Client(connectionId).SendAsync(this._notificationMethod, notification);
         }
 
         return Task.CompletedTask;
@@ -71,7 +71,7 @@ public class NotificationHub : Hub
     {
         foreach (var userId in userIds)
         {
-            this.NotifyUser(notification, userId);
+            _ = this.NotifyUser(notification, userId);
         }
 
         return Task.CompletedTask;

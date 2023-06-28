@@ -3,9 +3,9 @@
 using Domain.Interface;
 using Domain.Queries.Identity.RoleClaim;
 using MediatR;
-using System.Threading.Tasks;
-using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class GetCountRoleClaimQueryHandler : IRequestHandler<GetRoleClaimCountQuery, long>
 {

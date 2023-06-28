@@ -3,22 +3,22 @@
 using AutoMapper;
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Application;
-using Domain.Interface.Helper;
+using Domain.Entities.Identity;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Applciation.AppFile;
+using Domain.Resources.Application;
+using Domain.Resources.Application.Services.Application.AppFile;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.Resources.Application.Services.Application.AppFile;
-using Domain.Extensions;
-using System.IO;
-using Domain.Resources.Application;
-using Domain.Entities.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
 
 public class PostAppFileQueryHandler : IRequestHandler<PostAppFileQuery, Result<AppFileDto>>
 {
@@ -68,11 +68,11 @@ public class PostAppFileQueryHandler : IRequestHandler<PostAppFileQuery, Result<
             Content = request.File.OpenReadStream(),
         };
 
-        this._context.AppFiles.Add(newAppFile);
+        _ = this._context.AppFiles.Add(newAppFile);
 
         await this._appFileHelper.WriteContent(Path.Combine(this._configuration.GetFromEnvironmentVariable("DATA_DIR"), "APP_FILE"), newAppFile.Id.ToString(), newAppFile.Content, cancellationToken);
 
-        await this._context.SaveChangesAsync();
+        _ = await this._context.SaveChangesAsync();
 
         return Result.Create(newAppFile, 200, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
             .Map(this._mapper.Map<AppFileDto>);

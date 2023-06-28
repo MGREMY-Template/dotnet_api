@@ -56,11 +56,11 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<SignInOutp
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration.GetFromEnvironmentVariable("JWT", "KEY")));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-                var userRoles = (await this._userManager.GetRolesAsync(x)).Select(role =>
+                IEnumerable<Claim> userRoles = (await this._userManager.GetRolesAsync(x)).Select(role =>
                     {
                         return new Claim(ClaimTypes.Role, role);
                     });
-                var userClaims = await this._userManager.GetClaimsAsync(x);
+                IList<Claim> userClaims = await this._userManager.GetClaimsAsync(x);
                 var dataClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, x.Id.ToString()),

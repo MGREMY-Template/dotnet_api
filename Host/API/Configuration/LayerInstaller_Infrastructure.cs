@@ -1,5 +1,6 @@
 ﻿namespace API.Configuration;
 
+using Domain.Attributes;
 using Domain.Configuration;
 using Domain.Extensions;
 using Domain.Interface;
@@ -9,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
-using Domain.Attributes;
 
 [ConfigOrder(1)]
 public class LayerInstaller_Infrastructure : IServiceInstaller

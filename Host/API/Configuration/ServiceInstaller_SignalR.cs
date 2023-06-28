@@ -19,6 +19,6 @@ public class ServiceInstaller_SignalR : IServiceInstaller
 
     public void Install(IApplicationBuilder applicationBuilder)
     {
-        ((IEndpointRouteBuilder) applicationBuilder).MapHub<NotificationHub>("hub/notification");
+        _ = ((IEndpointRouteBuilder) applicationBuilder).MapHub<NotificationHub>("hub/notification");
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace API.Configuration;
 
+using Domain.Attributes;
 using Domain.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Domain.Attributes;
 using System.Linq;
 
 [ConfigOrder(0)]

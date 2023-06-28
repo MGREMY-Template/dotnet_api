@@ -1,12 +1,12 @@
 ﻿namespace API.Configuration;
 
+using Domain.Attributes;
 using Domain.Configuration;
+using Domain.Constants;
+using Domain.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Domain.Attributes;
-using Domain.Extensions;
-using Domain.Constants;
 
 [ConfigOrder(2)]
 public class LayerInstaller_Authorization : IServiceInstaller
@@ -21,7 +21,7 @@ public class LayerInstaller_Authorization : IServiceInstaller
             {
                 opt.AddPolicy(claim, p =>
                 {
-                    p.RequireClaim(claim, "1");
+                    _ = p.RequireClaim(claim, "1");
                 });
             }
         });

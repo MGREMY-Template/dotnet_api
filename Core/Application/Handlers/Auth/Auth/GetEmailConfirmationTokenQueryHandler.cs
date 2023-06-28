@@ -3,16 +3,16 @@
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Auth.AuthController.Output;
 using Domain.Entities.Identity;
+using Domain.Extensions;
+using Domain.Interface.Helper;
 using Domain.Queries.Auth.Auth;
 using Domain.Resources.Application.Services.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Domain.Extensions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.Interface.Helper;
 
 public class GetEmailConfirmationTokenQueryHandler : IRequestHandler<GetEmailConfirmationTokenQuery, Result<GetEmailConfirmationTokenOutput>>
 {

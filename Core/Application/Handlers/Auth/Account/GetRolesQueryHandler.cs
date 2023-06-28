@@ -41,7 +41,7 @@ public class GetRolesQueryHandler : IRequestHandler<GetRolesQuery, Result<GetRol
 
     public async Task<Result<GetRolesOutput>> Handle(GetRolesQuery request, CancellationToken cancellationToken)
     {
-        var user = await this._userManager.GetUserAsync(this._httpContextAccessor.HttpContext.User);
+        User user = await this._userManager.GetUserAsync(this._httpContextAccessor.HttpContext.User);
 
         return Result.Create(user, 200, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
             .MapAsync(async x =>

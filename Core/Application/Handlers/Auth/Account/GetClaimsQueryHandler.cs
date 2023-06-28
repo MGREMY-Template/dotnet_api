@@ -13,6 +13,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,12 +41,12 @@ public class GetClaimsQueryHandler : IRequestHandler<GetClaimsQuery, Result<GetC
 
     public async Task<Result<GetClaimsOutput>> Handle(GetClaimsQuery request, CancellationToken cancellationToken)
     {
-        var user = await this._userManager.GetUserAsync(this._httpContextAccessor.HttpContext.User);
+        User user = await this._userManager.GetUserAsync(this._httpContextAccessor.HttpContext.User);
 
         return Result.Create(user, 200, 500, this._globalStringLocalizer.GetString(GlobalConstants.InternalServerError))
             .MapAsync(async x =>
             {
-                var userClaims = await this._userManager.GetClaimsAsync(x);
+                ICollection<System.Security.Claims.Claim> userClaims = await this._userManager.GetClaimsAsync(x);
 
                 return new GetClaimsOutput
                 {

@@ -3,18 +3,18 @@
 using AutoMapper;
 using Domain.DataTransferObject;
 using Domain.DataTransferObject.Application;
-using Domain.Interface.Helper;
+using Domain.Extensions;
 using Domain.Interface;
+using Domain.Interface.Helper;
 using Domain.Queries.Applciation.AppFile;
+using Domain.Resources.Application.Services.Application.AppFile;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Domain.Extensions;
-using Domain.Resources.Application.Services.Application.AppFile;
 
 public class GetAppFileByIdQueryHandler : IRequestHandler<GetAppFileByIdQuery, Result<AppFileDto>>
 {
