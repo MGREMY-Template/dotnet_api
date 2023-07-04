@@ -16,29 +16,7 @@ public static class DependencyInjection
         IConfiguration configuration,
         params Assembly[] assemblies)
     {
-        IEnumerable<IServiceInstaller> serviceInstallers = assemblies
-            .SelectMany(a =>
-            {
-                return a.DefinedTypes;
-            })
-            .Where(IsAssignableToType<IServiceInstaller>)
-            .OrderBy(a =>
-            {
-                Attribute[] attrs = Attribute.GetCustomAttributes(a);
-
-                foreach (Attribute attr in attrs)
-                {
-                    if (attr is ConfigOrderAttribute coa)
-                    {
-                        return coa.Order;
-                    }
-                }
-
-                return -1;
-
-            })
-            .Select(Activator.CreateInstance)
-            .Cast<IServiceInstaller>();
+        IEnumerable<IServiceInstaller> serviceInstallers = GetServiceInstallers(assemblies);
 
         foreach (IServiceInstaller serviceInstaller in serviceInstallers)
         {
@@ -52,29 +30,7 @@ public static class DependencyInjection
         this IApplicationBuilder applicationBuilder,
         params Assembly[] assemblies)
     {
-        IEnumerable<IServiceInstaller> serviceInstallers = assemblies
-            .SelectMany(a =>
-            {
-                return a.DefinedTypes;
-            })
-            .Where(IsAssignableToType<IServiceInstaller>)
-            .OrderBy(a =>
-            {
-                Attribute[] attrs = Attribute.GetCustomAttributes(a);
-
-                foreach (Attribute attr in attrs)
-                {
-                    if (attr is ConfigOrderAttribute coa)
-                    {
-                        return coa.Order;
-                    }
-                }
-
-                return -1;
-
-            })
-            .Select(Activator.CreateInstance)
-            .Cast<IServiceInstaller>();
+        IEnumerable<IServiceInstaller> serviceInstallers = GetServiceInstallers(assemblies);
 
         foreach (IServiceInstaller serviceInstaller in serviceInstallers)
         {
@@ -82,6 +38,24 @@ public static class DependencyInjection
         }
 
         return applicationBuilder;
+    }
+
+    private static IEnumerable<IServiceInstaller> GetServiceInstallers(params Assembly[] assemblies)
+    {
+        return assemblies
+            .SelectMany(a =>
+            {
+                return a.DefinedTypes;
+            })
+            .Where(IsAssignableToType<IServiceInstaller>)
+            .OrderBy(a =>
+            {
+                return Attribute.GetCustomAttribute(a, typeof(ConfigOrderAttribute)) is ConfigOrderAttribute attr
+                    ? attr.Order
+                    : -1;
+            })
+            .Select(Activator.CreateInstance)
+            .Cast<IServiceInstaller>();
     }
 
     private static bool IsAssignableToType<T>(TypeInfo typeInfo)
