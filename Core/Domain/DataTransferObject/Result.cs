@@ -1,5 +1,6 @@
 ﻿namespace Domain.DataTransferObject;
 
+using System.Buffers.Text;
 using System.ComponentModel.DataAnnotations;
 
 public class Result
@@ -63,7 +64,7 @@ public class Result<TResult> : Result
         return new(true, result, statusCode);
     }
 #nullable enable
-    public static Result<TResult> Failure(int statusCode, params string[]? messages)
+    public new static Result<TResult> Failure(int statusCode, params string[]? messages)
     {
         return new(false, statusCode, messages);
     }
