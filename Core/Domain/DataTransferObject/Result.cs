@@ -28,12 +28,12 @@ public class Result
         return new(true, statusCode);
     }
 
+#nullable enable
     public static Result Failure(int statusCode, params string[]? errorMessages)
     {
         return new(false, statusCode) { Messages = errorMessages };
     }
 
-#nullable enable
     public static Result<TResult> Create<TResult>(TResult value, int successStatusCode, int failureStatusCode, params string[]? errorMessages)
     {
         return value is not null ?
