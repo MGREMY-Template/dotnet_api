@@ -27,7 +27,7 @@ public class LayerInstaller_Authorization : IServiceInstaller
         });
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
         _ = applicationBuilder.UseAuthorization();
     }

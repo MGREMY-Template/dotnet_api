@@ -40,7 +40,7 @@ public class LayerInstaller_Infrastructure : IServiceInstaller
         });
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
     }
 }

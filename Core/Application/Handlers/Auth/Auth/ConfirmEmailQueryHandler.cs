@@ -7,7 +7,7 @@ using Domain.Entities.Identity;
 using Domain.Extensions;
 using Domain.Interface.Helper;
 using Domain.Queries.Auth.Auth;
-using Domain.Resources.Application.Services.Auth;
+using Domain.Resources.Application.Services.Auth.Auth;
 using global::Application.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

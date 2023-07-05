@@ -4,11 +4,10 @@ using Domain.DataTransferObject;
 using Domain.DataTransferObject.Identity;
 using Domain.Paging;
 using MediatR;
-using System.ComponentModel.DataAnnotations;
 
 public class GetUserListQuery : IRequest<Result<UserDto[]>>
 {
-    [Required] public IPaging Paging { get; set; }
+    public IPaging Paging { get; set; }
 
     public GetUserListQuery(IPaging paging)
     {

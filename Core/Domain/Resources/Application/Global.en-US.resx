@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Null_Value" xml:space="preserve">
-    <value>Null value</value>
-  </data>
   <data name="Internal_Server_Error" xml:space="preserve">
     <value>Internal Server Error</value>
+  </data>
+  <data name="PagingNull" xml:space="preserve">
+    <value>Paging cannot be empty</value>
+  </data>
+  <data name="IdEmpty" xml:space="preserve">
+    <value>Id cannot be empty</value>
   </data>
 </root>

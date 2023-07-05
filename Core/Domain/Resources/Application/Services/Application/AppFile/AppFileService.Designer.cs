@@ -77,5 +77,14 @@ namespace Domain.Resources.Application.Services.Application.AppFile {
                 return ResourceManager.GetString("FileNotFound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à File cannot be null.
+        /// </summary>
+        public static string FileNull {
+            get {
+                return ResourceManager.GetString("FileNull", resourceCulture);
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@ public sealed partial class GlobalInstaller_API : IServiceInstaller
         _ = services.AddControllers();
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
     }
 }

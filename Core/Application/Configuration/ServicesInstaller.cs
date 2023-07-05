@@ -17,7 +17,7 @@ public class ServicesInstaller : IServiceInstaller
             });
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
     }
 }

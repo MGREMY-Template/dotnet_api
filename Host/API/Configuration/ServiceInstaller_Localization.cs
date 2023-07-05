@@ -26,7 +26,7 @@ public class ServiceInstaller_Localization : IServiceInstaller
             });
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
         RequestLocalizationOptions localizationOptions = new RequestLocalizationOptions()
             .SetDefaultCulture(AcceptedLanguages.FirstOrDefault())

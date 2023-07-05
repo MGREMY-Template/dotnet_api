@@ -6,4 +6,5 @@ using System;
 public interface IStringLocalizerHelper
 {
     public IStringLocalizer GetStringLocalizer(Type source);
+    public IStringLocalizer GetGlobalStringLocalizer();
 }

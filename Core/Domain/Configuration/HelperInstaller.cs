@@ -14,7 +14,7 @@ public class HelperInstaller : IServiceInstaller
         _ = services.AddSingleton<IStringLocalizerHelper, StringLocalizerHelper>();
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
     }
 }

@@ -103,4 +103,7 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>Fichier introuvable</value>
   </data>
+  <data name="FileNull" xml:space="preserve">
+    <value>Le fichier ne peut pas être nul</value>
+  </data>
 </root>

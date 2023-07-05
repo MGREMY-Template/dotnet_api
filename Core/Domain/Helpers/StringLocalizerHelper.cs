@@ -20,4 +20,9 @@ public class StringLocalizerHelper : IStringLocalizerHelper
             ? this._factory.Create(attribute.Target)
             : throw new ArgumentException("Class doesn't have StringLocalizerTarget attribute", nameof(source));
     }
+
+    public IStringLocalizer GetGlobalStringLocalizer()
+    {
+        return this._factory.Create(typeof(Domain.Resources.Application.Global));
+    }
 }
