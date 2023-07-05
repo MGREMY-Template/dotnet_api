@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
     <PackageReference Include="MediatR" Version="12.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.8" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.3" />
   </ItemGroup>
@@ -27,42 +27,42 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppFileService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Auth\AuthService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Auth\Auth\AuthService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AuthService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Identity\RoleClaimService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\RoleClaim\RoleClaimService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>RoleClaimService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Identity\RoleService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\Role\RoleService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>RoleService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Identity\UserClaimService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\UserClaim\UserClaimService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UserClaimService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Identity\UserLoginService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\UserLogin\UserLoginService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UserLoginService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Identity\UserRoleService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\UserRole\UserRoleService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UserRoleService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Identity\UserService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\User\UserService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UserService.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Application\Services\Identity\UserTokenService.Designer.cs">
+    <Compile Update="Resources\Application\Services\Identity\UserToken\UserTokenService.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UserTokenService.resx</DependentUpon>
@@ -98,38 +98,38 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppFileService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Auth\AuthService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Auth\Auth\AuthService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\RoleClaimService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\RoleClaim\RoleClaimService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RoleClaimService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\RoleService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\Role\RoleService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RoleService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\UserClaimService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\UserClaim\UserClaimService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserClaimService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\UserLoginService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\UserLogin\UserLoginService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserLoginService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\UserRoleService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\UserRole\UserRoleService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserRoleService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\UserService.fr-FR.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\User\UserService.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\UserService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\User\UserService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Application\Services\Identity\UserTokenService.resx">
+    <EmbeddedResource Update="Resources\Application\Services\Identity\UserToken\UserTokenService.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserTokenService.Designer.cs</LastGenOutput>
     </EmbeddedResource>

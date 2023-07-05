@@ -97,10 +97,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Null_Value" xml:space="preserve">
-    <value>Valeur nulle</value>
-  </data>
   <data name="Internal_Server_Error" xml:space="preserve">
     <value>Erreur Serveur Interne</value>
+  </data>
+  <data name="PagingNull" xml:space="preserve">
+    <value>La pagination ne peut pas être nulle</value>
+  </data>
+  <data name="IdEmpty" xml:space="preserve">
+    <value>L'identifiant ne peut pas être vide</value>
   </data>
 </root>

@@ -7,4 +7,5 @@ public class AppFileServiceConstants
 {
     public const string FileIsEmpty = "FileIsEmpty";
     public const string FileNotFound = "FileNotFound";
+    public const string FileNull = "FileNull";
 }

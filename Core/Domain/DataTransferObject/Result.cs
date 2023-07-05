@@ -28,9 +28,9 @@ public class Result
         return new(true, statusCode);
     }
 
-    public static Result Failure(int statusCode)
+    public static Result Failure(int statusCode, params string[]? errorMessages)
     {
-        return new(false, statusCode);
+        return new(false, statusCode) { Messages = errorMessages };
     }
 
 #nullable enable

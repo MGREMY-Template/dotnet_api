@@ -7,7 +7,7 @@ using Domain.Extensions;
 using Domain.Interface;
 using Domain.Interface.Helper;
 using Domain.Queries.Identity.UserLogin;
-using Domain.Resources.Application.Services.Identity;
+using Domain.Resources.Application.Services.Identity.UserLogin;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;

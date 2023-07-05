@@ -4,11 +4,10 @@ using Domain.DataTransferObject;
 using Domain.DataTransferObject.Identity;
 using Domain.Paging;
 using MediatR;
-using System.ComponentModel.DataAnnotations;
 
 public class GetRoleClaimListQuery : IRequest<Result<RoleClaimDto[]>>
 {
-    [Required] public IPaging Paging { get; set; }
+    public IPaging Paging { get; set; }
 
     public GetRoleClaimListQuery(IPaging paging)
     {

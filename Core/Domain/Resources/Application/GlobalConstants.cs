@@ -6,5 +6,6 @@ using Domain.Attributes;
 public class GlobalConstants
 {
     public const string InternalServerError = "Internal_Server_Error";
-    public const string NullValue = "Null_Value";
+    public const string PagingNull = "PagingNull";
+    public const string IdEmpty = "IdEmpty";
 }

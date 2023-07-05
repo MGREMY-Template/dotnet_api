@@ -26,8 +26,8 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IApplicationBuilder Install(
-        this IApplicationBuilder applicationBuilder,
+    public static WebApplication Install(
+        this WebApplication applicationBuilder,
         params Assembly[] assemblies)
     {
         IEnumerable<IServiceInstaller> serviceInstallers = GetServiceInstallers(assemblies);

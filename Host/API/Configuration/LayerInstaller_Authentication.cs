@@ -40,7 +40,7 @@ public sealed partial class LayerInstaller_Authentication : IServiceInstaller
             });
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
         _ = applicationBuilder.UseAuthentication();
 

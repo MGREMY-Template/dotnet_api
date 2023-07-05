@@ -7,5 +7,5 @@ using Microsoft.Extensions.DependencyInjection;
 public interface IServiceInstaller
 {
     void Configure(IServiceCollection services, IConfiguration configuration);
-    void Install(IApplicationBuilder applicationBuilder);
+    void Install(WebApplication applicationBuilder);
 }

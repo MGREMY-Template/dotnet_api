@@ -61,6 +61,15 @@ namespace Domain.Resources.Application {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Id cannot be empty.
+        /// </summary>
+        public static string IdEmpty {
+            get {
+                return ResourceManager.GetString("IdEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Internal Server Error.
         /// </summary>
         public static string Internal_Server_Error {
@@ -70,11 +79,11 @@ namespace Domain.Resources.Application {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Null value.
+        ///   Recherche une chaîne localisée semblable à Paging cannot be empty.
         /// </summary>
-        public static string Null_Value {
+        public static string PagingNull {
             get {
-                return ResourceManager.GetString("Null_Value", resourceCulture);
+                return ResourceManager.GetString("PagingNull", resourceCulture);
             }
         }
     }

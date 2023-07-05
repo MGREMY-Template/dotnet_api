@@ -14,7 +14,7 @@ public class AutoMapperInstaller : IServiceInstaller
         _ = services.AddAutoMapper(typeof(Marker).Assembly);
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
     }
 }

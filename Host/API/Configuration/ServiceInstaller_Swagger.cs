@@ -60,9 +60,9 @@ public class ServiceInstaller_Swagger : IServiceInstaller
         _ = services.AddEndpointsApiExplorer();
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
-        if (applicationBuilder.ApplicationServices.GetRequiredService<IWebHostEnvironment>().IsDevelopment())
+        if (applicationBuilder.Environment.IsDevelopment())
         {
             _ = applicationBuilder.UseSwagger();
             _ = applicationBuilder.UseSwaggerUI();

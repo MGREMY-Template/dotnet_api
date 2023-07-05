@@ -4,7 +4,6 @@ using API.Hubs;
 using Domain.Attributes;
 using Domain.Configuration;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,8 +16,8 @@ public class ServiceInstaller_SignalR : IServiceInstaller
             .AddJsonProtocol();
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
-        _ = ((IEndpointRouteBuilder) applicationBuilder).MapHub<NotificationHub>("hub/notification");
+        _ = applicationBuilder.MapHub<NotificationHub>("hub/notification");
     }
 }

@@ -37,7 +37,7 @@ public class ServiceInstaller_Identity : IServiceInstaller
             .AddDefaultTokenProviders();
     }
 
-    public void Install(IApplicationBuilder applicationBuilder)
+    public void Install(WebApplication applicationBuilder)
     {
     }
 }
